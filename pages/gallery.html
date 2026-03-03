@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Sensory Deprivation Float Center</title>
+    <meta name="description"
+        content="Explore our luxury float center gallery — our pods, private suites, and integration lounge.">
+    <link rel="stylesheet" href="../assets/css/style.css">`n    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 15, 14, 0.8) 0%, transparent 50%);
+            display: flex;
+            align-items: flex-end;
+            padding: var(--spacing-md);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-label {
+            color: #fff;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: var(--z-modal);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.is-open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--border-radius-lg);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Filter pills */
+        .filter-pills {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .filter-pill {
+            padding: 0.4rem 1.2rem;
+            border-radius: 999px;
+            border: 1px solid var(--theme-border);
+            background: transparent;
+            color: var(--theme-text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all var(--transition-fast);
+            font-family: var(--font-sans);
+        }
+
+        .filter-pill:hover,
+        .filter-pill.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo" aria-label="Float Center Home">FLOAT it</a>
+
+            <nav id="main-nav" class="nav" aria-label="Main Navigation">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="gallery.html" class="nav-link active" aria-current="page">Gallery</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link">My Bookings</a>
+                <a href="booking.html" class="btn btn-primary btn-sticky-mobile">Book Now</a>
+            </nav>
+
+            <div style="display:flex; gap: 1rem; align-items: center;">
+                <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <span id="theme-icon"></span>
+                </button>
+                <button type="button" id="mobile-toggle" class="mobile-toggle" aria-expanded="false"
+                    aria-controls="main-nav" aria-label="Open menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Page Header -->
+        <section class="section animate-fade-up"
+            style="background-color: var(--theme-surface); text-align: center; border-bottom: 1px solid var(--theme-border);">
+            <div class="container">
+                <h1 style="margin-bottom: var(--spacing-sm);">Gallery</h1>
+                <p style="color: var(--theme-text-muted); font-size: 1.125rem; max-width: 600px; margin: 0 auto;">
+                    A visual journey through our sanctuary — pods, suites, and spaces designed for deep rest.
+                </p>
+            </div>
+        </section>
+
+        <!-- Filter Pills -->
+        <section class="section animate-fade-up animate-stagger-1" style="padding-bottom: 0;">
+            <div class="container">
+                <div class="filter-pills" role="group" aria-label="Filter gallery">
+                    <button class="filter-pill active" data-filter="all">All</button>
+                    <button class="filter-pill" data-filter="pods">Float Pods</button>
+                    <button class="filter-pill" data-filter="suites">Private Suites</button>
+                    <button class="filter-pill" data-filter="lounge">Integration Lounge</button>
+                    <button class="filter-pill" data-filter="exterior">Exterior</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Grid -->
+        <section class="section" style="padding-top: var(--spacing-lg);">
+            <div class="container">
+                <div class="gallery-grid" id="gallery-grid">
+
+                    <!-- Float Pods -->
+                    <div class="gallery-item animate-fade-up" data-category="pods">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800"
+                            alt="Sensory Deprivation Float Pod" loading="lazy">
+                        <div class="gallery-item-overlay"><span class="gallery-item-label">Float Pod — Suite A</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item animate-fade-up animate-stagger-1" data-category="pods">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800"
+                            alt="Float pod interior" loading="lazy">
+                        <div class="gallery-item-overlay"><span class="gallery-item-label">Open-Top Float Pod</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item animate-fade-up animate-stagger-2" data-category="suites">
+                        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&q=80&w=800"
+                            alt="Private wellness suite" loading="lazy">
+                        <div class="gallery-item-overlay"><span class="gallery-item-label">Private Suite Shower</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item animate-fade-up animate-stagger-3" data-category="lounge">
+                        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=800"
+                            alt="Post-float lounge" loading="lazy">
+                        <div class="gallery-item-overlay"><span class="gallery-item-label">Integration Lounge</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item animate-fade-up" data-category="pods">
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800"
+                            alt="Float center interior" loading="lazy">
+                        <div class="gallery-item-overlay"><span class="gallery-item-label">Pod Room — Ambient
+                                Lighting</span></div>
+                    </div>
+
+                    <div class="gallery-item animate-fade-up animate-stagger-1" data-category="exterior">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
+                            alt="Float center entrance" loading="lazy">
+                        <div class="gallery-item-overlay"><span class="gallery-item-label">Main Entrance</span></div>
+                    </div>
+
+                    <div class="gallery-item animate-fade-up animate-stagger-2" data-category="lounge">
+                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=800"
+                            alt="Herbal tea station" loading="lazy">
+                        <div class="gallery-item-overlay"><span class="gallery-item-label">Herbal Tea Station</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item animate-fade-up animate-stagger-3" data-category="suites">
+                        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80&w=800"
+                            alt="Private suite amenities" loading="lazy">
+                        <div class="gallery-item-overlay"><span class="gallery-item-label">Suite Amenities</span></div>
+                    </div>
+
+                    <div class="gallery-item animate-fade-up" data-category="exterior">
+                        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=800"
+                            alt="Building exterior at night" loading="lazy">
+                        <div class="gallery-item-overlay"><span class="gallery-item-label">Evening Exterior</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section" style="text-align: center; background-color: var(--theme-surface);">
+            <div class="container">
+                <h2>Ready to experience it in person?</h2>
+                <p style="color: var(--theme-text-muted); max-width: 500px; margin: 0 auto var(--spacing-lg);">
+                    A tour is just a taste. Book a session and discover what absolute stillness feels like.
+                </p>
+                <a href="booking.html" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;">Book a
+                    Float</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close image viewer">✕</button>
+        <img src="" alt="" id="lightbox-img" loading="lazy" decoding="async">
+        <span class="lightbox-caption" id="lightbox-caption"></span>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="text-align: center;">
+                &copy; <span id="current-year">2026</span> Sensory Deprivation Float Center. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Gallery filter
+        const pills = document.querySelectorAll('.filter-pill');
+        const items = document.querySelectorAll('.gallery-item');
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                const filter = pill.dataset.filter;
+                items.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const label = item.querySelector('.gallery-item-label');
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightboxCaption.textContent = label ? label.textContent : '';
+                lightbox.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+        function closeLightbox() {
+            lightbox.classList.remove('is-open');
+            document.body.style.overflow = '';
+        }
+    </script>
+</body>
+
+</html>
+

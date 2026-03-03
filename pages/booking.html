@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Float | Sensory Deprivation Center</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .booking-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .booking-progress::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--theme-border);
+            z-index: 1;
+        }
+
+        .progress-step {
+            background-color: var(--theme-surface);
+            border: 2px solid var(--theme-border);
+            color: var(--theme-text-muted);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 2;
+            position: relative;
+            transition: all var(--transition-fast);
+        }
+
+        .progress-step.active,
+        .progress-step.completed {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        .step-panel {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .step-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Service Cards */
+        .service-card {
+            border: 2px solid var(--theme-border);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .service-card:hover {
+            border-color: var(--theme-accent);
+        }
+
+        .service-card.selected {
+            border-color: var(--primary);
+            background-color: rgba(79, 70, 229, 0.1);
+        }
+
+        /* Calendar Placeholder */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .calendar-day {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid var(--theme-border);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+        }
+
+        .calendar-day:hover:not(.disabled) {
+            background-color: var(--theme-surface);
+        }
+
+        .calendar-day.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.selected {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid var(--theme-border);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+        }
+
+        .time-slot:hover {
+            border-color: var(--theme-accent);
+        }
+
+        .time-slot.selected {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .stripe-placeholder {
+            padding: 1rem;
+            border: 1px solid var(--theme-border);
+            border-radius: var(--border-radius);
+            background-color: var(--theme-surface);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--theme-text-muted);
+        }
+    </style>
+</head>
+
+<body class="booking-page">
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo" aria-label="Home">FLOAT it</a>
+            <nav id="main-nav" class="nav" aria-label="Main Navigation">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link">My Bookings</a>
+                <a href="booking.html" class="btn btn-primary btn-sticky-mobile active" aria-current="page">Book Now</a>
+            </nav>
+            <div style="display:flex; gap: 1rem; align-items: center;">
+                <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <span id="theme-icon"></span>
+                </button>
+                <button type="button" id="mobile-toggle" class="mobile-toggle" aria-expanded="false"
+                    aria-controls="main-nav" aria-label="Open menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="section">
+        <div class="container" style="max-width: 800px;">
+            <div class="card" style="padding: var(--spacing-xl);">
+                <h1 style="text-align: center; margin-bottom: var(--spacing-xl);">Book Your Float</h1>
+
+                <!-- Progress Indicator -->
+                <div class="booking-progress" aria-label="Booking Progress">
+                    <div class="progress-step active" id="indicator-1">1</div>
+                    <div class="progress-step" id="indicator-2">2</div>
+                    <div class="progress-step" id="indicator-3">3</div>
+                    <div class="progress-step" id="indicator-4">4</div>
+                </div>
+
+                <form id="booking-form" novalidate>
+                    <!-- STEP 1: Service Selection -->
+                    <div class="step-panel active" id="step-1">
+                        <h3 style="margin-bottom: var(--spacing-md);">Select a Service</h3>
+                        <div style="display: flex; flex-direction: column; gap: var(--spacing-md);"
+                            id="service-options">
+                            <div class="service-card selected" tabindex="0" data-service="60-min" data-price="$89"
+                                role="radio" aria-checked="true">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h4 style="margin: 0;">60-Minute Float</h4>
+                                        <div style="color: var(--theme-text-muted); font-size: 0.875rem;">Standard
+                                            session in a private suite.</div>
+                                    </div>
+                                    <div style="font-size: 1.25rem; font-weight: bold;">$89</div>
+                                </div>
+                            </div>
+                            <div class="service-card" tabindex="0" data-service="90-min" data-price="$119" role="radio"
+                                aria-checked="false">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h4 style="margin: 0;">90-Minute Float</h4>
+                                        <div style="color: var(--theme-text-muted); font-size: 0.875rem;">Deep
+                                            relaxation. Most popular.</div>
+                                    </div>
+                                    <div style="font-size: 1.25rem; font-weight: bold;">$119</div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="service" id="selected-service" value="60-min">
+                        <div style="text-align: right; margin-top: var(--spacing-lg);">
+                            <button type="button" class="btn btn-primary btn-next" data-next="2">Continue</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Date & Time -->
+                    <div class="step-panel" id="step-2">
+                        <h3 style="margin-bottom: var(--spacing-md);">Choose Date & Time</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
+                            <div>
+                                <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Select Date</h4>
+                                <div class="calendar-grid" id="calendar-days">
+                                    <div class="calendar-day" style="font-weight: bold; border:none; padding: 5px;">S
+                                    </div>
+                                    <div class="calendar-day" style="font-weight: bold; border:none; padding: 5px;">M
+                                    </div>
+                                    <div class="calendar-day" style="font-weight: bold; border:none; padding: 5px;">T
+                                    </div>
+                                    <div class="calendar-day" style="font-weight: bold; border:none; padding: 5px;">W
+                                    </div>
+                                    <div class="calendar-day" style="font-weight: bold; border:none; padding: 5px;">T
+                                    </div>
+                                    <div class="calendar-day" style="font-weight: bold; border:none; padding: 5px;">F
+                                    </div>
+                                    <div class="calendar-day" style="font-weight: bold; border:none; padding: 5px;">S
+                                    </div>
+                                    <!-- Populated by JS -->
+                                </div>
+                                <input type="hidden" name="date" id="selected-date" required>
+                                <div class="form-error-msg" id="error-date">Please select a date.</div>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Available Times</h4>
+                                <div class="time-slots" id="time-slots-container">
+                                    <div
+                                        style="color: var(--theme-text-muted); padding: 1rem; border: 1px dashed var(--theme-border); text-align: center; grid-column: 1/-1;">
+                                        Select a date first</div>
+                                </div>
+                                <input type="hidden" name="time" id="selected-time" required>
+                                <div class="form-error-msg" id="error-time">Please select a time.</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: var(--spacing-lg);">
+                            <button type="button" class="btn btn-outline btn-prev" data-prev="1">Back</button>
+                            <button type="button" class="btn btn-primary btn-next" data-next="3">Continue</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: Personal Info -->
+                    <div class="step-panel" id="step-3">
+                        <h3 style="margin-bottom: var(--spacing-md);">Personal Details</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md);">
+                            <div class="form-group">
+                                <label for="first-name" class="form-label">First Name</label>
+                                <input type="text" id="first-name" name="first_name" class="form-control" required>
+                                <div class="form-error-msg">First name is required.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name" class="form-label">Last Name</label>
+                                <input type="text" id="last-name" name="last_name" class="form-control" required>
+                                <div class="form-error-msg">Last name is required.</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                            <div class="form-error-msg">Valid email is required.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required>
+                            <div class="form-error-msg">Phone number is required.</div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; margin-top: var(--spacing-lg);">
+                            <button type="button" class="btn btn-outline btn-prev" data-prev="2">Back</button>
+                            <button type="button" class="btn btn-primary btn-next" data-next="4">Continue to
+                                Payment</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: Payment -->
+                    <div class="step-panel" id="step-4">
+                        <h3 style="margin-bottom: var(--spacing-md);">Payment Information</h3>
+
+                        <div
+                            style="background-color: var(--theme-bg); padding: var(--spacing-md); border-radius: var(--border-radius); margin-bottom: var(--spacing-md); display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h4 style="margin: 0; font-size: 1rem;" id="summary-service">60-Minute Float</h4>
+                                <div style="color: var(--theme-text-muted); font-size: 0.875rem;" id="summary-datetime">
+                                    Date & Time TBA</div>
+                            </div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--theme-accent);"
+                                id="summary-price">$89</div>
+                        </div>
+
+                        <!-- Stripe Mock Placeholder -->
+                        <div class="form-group">
+                            <label class="form-label">Pay by Card (Stripe)</label>
+                            <div class="stripe-placeholder">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                                </svg>
+                                <span style="flex:1;">Card number, Expiration, CVC — Stripe Elements loads here</span>
+                            </div>
+                        </div>
+
+                        <!-- PayPal Placeholder -->
+                        <div class="form-group">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin: 0.5rem 0;">
+                                <div style="flex: 1; height: 1px; background: var(--theme-border);"></div>
+                                <span style="color: var(--theme-text-muted); font-size: 0.85rem;">or pay with</span>
+                                <div style="flex: 1; height: 1px; background: var(--theme-border);"></div>
+                            </div>
+                            <!-- PayPal Smart Button Integration Point -->
+                            <div id="paypal-button-container"
+                                style="padding: 1rem; border: 1px dashed var(--theme-border); border-radius: var(--border-radius); text-align: center; color: var(--theme-text-muted); display: flex; align-items: center; justify-content: center; gap: 0.75rem; cursor: pointer;"
+                                title="PayPal Smart Button loads here — replace with PayPal JS SDK">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M6.5 21h11M12 3C6 3 4 7.5 5 10.5c.5 1.5 1.5 2.5 3 3l-1 5h4l1-5c2.5-.5 4.5-2 5-4.5C18 5 16 3 12 3z">
+                                    </path>
+                                </svg>
+                                <span>PayPal Smart Button — <a href="https://developer.paypal.com/sdk/js/"
+                                        target="_blank" rel="noopener" style="color: var(--theme-accent);">PayPal JS SDK
+                                        integration point</a></span>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; margin-top: var(--spacing-lg);">
+                            <button type="button" class="btn btn-outline btn-prev" data-prev="3">Back</button>
+                            <button type="submit" class="btn btn-primary" id="btn-submit">
+                                <span class="spinner"></span>
+                                Pay & Confirm Booking
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="../assets/js/booking.js"></script>
+</body>
+
+</html>

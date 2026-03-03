@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float Therapy Details | Sensory Deprivation</title>
+    <meta name="description"
+        content="Discover the benefits of float therapy, how it works, what to expect, and read our frequently asked questions.">
+    <link rel="stylesheet" href="../assets/css/style.css">`n    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo" aria-label="Home">FLOAT it</a>
+
+            <nav id="main-nav" class="nav" aria-label="Main Navigation">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link active" aria-current="page">Services</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link">My Bookings</a>
+                <a href="booking.html" class="btn btn-primary btn-sticky-mobile">Book Now</a>
+            </nav>
+
+            <div style="display:flex; gap: 1rem; align-items: center;">
+                <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <span id="theme-icon"></span>
+                </button>
+                <button type="button" id="mobile-toggle" class="mobile-toggle" aria-expanded="false"
+                    aria-controls="main-nav" aria-label="Open menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="section"
+            style="background-color: var(--theme-surface); text-align: center; border-bottom: 1px solid var(--theme-border);">
+            <div class="container">
+                <h1 style="margin-bottom: var(--spacing-sm);">What is Float Therapy?</h1>
+                <p style="color: var(--theme-text-muted); font-size: 1.125rem; max-width: 600px; margin: 0 auto;">Known
+                    as Flotation REST (Restricted Environmental Stimulation Therapy), it is the practice of lying back
+                    in a dense Epsom salt water solution.</p>
+            </div>
+        </section>
+
+        <!-- Session Durations -->
+        <section class="section">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                    <h2>Session Offerings</h2>
+                </div>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg);">
+                    <div class="card" style="text-align: center;">
+                        <h3>60 Minutes</h3>
+                        <p style="color: var(--theme-text-muted);">The standard float. Perfect for beginners or a quick
+                            reset during a busy week.</p>
+                        <div
+                            style="font-size: 1.5rem; font-weight: 600; color: var(--theme-accent); margin-top: var(--spacing-md);">
+                            $89</div>
+                    </div>
+                    <div class="card"
+                        style="text-align: center; border-color: var(--theme-accent); position: relative;">
+                        <!-- Highlight badge -->
+                        <span
+                            style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--theme-accent); color: #fff; padding: 2px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">MOST
+                            POPULAR</span>
+                        <h3>90 Minutes</h3>
+                        <p style="color: var(--theme-text-muted);">Optimal duration. Allows ample time to bridge past
+                            the "chatter" phase of the brain.</p>
+                        <div
+                            style="font-size: 1.5rem; font-weight: 600; color: var(--theme-accent); margin-top: var(--spacing-md);">
+                            $119</div>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h3>120 Minutes</h3>
+                        <p style="color: var(--theme-text-muted);">For experienced floaters seeking profound meditation
+                            or deep physical recovery.</p>
+                        <div
+                            style="font-size: 1.5rem; font-weight: 600; color: var(--theme-accent); margin-top: var(--spacing-md);">
+                            $149</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: var(--spacing-xl);">
+                    <a href="booking.html" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;">Book
+                        Your Float</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section" style="background-color: var(--theme-surface);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+
+                <div
+                    style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--spacing-md);">
+                    <div class="card">
+                        <h4 style="margin-bottom: 0.5rem;">What if I'm claustrophobic?</h4>
+                        <p style="color: var(--theme-text-muted); margin-bottom: 0;">You are always in control. You can
+                            leave the pod door fully open, partially open, or keep the interior lights on over the
+                            duration of your float.</p>
+                    </div>
+                    <div class="card">
+                        <h4 style="margin-bottom: 0.5rem;">Do I need to bring anything?</h4>
+                        <p style="color: var(--theme-text-muted); margin-bottom: 0;">Just yourself! We provide towels,
+                            earplugs, body wash, shampoo, and a prep area with blow dryers. Floating is done in the nude
+                            to eliminate tactile sensation.</p>
+                    </div>
+                    <div class="card">
+                        <h4 style="margin-bottom: 0.5rem;">Is the water clean?</h4>
+                        <p style="color: var(--theme-text-muted); margin-bottom: 0;">Absolutely. The high salt content
+                            makes it incredibly sterile, but we also filter the water 3-4 times between each float
+                            through a 1-micron filter, UV light, and Ozone purification.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="text-align: center;">&copy; 2026 Sensory Deprivation.</div>
+        </div>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
