@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed | Sensory Deprivation</title>
+    <link rel="stylesheet" href="../assets/css/style.css">`n    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+</head>
+
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+    <header class="header">
+        <div class="container header-container" style="justify-content: center;">
+            <a href="index.html" class="logo" aria-label="Home">FLOAT it</a>
+        </div>
+    </header>
+
+    <main id="main-content"
+        style="flex: 1; display: flex; align-items: center; justify-content: center; padding: var(--spacing-lg) 0;">
+        <div class="container" style="max-width: 600px; text-align: center;">
+            <div style="font-size: 4rem; color: var(--success); margin-bottom: var(--spacing-md);">✓</div>
+            <h1 style="margin-bottom: var(--spacing-sm);">Booking Confirmed</h1>
+            <p style="color: var(--theme-text-muted); font-size: 1.125rem; margin-bottom: var(--spacing-lg);">Thank you
+                for booking with FLOAT. We've sent a confirmation email with your session details.</p>
+
+            <div class="card" style="text-align: left; margin-bottom: var(--spacing-lg);">
+                <h3
+                    style="margin-bottom: var(--spacing-md); border-bottom: 1px solid var(--theme-border); padding-bottom: 0.5rem;">
+                    Your Session Details</h3>
+                <p><strong>Service:</strong> 90-Minute Float Session</p>
+                <p><strong>Date:</strong> <span id="confirm-date">October 15, 2026</span></p>
+                <p><strong>Time:</strong> <span id="confirm-time">2:00 PM - 3:30 PM</span></p>
+                <p><strong>Location:</strong> Private Suite #3</p>
+                <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--theme-text-muted);">Please arrive 15
+                    minutes prior to your session time to settle in.</p>
+            </div>
+
+            <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-outline" onclick="window.print()">Print Details</button>
+                <a href="dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Attempt to pull mock data from session storage to make it feel dynamic
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateStr = sessionStorage.getItem('bookingDate');
+            const timeStr = sessionStorage.getItem('bookingTime');
+            if (dateStr) document.getElementById('confirm-date').textContent = dateStr;
+            if (timeStr) document.getElementById('confirm-time').textContent = timeStr;
+        });
+    </script>
+</body>
+
+</html>

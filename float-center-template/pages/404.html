@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Page Not Found | Sensory Deprivation</title>
+    <link rel="stylesheet" href="../assets/css/style.css">`n    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .page-404 {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            padding: var(--spacing-lg);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page-404">
+        <h1 style="font-size: 8rem; color: var(--theme-accent); margin-bottom: 0; line-height: 1;">404</h1>
+        <h2 style="margin-bottom: var(--spacing-md);">You've drifted too far.</h2>
+        <p style="color: var(--theme-text-muted); max-width: 500px; margin: 0 auto var(--spacing-lg);">The page you are
+            looking for does not exist in this dimension. It might have been moved or deleted.</p>
+        <div style="display: flex; gap: var(--spacing-md); justify-content: center;">
+            <a href="index.html" class="btn btn-primary">Return Home</a>
+            <a href="contact.html" class="btn btn-outline">Contact Us</a>
+        </div>
+    </main>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

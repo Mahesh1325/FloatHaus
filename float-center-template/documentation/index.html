@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Sensory Deprivation Float Center Template</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #334155;
+            --border: #e2e8f0;
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .sidebar {
+            width: 250px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        .main {
+            margin-left: 250px;
+            padding: 3rem;
+            max-width: 800px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #0f172a;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h1 {
+            margin-top: 0;
+            border: none;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul.nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.nav-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        code,
+        pre {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .alert {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2 style="font-size: 1.25rem; margin-top:0; border:none;">Documentation</h2>
+        <ul class="nav-links">
+            <li><a href="#installation">Installation Guide</a></li>
+            <li><a href="#customization">Customization Guide</a></li>
+            <li><a href="#colors">Changing Colors</a></li>
+            <li><a href="#booking">Editing Booking Slots</a></li>
+            <li><a href="#rtl">Enabling RTL</a></li>
+            <li><a href="#stripe">Integrating Stripe</a></li>
+            <li><a href="#changelog">Changelog</a></li>
+            <li><a href="#credits">Credits</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <h1>Sensory Deprivation Float Center Template</h1>
+        <p>Thank you for purchasing the Float Center template! This guide covers everything needed to customize and
+            deploy this project.</p>
+
+        <h2 id="installation">Installation Guide</h2>
+        <p>This is a static HTML template requiring no build steps, Node.js, or NPM. To view the template:</p>
+        <ol>
+            <li>Extract the provided ZIP file into your project folder.</li>
+            <li>Open any <code>.html</code> file inside the <code>pages/</code> directory directly in your web browser.
+            </li>
+            <li>If you are uploading to a server, simply place all folders (assets, pages) in the root directory or
+                configure your routing appropriately.</li>
+        </ol>
+        <p>If you prefer using a local server for testing, you can use VSCode's "Live Server" extension.</p>
+
+        <h2 id="customization">Customization Guide</h2>
+        <p>All core customizations heavily rely on modifying HTML and Vanilla CSS. To edit content, open the respective
+            HTML file (e.g., <code>index.html</code>) and edit the text directly between the tags.</p>
+
+        <h3 id="colors">How to Change Colors</h3>
+        <p>Colors are controlled by CSS Variables. Open <code>assets/css/style.css</code> and look at the
+            <code>:root</code> selector at the very top.
+        </p>
+        <pre><code>:root {
+  --primary: #4f46e5; /* Main Brand Color */
+  --secondary: #0f172a; /* Navy Background */
+  --accent: #818cf8; /* Soft Accents */
+}</code></pre>
+        <p>Simply replace these hex codes with your brand colors. The template will automatically update across all
+            pages.</p>
+
+        <h3 id="booking">How to Edit Booking Slots</h3>
+        <p>The time slots are dynamically rendered via vanilla JavaScript in the booking flow.</p>
+        <ol>
+            <li>Open <code>assets/js/booking.js</code></li>
+            <li>Locate the <code>populateTimeSlots()</code> function.</li>
+            <li>Edit the <code>times</code> array to reflect your actual availability:
+                <pre><code>const times = ['8:00 AM', '10:00 AM', '12:00 PM', '2:00 PM', '4:00 PM'];</code></pre>
+            </li>
+        </ol>
+
+        <h3 id="rtl">How to Enable RTL</h3>
+        <p>This template supports Right-to-Left (RTL) languages inherently.</p>
+        <ol>
+            <li>In any HTML file, change the <code>&lt;html&gt;</code> tag's <code>dir</code> attribute to RTL:
+                <br><code>&lt;html lang="ar" dir="rtl" data-theme="dark"&gt;</code>
+            </li>
+            <li>Ensure <code>assets/css/rtl.css</code> is loaded on the page.</li>
+        </ol>
+
+        <h3 id="stripe">How to Integrate Stripe</h3>
+        <p>The payment screen in <code>booking.html</code> is a visual placeholder. To make it functional:</p>
+        <ol>
+            <li>Create an account at <a href="https://stripe.com/">Stripe.com</a>.</li>
+            <li>Include Stripe.js in your HTML:
+                <code>&lt;script src="https://js.stripe.com/v3/"&gt;&lt;/script&gt;</code>
+            </li>
+            <li>Replace the <code>.stripe-placeholder</code> div inside <code>booking.html</code> with a container for
+                Stripe Elements:
+                <pre><code>&lt;div id="card-element"&gt;&lt;/div&gt;</code></pre>
+            </li>
+            <li>Mount the Stripe element using custom JavaScript inside your checkout flow logic.</li>
+        </ol>
+
+        <h2 id="changelog">Changelog</h2>
+        <div class="alert">
+            <strong>v1.0.0</strong> - Initial Release
+            <ul>
+                <li>Implemented Dark/Light theme toggle</li>
+                <li>Created Multi-step booking UI</li>
+                <li>Designed User and Admin Dashboards</li>
+            </ul>
+        </div>
+
+        <h2 id="credits">Credits</h2>
+        <ul>
+            <li>Fonts: Google Fonts (Inter, Playfair Display)</li>
+            <li>Icons: Feather Icons (SVG inline implementation)</li>
+            <li>Images: Placeholders intended for replacement with production photography.</li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,1335 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Sensory Deprivation Float Center</title>
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar container */
+        .dashboard-sidebar {
+            width: 280px;
+            background-color: var(--theme-surface);
+            border-right: 1px solid var(--theme-border);
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition-normal);
+            z-index: 100;
+        }
+
+        .dashboard-header {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-bottom: 1px solid var(--theme-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dashboard-nav {
+            padding: var(--spacing-md) 0;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .dashboard-nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem var(--spacing-lg);
+            color: var(--theme-text-muted);
+            border-left: 3px solid transparent;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .dashboard-nav-item:hover,
+        .dashboard-nav-item.active {
+            color: var(--theme-text);
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left-color: var(--primary);
+        }
+
+        [dir="rtl"] .dashboard-nav-item {
+            border-left: none;
+            border-right: 3px solid transparent;
+        }
+
+        [dir="rtl"] .dashboard-nav-item:hover,
+        [dir="rtl"] .dashboard-nav-item.active {
+            border-right-color: var(--primary);
+        }
+
+        /* Content Area */
+        .dashboard-content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--theme-bg);
+            overflow-x: hidden;
+        }
+
+        .dashboard-topbar {
+            height: var(--header-height);
+            background-color: var(--theme-surface);
+            border-bottom: 1px solid var(--theme-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--spacing-lg);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+
+        .dashboard-main {
+            padding: var(--spacing-lg);
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .view-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        /* Mobile Sidebar Overrides */
+        @media (max-width: 1023px) {
+            .dashboard-sidebar {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                transform: translateX(-100%);
+            }
+
+            .dashboard-sidebar.is-open {
+                transform: translateX(0);
+            }
+
+            [dir="rtl"] .dashboard-sidebar {
+                left: auto;
+                right: 0;
+                transform: translateX(100%);
+            }
+
+            [dir="rtl"] .dashboard-sidebar.is-open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 95;
+            }
+
+            .sidebar-overlay.is-active {
+                display: block;
+            }
+        }
+
+        /* Demo badge */
+        .role-badge {
+            background-color: var(--primary);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+
+        /* ============================================
+           PROFILE DROPDOWN
+           ============================================ */
+        .profile-menu-wrapper {
+            position: relative;
+        }
+
+        .profile-avatar-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: none;
+            border: 1px solid var(--theme-border);
+            border-radius: 999px;
+            padding: 4px 10px 4px 4px;
+            cursor: pointer;
+            color: var(--theme-text);
+            transition: border-color var(--transition-fast), background var(--transition-fast);
+        }
+
+        .profile-avatar-btn:hover {
+            border-color: var(--primary);
+            background: rgba(13, 148, 136, 0.07);
+        }
+
+        .avatar-circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #0f766e);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            font-family: var(--font-sans);
+        }
+
+        .avatar-circle-lg {
+            width: 44px;
+            height: 44px;
+            font-size: 1rem;
+        }
+
+        .avatar-chevron {
+            color: var(--theme-text-muted);
+            transition: transform var(--transition-fast);
+        }
+
+        .profile-avatar-btn[aria-expanded="true"] .avatar-chevron {
+            transform: rotate(180deg);
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 10px);
+            width: 260px;
+            background: var(--theme-surface);
+            border: 1px solid var(--theme-border);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            z-index: var(--z-modal);
+            overflow: hidden;
+            animation: dropdownIn 0.18s ease-out;
+        }
+
+        @keyframes dropdownIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-dropdown.is-open {
+            display: block;
+        }
+
+        .profile-dropdown-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: var(--spacing-md);
+        }
+
+        .profile-dropdown-divider {
+            height: 1px;
+            background: var(--theme-border);
+            margin: 0;
+        }
+
+        .profile-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 0.75rem var(--spacing-md);
+            color: var(--theme-text);
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background var(--transition-fast), color var(--transition-fast);
+        }
+
+        .profile-dropdown-item:hover {
+            background: rgba(13, 148, 136, 0.08);
+            color: var(--theme-accent);
+        }
+
+        .profile-dropdown-item svg {
+            color: var(--theme-text-muted);
+            flex-shrink: 0;
+        }
+
+        .profile-logout {
+            color: var(--error);
+        }
+
+        .profile-logout:hover {
+            background: rgba(239, 68, 68, 0.08);
+            color: var(--error);
+        }
+
+        .member-badge {
+            display: inline-block;
+            margin-top: 4px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(13, 148, 136, 0.15);
+            color: var(--theme-accent);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar" id="dashboard-sidebar">
+            <div class="dashboard-header">
+                <a href="index.html" class="logo" style="text-decoration: none;">FLOAT it</a>
+                <span class="role-badge" id="current-role-badge">USER</span>
+            </div>
+
+            <div class="dashboard-nav">
+                <!-- User Links -->
+                <div class="nav-group-user">
+                    <div class="dashboard-nav-item active" data-target="user-home">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        Overview
+                    </div>
+                    <div class="dashboard-nav-item" data-target="user-bookings">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Booking History
+                    </div>
+                    <div class="dashboard-nav-item" data-target="user-membership">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                        Membership
+                    </div>
+                    <div class="dashboard-nav-item" data-target="user-saved">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                        Saved Items
+                    </div>
+                    <div class="dashboard-nav-item" data-target="user-messages">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Messages
+                        <span
+                            style="margin-left:auto;background:var(--primary);color:#fff;font-size:0.65rem;padding:1px 6px;border-radius:999px;">2</span>
+                    </div>
+                    <div class="dashboard-nav-item" data-target="user-prep">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        Pre-Float Info
+                    </div>
+                    <div class="dashboard-nav-item" data-target="user-profile">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+                        </svg>
+                        Profile
+                    </div>
+                    <div class="dashboard-nav-item" data-target="user-settings">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
+                            </path>
+                        </svg>
+                        Settings
+                    </div>
+                    <div class="dashboard-nav-item" style="margin-top: auto; color: var(--error);"
+                        onclick="alert('Logout — connect to your auth system')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        Logout
+                    </div>
+                </div>
+
+                <!-- Admin Links (Hidden by default) -->
+                <div class="nav-group-admin" style="display: none;">
+                    <div class="dashboard-nav-item" data-target="admin-overview">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                        Overview
+                    </div>
+                    <div class="dashboard-nav-item" data-target="admin-users">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        User Management
+                    </div>
+                    <div class="dashboard-nav-item" data-target="admin-content">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Content Mgmt.
+                    </div>
+                    <div class="dashboard-nav-item" data-target="admin-calendar">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Bookings
+                    </div>
+                    <div class="dashboard-nav-item" data-target="admin-notifications">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        Notifications
+                        <span
+                            style="margin-left:auto;background:var(--error);color:#fff;font-size:0.65rem;padding:1px 6px;border-radius:999px;">5</span>
+                    </div>
+                    <div class="dashboard-nav-item" data-target="admin-members">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                        Memberships
+                    </div>
+                    <div class="dashboard-nav-item" data-target="admin-customers">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+                        </svg>
+                        Customers
+                    </div>
+                    <div class="dashboard-nav-item" data-target="admin-revenue">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                        Revenue
+                    </div>
+                    <div class="dashboard-nav-item" data-target="admin-settings">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right:.6rem;flex-shrink:0">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
+                            </path>
+                        </svg>
+                        Settings
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo Toggle (For Template showcase purposes) -->
+            <div style="padding: var(--spacing-md) var(--spacing-lg); border-top: 1px solid var(--theme-border);">
+                <button class="btn btn-outline" id="toggle-role-btn" style="width: 100%; font-size: 0.875rem;">Switch to
+                    Admin View</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="dashboard-content-wrapper">
+            <!-- Topbar -->
+            <div class="dashboard-topbar">
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button class="mobile-toggle" id="sidebar-toggle" style="display: block; width: 40px; height: 40px;"
+                        aria-label="Toggle Sidebar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <h2 style="margin: 0; font-size: 1.25rem; font-family: var(--font-sans);" id="page-title">Overview
+                    </h2>
+                </div>
+
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <span id="theme-icon"></span>
+                    </button>
+                    <a href="booking.html" class="btn btn-primary btn-sm"
+                        style="padding: 0.5rem 1rem; min-height: 0;">Book Now</a>
+                    <!-- Profile Dropdown -->
+                    <div class="profile-menu-wrapper" id="profile-menu-wrapper">
+                        <button id="profile-avatar-btn" class="profile-avatar-btn" aria-haspopup="true"
+                            aria-expanded="false" aria-label="Open user menu">
+                            <div class="avatar-circle">JD</div>
+                            <svg class="avatar-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+
+                        <div class="profile-dropdown" id="profile-dropdown" role="menu" aria-hidden="true">
+                            <!-- User Info -->
+                            <div class="profile-dropdown-header">
+                                <div class="avatar-circle avatar-circle-lg">JD</div>
+                                <div>
+                                    <div style="font-weight: 600; font-size: 1rem;">Jane Doe</div>
+                                    <div style="color: var(--theme-text-muted); font-size: 0.8rem;">jane.doe@email.com
+                                    </div>
+                                    <span class="member-badge">Devotee Member</span>
+                                </div>
+                            </div>
+
+                            <div class="profile-dropdown-divider"></div>
+
+                            <!-- Quick Navigation -->
+                            <nav aria-label="User menu">
+                                <button class="profile-dropdown-item" role="menuitem"
+                                    onclick="document.getElementById('nav-profile').click(); document.getElementById('profile-avatar-btn').setAttribute('aria-expanded','false'); document.getElementById('profile-dropdown').classList.remove('is-open');">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="8" r="4"></circle>
+                                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+                                    </svg>
+                                    Profile Settings
+                                </button>
+                                <button class="profile-dropdown-item" role="menuitem"
+                                    onclick="document.getElementById('nav-bookings').click(); document.getElementById('profile-avatar-btn').setAttribute('aria-expanded','false'); document.getElementById('profile-dropdown').classList.remove('is-open');">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    My Bookings
+                                </button>
+                                <button class="profile-dropdown-item" role="menuitem"
+                                    onclick="document.getElementById('nav-membership').click(); document.getElementById('profile-avatar-btn').setAttribute('aria-expanded','false'); document.getElementById('profile-dropdown').classList.remove('is-open');">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    Membership
+                                </button>
+                                <a href="../pages/booking.html" class="profile-dropdown-item" role="menuitem">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z">
+                                        </path>
+                                        <path d="M12 5v7l3 3"></path>
+                                    </svg>
+                                    Book a Session
+                                </a>
+                            </nav>
+
+                            <div class="profile-dropdown-divider"></div>
+
+                            <!-- Logout -->
+                            <button class="profile-dropdown-item profile-logout" role="menuitem"
+                                onclick="alert('Logout functionality — integrate with your auth system.');">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"></path>
+                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                                </svg>
+                                Sign Out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <main class="dashboard-main" id="dashboard-main">
+                <!-- User Views -->
+                <div id="user-home" class="view-section active">
+                    <!-- Skeletons (replaced by JS on load) -->
+                    <div class="dashboard-content-body">
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+                            <div class="card skeleton">
+                                <div class="skeleton-title"></div>
+                                <div class="skeleton-text"></div>
+                            </div>
+                            <div class="card skeleton">
+                                <div class="skeleton-title"></div>
+                                <div class="skeleton-text"></div>
+                            </div>
+                        </div>
+                        <div class="card skeleton" style="height: 300px;"></div>
+                    </div>
+                </div>
+
+                <div id="user-bookings" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Booking History</h3>
+                    <div class="card">
+                        <p style="color: var(--theme-text-muted);">No past bookings found.</p>
+                    </div>
+                </div>
+
+                <div id="user-membership" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Membership Status</h3>
+                    <div class="card" style="border-color: var(--theme-accent);">
+                        <h4>Devotee Membership</h4>
+                        <p style="color: var(--success); font-weight: bold;">Active</p>
+                        <p style="color: var(--theme-text-muted);">Renews on Oct 30, 2026. 1 Float remaining.</p>
+                    </div>
+                </div>
+
+                <div id="user-profile" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Profile Settings</h3>
+                    <div class="card">
+                        <p style="color: var(--theme-text-muted);">Profile forms placeholder.</p>
+                    </div>
+                </div>
+
+                <!-- Admin Views -->
+                <div id="admin-overview" class="view-section">
+                    <div class="dashboard-content-body">
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+                            <div class="card skeleton" style="height: 120px;"></div>
+                            <div class="card skeleton" style="height: 120px;"></div>
+                            <div class="card skeleton" style="height: 120px;"></div>
+                            <div class="card skeleton" style="height: 120px;"></div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-md);">
+                            <div class="card skeleton" style="height: 400px;"></div>
+                            <div class="card skeleton" style="height: 400px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="admin-calendar" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Booking Calendar</h3>
+                    <div class="card"
+                        style="height: 500px; display: flex; align-items: center; justify-content: center; border: 2px dashed var(--theme-border);">
+                        <div style="text-align: center; color: var(--theme-text-muted);">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" style="margin-bottom: 1rem; opacity: 0.4;">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <p>Calendar Integration Point</p>
+                            <p style="font-size: 0.85rem; margin-top: 0.5rem;">Connect Calendly, Cal.com, or your
+                                booking backend here.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="user-prep" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Pre-Float Instructions</h3>
+                    <div class="card" style="margin-bottom: var(--spacing-md);">
+                        <h4>Before Your Session</h4>
+                        <ul
+                            style="color: var(--theme-text-muted); padding-left: 1.25rem; margin-top: var(--spacing-sm); line-height: 2;">
+                            <li>Avoid shaving or waxing 12 hours before floating</li>
+                            <li>Don't drink caffeine 3 hours before your session</li>
+                            <li>Eat a light meal 1–2 hours beforehand</li>
+                            <li>Remove contact lenses before entering the pod</li>
+                            <li>Arrive 15 minutes early to complete check-in</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="margin-bottom: var(--spacing-md);">
+                        <h4>During Your Float</h4>
+                        <ul
+                            style="color: var(--theme-text-muted); padding-left: 1.25rem; margin-top: var(--spacing-sm); line-height: 2;">
+                            <li>Shower before entering the pod (soap provided)</li>
+                            <li>Insert provided earplugs to keep water out</li>
+                            <li>You control the lid and light — open or closed, your choice</li>
+                            <li>If Epsom salt gets in your eyes, use the spray bottle provided</li>
+                            <li>Gentle music signals the end of your session</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>After Your Float</h4>
+                        <ul
+                            style="color: var(--theme-text-muted); padding-left: 1.25rem; margin-top: var(--spacing-sm); line-height: 2;">
+                            <li>Shower again to rinse off the salt water</li>
+                            <li>Take your time in the integration lounge — don't rush</li>
+                            <li>Drink water and enjoy the herbal teas provided</li>
+                            <li>Journal your experience if you'd like — journals available</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- User: Saved Items -->
+                <div id="user-saved" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Saved Items</h3>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md);">
+                        <div class="card">
+                            <h4 style="margin-bottom: 0.5rem;">90-Min Float Pod</h4>
+                            <p
+                                style="color: var(--theme-text-muted); font-size: 0.9rem; margin-bottom: var(--spacing-md);">
+                                Premium float session in our flagship isolation pod. Includes towel & robe.</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: var(--theme-accent); font-weight: 700;">$89</span>
+                                <a href="booking.html" class="btn btn-primary"
+                                    style="padding: 0.4rem 1rem; min-height: 0; font-size: 0.85rem;">Book Now</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h4 style="margin-bottom: 0.5rem;">Devotee Membership</h4>
+                            <p
+                                style="color: var(--theme-text-muted); font-size: 0.9rem; margin-bottom: var(--spacing-md);">
+                                8 floats/month + 20% off add-ons. Best value for regular floaters.</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: var(--theme-accent); font-weight: 700;">$199/mo</span>
+                                <a href="memberships.html" class="btn btn-outline"
+                                    style="padding: 0.4rem 1rem; min-height: 0; font-size: 0.85rem;">View Plan</a>
+                            </div>
+                        </div>
+                        <div class="card"
+                            style="border: 2px dashed var(--theme-border); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; min-height: 120px; color: var(--theme-text-muted);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            <span style="font-size: 0.85rem;">Save services from the Services page</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User: Messages -->
+                <div id="user-messages" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Messages</h3>
+                    <div class="card">
+                        <div style="display: flex; flex-direction: column; gap: 0;">
+                            <div
+                                style="display: flex; gap: 1rem; padding: var(--spacing-md) 0; border-bottom: 1px solid var(--theme-border); cursor: pointer;">
+                                <div
+                                    style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #0f766e); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;">
+                                    FC</div>
+                                <div style="flex: 1; min-width: 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                                        <strong>Float Center Team</strong>
+                                        <span style="font-size: 0.75rem; color: var(--theme-text-muted);">Today, 9:14
+                                            AM</span>
+                                    </div>
+                                    <p
+                                        style="color: var(--theme-text-muted); font-size: 0.875rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        Your upcoming float session on Oct 15 is confirmed. Please arrive 15 minutes
+                                        early…</p>
+                                </div>
+                                <span
+                                    style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0; margin-top: 6px;"></span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; padding: var(--spacing-md) 0; cursor: pointer;">
+                                <div
+                                    style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #0f766e); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;">
+                                    FC</div>
+                                <div style="flex: 1; min-width: 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                                        <strong>Float Center Team</strong>
+                                        <span style="font-size: 0.75rem; color: var(--theme-text-muted);">Mar 1,
+                                            2026</span>
+                                    </div>
+                                    <p
+                                        style="color: var(--theme-text-muted); font-size: 0.875rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        Your Devotee Membership has been renewed for another month. Thank you!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: var(--spacing-md);">
+                        <div class="form-group">
+                            <label class="form-label">Send a Message</label>
+                            <textarea class="form-control" rows="3"
+                                placeholder="Ask a question or request support…"></textarea>
+                        </div>
+                        <button class="btn btn-primary">Send Message</button>
+                    </div>
+                </div>
+
+                <!-- User: Settings -->
+                <div id="user-settings" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Account Settings</h3>
+                    <div class="card" style="margin-bottom: var(--spacing-md);">
+                        <h4 style="margin-bottom: var(--spacing-md);">Notification Preferences</h4>
+                        <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                            <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px; cursor: pointer;">
+                                Email booking confirmations
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                                <input type="checkbox" checked style="width: 18px; height: 18px; cursor: pointer;">
+                                Email session reminders (24h before)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px; cursor: pointer;"> Newsletter
+                                &amp; wellness tips
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                                <input type="checkbox" style="width: 18px; height: 18px; cursor: pointer;"> SMS
+                                reminders
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card" style="margin-bottom: var(--spacing-md);">
+                        <h4 style="margin-bottom: var(--spacing-md);">Change Password</h4>
+                        <div class="form-group"><label class="form-label">Current Password</label><input type="password"
+                                class="form-control"></div>
+                        <div class="form-group"><label class="form-label">New Password</label><input type="password"
+                                class="form-control"></div>
+                        <div class="form-group"><label class="form-label">Confirm New Password</label><input
+                                type="password" class="form-control"></div>
+                        <button class="btn btn-primary">Update Password</button>
+                    </div>
+                    <div class="card" style="border: 1px solid var(--error);">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--error);">Danger Zone</h4>
+                        <p style="color: var(--theme-text-muted); margin-bottom: var(--spacing-md); font-size: 0.9rem;">
+                            Deleting your account is permanent and cannot be undone.</p>
+                        <button class="btn"
+                            style="background: rgba(239,68,68,0.1); color: var(--error); border: 1px solid var(--error);">Delete
+                            Account</button>
+                    </div>
+                </div>
+
+                <!-- Admin: User Management -->
+                <div id="admin-users" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">User Management</h3>
+                    <div style="display: flex; gap: 1rem; margin-bottom: var(--spacing-md);">
+                        <input type="search" class="form-control" placeholder="Search users…" style="max-width: 320px;">
+                        <button class="btn btn-primary"
+                            style="min-height: 0; padding: 0.5rem 1rem; white-space: nowrap;">+ Invite User</button>
+                    </div>
+                    <div class="card" style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid var(--theme-border);">
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Name</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Email</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Role</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Sessions</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Status</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--theme-border);">
+                                    <td style="padding: 0.75rem; font-weight: 500;">Jane Doe</td>
+                                    <td style="padding: 0.75rem; color: var(--theme-text-muted);">jane.doe@email.com
+                                    </td>
+                                    <td style="padding: 0.75rem;"><span
+                                            style="background: rgba(13,148,136,0.15); color: var(--theme-accent); padding: 2px 8px; border-radius: 999px; font-size: 0.75rem;">Member</span>
+                                    </td>
+                                    <td style="padding: 0.75rem;">12</td>
+                                    <td style="padding: 0.75rem;"><span style="color: var(--success);">● Active</span>
+                                    </td>
+                                    <td style="padding: 0.75rem; display: flex; gap: 0.5rem;"><button
+                                            class="btn btn-outline"
+                                            style="padding: 0.25rem 0.6rem; min-height:0; font-size:0.8rem;">Edit</button><button
+                                            class="btn"
+                                            style="padding: 0.25rem 0.6rem; min-height:0; font-size:0.8rem; background:rgba(239,68,68,0.1); color:var(--error); border:1px solid var(--error);">Ban</button>
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--theme-border);">
+                                    <td style="padding: 0.75rem; font-weight: 500;">David Kim</td>
+                                    <td style="padding: 0.75rem; color: var(--theme-text-muted);">d.kim@email.com</td>
+                                    <td style="padding: 0.75rem;"><span
+                                            style="background: rgba(13,148,136,0.15); color: var(--theme-accent); padding: 2px 8px; border-radius: 999px; font-size: 0.75rem;">Member</span>
+                                    </td>
+                                    <td style="padding: 0.75rem;">4</td>
+                                    <td style="padding: 0.75rem;"><span style="color: var(--success);">● Active</span>
+                                    </td>
+                                    <td style="padding: 0.75rem; display: flex; gap: 0.5rem;"><button
+                                            class="btn btn-outline"
+                                            style="padding: 0.25rem 0.6rem; min-height:0; font-size:0.8rem;">Edit</button><button
+                                            class="btn"
+                                            style="padding: 0.25rem 0.6rem; min-height:0; font-size:0.8rem; background:rgba(239,68,68,0.1); color:var(--error); border:1px solid var(--error);">Ban</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; font-weight: 500;">Admin User</td>
+                                    <td style="padding: 0.75rem; color: var(--theme-text-muted);">admin@floatcenter.com
+                                    </td>
+                                    <td style="padding: 0.75rem;"><span
+                                            style="background: rgba(239,68,68,0.1); color: var(--error); padding: 2px 8px; border-radius: 999px; font-size: 0.75rem;">Admin</span>
+                                    </td>
+                                    <td style="padding: 0.75rem;">—</td>
+                                    <td style="padding: 0.75rem;"><span style="color: var(--success);">● Active</span>
+                                    </td>
+                                    <td style="padding: 0.75rem;"><button class="btn btn-outline"
+                                            style="padding: 0.25rem 0.6rem; min-height:0; font-size:0.8rem;">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Admin: Content Management -->
+                <div id="admin-content" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Content Management</h3>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+                        <div class="card" style="text-align: center;">
+                            <div style="font-size: 1.8rem; font-weight: 700; color: var(--theme-accent);">6</div>
+                            <div style="color: var(--theme-text-muted); font-size: 0.85rem;">Blog Posts</div>
+                        </div>
+                        <div class="card" style="text-align: center;">
+                            <div style="font-size: 1.8rem; font-weight: 700;">12</div>
+                            <div style="color: var(--theme-text-muted); font-size: 0.85rem;">Services Listed</div>
+                        </div>
+                        <div class="card" style="text-align: center;">
+                            <div style="font-size: 1.8rem; font-weight: 700;">24</div>
+                            <div style="color: var(--theme-text-muted); font-size: 0.85rem;">Gallery Images</div>
+                        </div>
+                    </div>
+                    <div class="card" style="overflow-x: auto;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                            <h4>Blog Posts</h4>
+                            <button class="btn btn-primary"
+                                style="min-height: 0; padding: 0.4rem 1rem; font-size: 0.85rem;">+ New Post</button>
+                        </div>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid var(--theme-border);">
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Title</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Category</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Status</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--theme-border);">
+                                    <td style="padding: 0.75rem;">The Science of Sensory Deprivation</td>
+                                    <td style="padding: 0.75rem; color: var(--theme-text-muted);">Research</td>
+                                    <td style="padding: 0.75rem;"><span style="color: var(--success);">Published</span>
+                                    </td>
+                                    <td style="padding: 0.75rem; display: flex; gap: 0.5rem;"><button
+                                            class="btn btn-outline"
+                                            style="padding: 0.25rem 0.6rem; min-height:0; font-size:0.8rem;">Edit</button><button
+                                            class="btn btn-outline"
+                                            style="padding: 0.25rem 0.6rem; min-height:0; font-size:0.8rem;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem;">How to Prepare for Your First Float</td>
+                                    <td style="padding: 0.75rem; color: var(--theme-text-muted);">Guides</td>
+                                    <td style="padding: 0.75rem;"><span style="color: var(--warning);">Draft</span></td>
+                                    <td style="padding: 0.75rem; display: flex; gap: 0.5rem;"><button
+                                            class="btn btn-outline"
+                                            style="padding: 0.25rem 0.6rem; min-height:0; font-size:0.8rem;">Edit</button><button
+                                            class="btn btn-outline"
+                                            style="padding: 0.25rem 0.6rem; min-height:0; font-size:0.8rem;">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Admin: Notifications -->
+                <div id="admin-notifications" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Messages &amp; Notifications</h3>
+                    <div class="card" style="margin-bottom: var(--spacing-md);">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                            <h4>Recent Notifications</h4>
+                            <button class="btn btn-outline"
+                                style="min-height: 0; padding: 0.3rem 0.75rem; font-size: 0.8rem;">Mark All
+                                Read</button>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0;">
+                            <div
+                                style="display: flex; gap: 1rem; align-items: flex-start; padding: var(--spacing-md) 0; border-bottom: 1px solid var(--theme-border); background: rgba(13,148,136,0.04); margin: 0 calc(-1 * var(--spacing-md)); padding-left: var(--spacing-md); padding-right: var(--spacing-md); border-left: 3px solid var(--primary);">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                                    stroke-width="2" style="flex-shrink:0; margin-top:2px;">
+                                    <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <div><strong>New booking</strong> — Jane Doe booked a 90-min float for Oct 15 at 2:00
+                                    PM<span
+                                        style="display: block; font-size: 0.75rem; color: var(--theme-text-muted); margin-top: 2px;">5
+                                        minutes ago</span></div>
+                            </div>
+                            <div
+                                style="display: flex; gap: 1rem; align-items: flex-start; padding: var(--spacing-md) 0; border-bottom: 1px solid var(--theme-border); background: rgba(13,148,136,0.04); margin: 0 calc(-1 * var(--spacing-md)); padding-left: var(--spacing-md); padding-right: var(--spacing-md); border-left: 3px solid var(--primary);">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                                    stroke-width="2" style="flex-shrink:0; margin-top:2px;">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                    </path>
+                                </svg>
+                                <div><strong>Membership upgrade</strong> — Emily R. upgraded from Starter to Devotee
+                                    plan<span
+                                        style="display: block; font-size: 0.75rem; color: var(--theme-text-muted); margin-top: 2px;">2
+                                        hours ago</span></div>
+                            </div>
+                            <div
+                                style="display: flex; gap: 1rem; align-items: flex-start; padding: var(--spacing-md) 0; border-bottom: 1px solid var(--theme-border);">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="var(--theme-text-muted)" stroke-width="2"
+                                    style="flex-shrink:0; margin-top:2px;">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                                <div style="color: var(--theme-text-muted);">New contact message from David Kim<span
+                                        style="display: block; font-size: 0.75rem; margin-top: 2px;">Yesterday, 4:30
+                                        PM</span></div>
+                            </div>
+                            <div
+                                style="display: flex; gap: 1rem; align-items: flex-start; padding: var(--spacing-md) 0; border-bottom: 1px solid var(--theme-border);">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning)"
+                                    stroke-width="2" style="flex-shrink:0; margin-top:2px;">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                </svg>
+                                <div style="color: var(--theme-text-muted);">Booking cancellation — Alex T. cancelled
+                                    Oct 12 session<span style="display: block; font-size: 0.75rem; margin-top: 2px;">2
+                                        days ago</span></div>
+                            </div>
+                            <div
+                                style="display: flex; gap: 1rem; align-items: flex-start; padding: var(--spacing-md) 0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)"
+                                    stroke-width="2" style="flex-shrink:0; margin-top:2px;">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <div style="color: var(--theme-text-muted);">Stripe payment received — $89.00 from Jane
+                                    Doe<span style="display: block; font-size: 0.75rem; margin-top: 2px;">3 days
+                                        ago</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4 style="margin-bottom: var(--spacing-md);">Send Broadcast Message</h4>
+                        <div class="form-group"><label class="form-label">Audience</label>
+                            <select class="form-control">
+                                <option>All Members</option>
+                                <option>Devotee Members</option>
+                                <option>Starter Pack Members</option>
+                                <option>Inactive Users</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label class="form-label">Subject</label><input type="text"
+                                class="form-control" placeholder="e.g. New float pod now available!"></div>
+                        <div class="form-group"><label class="form-label">Message</label><textarea class="form-control"
+                                rows="4" placeholder="Write your message…"></textarea></div>
+                        <button class="btn btn-primary">Send Broadcast</button>
+                    </div>
+                </div>
+
+                <div id="admin-members" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Membership Management</h3>
+                    <div class="card" style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid var(--theme-border);">
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Member</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Plan</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Status</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Renews</th>
+                                    <th
+                                        style="text-align: left; padding: 0.75rem; color: var(--theme-text-muted); font-weight: 500;">
+                                        Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--theme-border);">
+                                    <td style="padding: 0.75rem;">Jane Doe</td>
+                                    <td style="padding: 0.75rem;">Devotee</td>
+                                    <td style="padding: 0.75rem;"><span
+                                            style="color: var(--success); font-weight: 600;">● Active</span></td>
+                                    <td style="padding: 0.75rem;">Oct 30, 2026</td>
+                                    <td style="padding: 0.75rem;"><button class="btn btn-outline"
+                                            style="padding: 0.3rem 0.75rem; min-height: 0; font-size: 0.8rem;">Manage</button>
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--theme-border);">
+                                    <td style="padding: 0.75rem;">David Kim</td>
+                                    <td style="padding: 0.75rem;">Starter Pack</td>
+                                    <td style="padding: 0.75rem;"><span
+                                            style="color: var(--warning); font-weight: 600;">● Expiring</span></td>
+                                    <td style="padding: 0.75rem;">Mar 15, 2026</td>
+                                    <td style="padding: 0.75rem;"><button class="btn btn-outline"
+                                            style="padding: 0.3rem 0.75rem; min-height: 0; font-size: 0.8rem;">Manage</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem;">Emily R.</td>
+                                    <td style="padding: 0.75rem;">Unlimited Monthly</td>
+                                    <td style="padding: 0.75rem;"><span
+                                            style="color: var(--success); font-weight: 600;">● Active</span></td>
+                                    <td style="padding: 0.75rem;">Apr 1, 2026</td>
+                                    <td style="padding: 0.75rem;"><button class="btn btn-outline"
+                                            style="padding: 0.3rem 0.75rem; min-height: 0; font-size: 0.8rem;">Manage</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="admin-customers" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Customers</h3>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md);">
+                        <div class="card" style="display: flex; gap: 1rem; align-items: center;">
+                            <div
+                                style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #0f766e); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">
+                                JD</div>
+                            <div>
+                                <div style="font-weight: 600;">Jane Doe</div>
+                                <div style="color: var(--theme-text-muted); font-size: 0.85rem;">12 sessions · Devotee
+                                    Member</div>
+                            </div>
+                        </div>
+                        <div class="card" style="display: flex; gap: 1rem; align-items: center;">
+                            <div
+                                style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #0f766e); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">
+                                DK</div>
+                            <div>
+                                <div style="font-weight: 600;">David Kim</div>
+                                <div style="color: var(--theme-text-muted); font-size: 0.85rem;">4 sessions · Starter
+                                    Pack</div>
+                            </div>
+                        </div>
+                        <div class="card" style="display: flex; gap: 1rem; align-items: center;">
+                            <div
+                                style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #0f766e); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">
+                                ER</div>
+                            <div>
+                                <div style="font-weight: 600;">Emily R.</div>
+                                <div style="color: var(--theme-text-muted); font-size: 0.85rem;">22 sessions · Monthly
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="admin-revenue" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Revenue Overview</h3>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+                        <div class="card" style="text-align: center;">
+                            <div style="color: var(--theme-text-muted); font-size: 0.85rem;">This Month</div>
+                            <div style="font-size: 2rem; font-weight: 700; color: var(--theme-accent);">$45,820</div>
+                        </div>
+                        <div class="card" style="text-align: center;">
+                            <div style="color: var(--theme-text-muted); font-size: 0.85rem;">Last Month</div>
+                            <div style="font-size: 2rem; font-weight: 700;">$38,410</div>
+                        </div>
+                        <div class="card" style="text-align: center;">
+                            <div style="color: var(--theme-text-muted); font-size: 0.85rem;">Growth</div>
+                            <div style="font-size: 2rem; font-weight: 700; color: var(--success);">+19%</div>
+                        </div>
+                        <div class="card" style="text-align: center;">
+                            <div style="color: var(--theme-text-muted); font-size: 0.85rem;">YTD</div>
+                            <div style="font-size: 2rem; font-weight: 700;">$187k</div>
+                        </div>
+                    </div>
+                    <div class="card"
+                        style="height: 300px; display: flex; align-items: center; justify-content: center; border: 2px dashed var(--theme-border);">
+                        <p style="color: var(--theme-text-muted);">Chart.js Revenue Graph — Integration Point</p>
+                    </div>
+                </div>
+
+                <div id="admin-settings" class="view-section">
+                    <h3 style="margin-bottom: var(--spacing-md);">Settings</h3>
+                    <div class="card" style="margin-bottom: var(--spacing-md);">
+                        <h4 style="margin-bottom: var(--spacing-md);">Business Details</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md);">
+                            <div class="form-group"><label class="form-label">Business Name</label><input type="text"
+                                    class="form-control" value="Sensory Deprivation Float Center"></div>
+                            <div class="form-group"><label class="form-label">Contact Email</label><input type="email"
+                                    class="form-control" value="hello@floatcenter.com"></div>
+                            <div class="form-group"><label class="form-label">Phone</label><input type="tel"
+                                    class="form-control" value="+1-800-FLOAT-NOW"></div>
+                            <div class="form-group"><label class="form-label">Timezone</label><input type="text"
+                                    class="form-control" value="America/Los_Angeles"></div>
+                        </div>
+                        <button class="btn btn-primary" style="margin-top: var(--spacing-md);">Save Changes</button>
+                    </div>
+                    <div class="card">
+                        <h4 style="margin-bottom: var(--spacing-md);">Integrations</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-md) 0; border-bottom: 1px solid var(--theme-border);">
+                                <div><strong>Stripe Payments</strong>
+                                    <p style="color: var(--theme-text-muted); font-size: 0.85rem; margin: 0;">Process
+                                        bookings and memberships</p>
+                                </div>
+                                <button class="btn btn-outline"
+                                    style="padding: 0.4rem 1rem; min-height: 0; font-size: 0.85rem;">Connect</button>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-md) 0; border-bottom: 1px solid var(--theme-border);">
+                                <div><strong>Mailchimp</strong>
+                                    <p style="color: var(--theme-text-muted); font-size: 0.85rem; margin: 0;">Newsletter
+                                        and email automation</p>
+                                </div>
+                                <button class="btn btn-outline"
+                                    style="padding: 0.4rem 1rem; min-height: 0; font-size: 0.85rem;">Connect</button>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-md) 0;">
+                                <div><strong>Google Calendar</strong>
+                                    <p style="color: var(--theme-text-muted); font-size: 0.85rem; margin: 0;">Sync
+                                        bookings to Google Calendar</p>
+                                </div>
+                                <button class="btn btn-outline"
+                                    style="padding: 0.4rem 1rem; min-height: 0; font-size: 0.85rem;">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Core scripts — must load before profile dropdown -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+
+    <!-- Profile dropdown JS -->
+    <script>
+        (function () {
+            var btn = document.getElementById('profile-avatar-btn');
+            var dropdown = document.getElementById('profile-dropdown');
+            if (!btn || !dropdown) return;
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var isOpen = dropdown.classList.contains('is-open');
+                dropdown.classList.toggle('is-open', !isOpen);
+                btn.setAttribute('aria-expanded', String(!isOpen));
+                dropdown.setAttribute('aria-hidden', String(isOpen));
+            });
+
+            // Close on outside click
+            document.addEventListener('click', function (e) {
+                if (!document.getElementById('profile-menu-wrapper').contains(e.target)) {
+                    dropdown.classList.remove('is-open');
+                    btn.setAttribute('aria-expanded', 'false');
+                    dropdown.setAttribute('aria-hidden', 'true');
+                }
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    dropdown.classList.remove('is-open');
+                    btn.setAttribute('aria-expanded', 'false');
+                    btn.focus();
+                }
+            });
+
+            // Wire sidebar nav-item IDs so profile dropdown can trigger them
+            var navItems = document.querySelectorAll('.dashboard-nav-item[data-target]');
+            navItems.forEach(function (item) {
+                var target = item.getAttribute('data-target');
+                if (target === 'user-profile') item.id = 'nav-profile';
+                if (target === 'user-bookings') item.id = 'nav-bookings';
+                if (target === 'user-membership') item.id = 'nav-membership';
+            });
+        })();
+    </script>
+</body>
+
+</html>

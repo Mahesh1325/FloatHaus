@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memberships & Pricing | Sensory Deprivation Float Center</title>
+    <meta name="description" content="View our monthly and annual float membership tiers. Save on regular floats.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Memberships | Sensory Deprivation Float Center">
+    <link rel="stylesheet" href="../assets/css/style.css">`n    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .pricing-toggle {
+            display: inline-flex;
+            background-color: var(--theme-surface);
+            border: 1px solid var(--theme-border);
+            border-radius: 999px;
+            padding: 4px;
+            margin: var(--spacing-lg) auto;
+        }
+
+        .pricing-toggle button {
+            background: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 999px;
+            color: var(--theme-text-muted);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .pricing-toggle button.active {
+            background-color: var(--primary);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo" aria-label="Home">FLOAT it</a>
+
+            <nav id="main-nav" class="nav" aria-label="Main Navigation">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="float-therapy.html" class="nav-link">Float Therapy</a>
+                <a href="memberships.html" class="nav-link active" aria-current="page">Memberships</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link">Account</a>
+                <a href="booking.html" class="btn btn-primary btn-sticky-mobile">Book Now</a>
+            </nav>
+
+            <div style="display:flex; gap: 1rem; align-items: center;">
+                <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <span id="theme-icon"></span>
+                </button>
+                <button type="button" id="mobile-toggle" class="mobile-toggle" aria-expanded="false"
+                    aria-controls="main-nav" aria-label="Open menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="section animate-fade-up">
+            <div class="container" style="text-align: center;">
+                <h1 style="margin-bottom: var(--spacing-sm);">Deepen Your Practice</h1>
+                <p style="color: var(--theme-text-muted); font-size: 1.125rem; max-width: 600px; margin: 0 auto;">Choose
+                    a membership that fits your lifestyle. Cancel anytime.</p>
+
+                <div class="pricing-toggle" role="group" aria-label="Pricing toggle">
+                    <button type="button" id="btn-monthly" class="active" aria-pressed="true">Monthly</button>
+                    <button type="button" id="btn-annual" aria-pressed="false">Annual (Save 20%)</button>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); max-width: 1000px; margin: 0 auto; text-align: left;">
+                    <!-- Tier 1 -->
+                    <article class="card" style="display: flex; flex-direction: column;">
+                        <h3 style="margin-bottom: var(--spacing-sm);">Explorer</h3>
+                        <p style="color: var(--theme-text-muted);">Perfect for maintaining a monthly routine.</p>
+                        <div style="margin: var(--spacing-md) 0; font-size: 2.5rem; font-weight: 700;">
+                            $<span class="price-val" data-monthly="69" data-annual="55">69</span><span
+                                style="font-size: 1rem; color: var(--theme-text-muted); font-weight: 400;">/mo</span>
+                        </div>
+                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); flex-grow: 1;">
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> 1 Float per month (60 min)</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Rollover unused floats</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Additional floats at $59</li>
+                        </ul>
+                        <button class="btn btn-outline" style="width: 100%;">Select Explorer</button>
+                    </article>
+
+                    <!-- Tier 2 -->
+                    <article class="card"
+                        style="display: flex; flex-direction: column; border-color: var(--theme-accent); position: relative;">
+                        <!-- Highlight badge -->
+                        <span
+                            style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--theme-accent); color: #fff; padding: 2px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">MOST
+                            POPULAR</span>
+
+                        <h3 style="margin-bottom: var(--spacing-sm);">Devotee</h3>
+                        <p style="color: var(--theme-text-muted);">For those seeking rapid physical and mental benefits.
+                        </p>
+                        <div
+                            style="margin: var(--spacing-md) 0; font-size: 2.5rem; font-weight: 700; color: var(--theme-accent);">
+                            $<span class="price-val" data-monthly="129" data-annual="103">129</span><span
+                                style="font-size: 1rem; color: var(--theme-text-muted); font-weight: 400;">/mo</span>
+                        </div>
+                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); flex-grow: 1;">
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> 2 Floats per month (90 min)</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Rollover unused floats</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Bring a guest for free (1x/yr)</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Additional floats at $49</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%;">Select Devotee</button>
+                    </article>
+
+                    <!-- Tier 3 -->
+                    <article class="card" style="display: flex; flex-direction: column;">
+                        <h3 style="margin-bottom: var(--spacing-sm);">Master</h3>
+                        <p style="color: var(--theme-text-muted);">The ultimate commitment to your nervous system.</p>
+                        <div style="margin: var(--spacing-md) 0; font-size: 2.5rem; font-weight: 700;">
+                            $<span class="price-val" data-monthly="219" data-annual="175">219</span><span
+                                style="font-size: 1rem; color: var(--theme-text-muted); font-weight: 400;">/mo</span>
+                        </div>
+                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); flex-grow: 1;">
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> 4 Floats per month (90 min)</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Rollover unused floats</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Bring a guest for free (4x/yr)</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Additional floats at $39</li>
+                        </ul>
+                        <button class="btn btn-outline" style="width: 100%;">Select Master</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="text-align: center;">&copy; 2026 Sensory Deprivation.</div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnMonthly = document.getElementById('btn-monthly');
+            const btnAnnual = document.getElementById('btn-annual');
+            const priceVals = document.querySelectorAll('.price-val');
+
+            const setPricing = (mode) => {
+                priceVals.forEach(el => {
+                    if (mode === 'monthly') {
+                        el.textContent = el.getAttribute('data-monthly');
+                    } else {
+                        el.textContent = el.getAttribute('data-annual');
+                    }
+                });
+            };
+
+            btnMonthly.addEventListener('click', () => {
+                btnMonthly.classList.add('active');
+                btnMonthly.setAttribute('aria-pressed', 'true');
+                btnAnnual.classList.remove('active');
+                btnAnnual.setAttribute('aria-pressed', 'false');
+                setPricing('monthly');
+            });
+
+            btnAnnual.addEventListener('click', () => {
+                btnAnnual.classList.add('active');
+                btnAnnual.setAttribute('aria-pressed', 'true');
+                btnMonthly.classList.remove('active');
+                btnMonthly.setAttribute('aria-pressed', 'false');
+                setPricing('annual');
+            });
+        });
+    </script>
+</body>
+
+</html>
