@@ -19,7 +19,8 @@
     <meta property="og:type" content="website">
 
     <!-- CSS Links -->
-    <link rel="stylesheet" href="../assets/css/style.css">`n    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="stylesheet" href="../assets/css/style.css">`n
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
 
     <!-- Preconnect Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,10 +65,12 @@
                 <a href="about.html" class="nav-link">About</a>
                 <a href="contact.html" class="nav-link">Contact</a>
                 <a href="dashboard.html" class="nav-link">My Bookings</a>
-                </nav>
+            </nav>
 
             <div style="display:flex; gap: 1rem; align-items: center;">
-                <button type="button" id="dir-toggle" class="theme-toggle" style="width: auto; padding: 0 0.75rem; font-weight: bold; font-family: var(--font-sans);" aria-label="Toggle Navigation Direction">
+                <button type="button" id="dir-toggle" class="theme-toggle"
+                    style="width: auto; padding: 0 0.75rem; font-weight: bold; font-family: var(--font-sans);"
+                    aria-label="Toggle Navigation Direction">
                     <span id="dir-text">RTL</span>
                 </button>
                 <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
@@ -192,26 +195,140 @@
             </div>
         </section>
 
-        <!-- Membership Highlight -->
+
+        <!-- Reviews Section -->
         <section class="section">
-            <div class="container" style="text-align: center;">
-                <h2>Deepen Your Practice.</h2>
-                <p style="color: var(--theme-text-muted); max-width: 600px; margin: 0 auto var(--spacing-lg);">
-                    Consistent floatation yields compounding benefits. Explore our membership tiers for regular access
-                    at exceptional rates.</p>
-                <a href="memberships.html" class="btn btn-outline">View Memberships</a>
+            <div class="container">
+                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                    <h2>Client Experiences</h2>
+                    <p style="color: var(--theme-text-muted); max-width: 600px; margin: 0 auto;">Discover how regular
+                        floatation is changing lives.</p>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
+
+                    <!-- Review 1 -->
+                    <article class="card" style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                        <div style="color: var(--warning); letter-spacing: 2px;">★★★★★</div>
+                        <p style="color: var(--theme-text); font-size: 1.1rem; flex-grow: 1; font-style: italic;">
+                            "The most profound 90 minutes of my week. The complete absence of gravity and sound allows
+                            my mind to enter a meditative state I could never achieve normally."
+                        </p>
+                        <div>
+                            <strong>Sarah M.</strong>
+                            <div style="color: var(--theme-text-muted); font-size: 0.85rem;">Devotee Member</div>
+                        </div>
+                    </article>
+
+                    <!-- Review 2 -->
+                    <article class="card" style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                        <div style="color: var(--warning); letter-spacing: 2px;">★★★★★</div>
+                        <p style="color: var(--theme-text); font-size: 1.1rem; flex-grow: 1; font-style: italic;">
+                            "I struggle with chronic lower back pain from sitting at a desk all day. Floating in the
+                            Epsom salt takes 100% of the pressure off my spine. It's pure magic."
+                        </p>
+                        <div>
+                            <strong>David K.</strong>
+                            <div style="color: var(--theme-text-muted); font-size: 0.85rem;">Explorer Member</div>
+                        </div>
+                    </article>
+
+                    <!-- Review 3 -->
+                    <article class="card" style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                        <div style="color: var(--warning); letter-spacing: 2px;">★★★★★</div>
+                        <p style="color: var(--theme-text); font-size: 1.1rem; flex-grow: 1; font-style: italic;">
+                            "The center itself is so beautifully designed. It feels like stepping into a sanctuary. By
+                            the time I leave, my stress levels are entirely reset."
+                        </p>
+                        <div>
+                            <strong>Elena T.</strong>
+                            <div style="color: var(--theme-text-muted); font-size: 0.85rem;">First-Time Floater</div>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section class="section section-minimal" style="background-color: var(--theme-accent); color: #fff;">
-            <div class="container"
-                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-lg);">
-                <h2 style="margin: 0; color: #fff;">Ready to float?</h2>
-                <a href="booking.html" class="btn" style="background-color: #fff; color: var(--theme-accent);">Book
-                    Now</a>
+
+        <!-- Pricing Preview -->
+        <section class="section" style="background-color: var(--theme-surface);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                    <h2>Transparent Pricing.</h2>
+                    <p style="color: var(--theme-text-muted); max-width: 600px; margin: 0 auto;">
+                        Start your journey with a single float, or unlock exceptional value through our memberships.
+                    </p>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--spacing-lg); max-width: 900px; margin: 0 auto;">
+                    <!-- Drop In -->
+                    <article class="card" style="display: flex; flex-direction: column; text-align: center;">
+                        <h3 style="margin-bottom: var(--spacing-sm);">Single Float</h3>
+                        <p style="color: var(--theme-text-muted);">A perfect introduction to sensory deprivation.</p>
+                        <div style="margin: var(--spacing-md) 0; font-size: 2.5rem; font-weight: 700;">
+                            $89<span
+                                style="font-size: 1rem; color: var(--theme-text-muted); font-weight: 400;">/session</span>
+                        </div>
+                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); flex-grow: 1; text-align: left;">
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> 60-Minute Float</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Private Suite & Shower</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Organic Tea Lounge Access</li>
+                        </ul>
+                        <a href="booking.html" class="btn btn-outline" style="width: 100%;">Book Single Float</a>
+                    </article>
+
+                    <!-- Membership -->
+                    <article class="card"
+                        style="display: flex; flex-direction: column; text-align: center; border-color: var(--theme-accent); position: relative;">
+                        <span
+                            style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--theme-accent); color: #fff; padding: 2px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">BEST
+                            VALUE</span>
+                        <h3 style="margin-bottom: var(--spacing-sm);">Explorer Membership</h3>
+                        <p style="color: var(--theme-text-muted);">Commit to your routine and let the benefits compound.
+                        </p>
+                        <div
+                            style="margin: var(--spacing-md) 0; font-size: 2.5rem; font-weight: 700; color: var(--theme-accent);">
+                            $69<span
+                                style="font-size: 1rem; color: var(--theme-text-muted); font-weight: 400;">/mo</span>
+                        </div>
+                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); flex-grow: 1; text-align: left;">
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> 1 Premium Float (60 min)</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Rollover Unused Floats</li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                                    style="color: var(--success);">✓</span> Extra Floats for just $59</li>
+                        </ul>
+                        <a href="memberships.html" class="btn btn-primary" style="width: 100%;">View All Memberships</a>
+                    </article>
+                </div>
             </div>
         </section>
+
+
+        <!-- CTA Section -->
+        <section class="section">
+            <div class="container">
+                <div class="cta-card">
+                    <div>
+                        <h2>Ready to disconnect?</h2>
+                        <p style="margin: 0 auto; font-size: 1.1rem; max-width: 500px;">
+                            Secure your pod today and discover why thousands trust us for their mental and physical
+                            recovery.
+                        </p>
+                    </div>
+                    <a href="booking.html" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+                        Book Your Float
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
@@ -219,7 +336,34 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="logo" style="margin-bottom: var(--spacing-md);">FLOAT.</div>
-                    <p style="color: var(--theme-text-muted);">Elevating human potential through nothingness.</p>
+                    <p style="color: var(--theme-text-muted); margin-bottom: var(--spacing-lg);">Elevating human
+                        potential through nothingness.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" aria-label="Instagram"
+                            style="color: var(--theme-text-muted); transition: color 0.2s;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Facebook"
+                            style="color: var(--theme-text-muted); transition: color 0.2s;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="X (Twitter)"
+                            style="color: var(--theme-text-muted); transition: color 0.2s;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+                                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Explore</h4>

@@ -607,7 +607,7 @@ img {
 /* ---- MOBILE: < 640px ---- */
 @media (max-width: 639px) {
 
-  
+
   @media (max-width: 768px) {
     .d-none-mobile {
       display: none !important;
@@ -821,4 +821,37 @@ img {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ============================================
+   CTA CARD (Theme Adaptive)
+   ============================================ */
+.cta-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  /* Premium dark slate / navy */
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.cta-card h2,
+.cta-card p {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .cta-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .cta-card h2 {
+  color: #ffffff !important;
 }
