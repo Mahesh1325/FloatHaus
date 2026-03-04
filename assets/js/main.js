@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const initTheme = () => {
         const themeToggleBtn = document.getElementById('theme-toggle');
         const rootAttr = document.documentElement;
-        
+
         // Check localStorage or system preference
         const savedTheme = localStorage.getItem('theme');
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
+
         let currentTheme = 'dark'; // Defaulting to dark as requested
 
         if (savedTheme) {
@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (systemPrefersDark !== undefined && !systemPrefersDark) {
             currentTheme = 'light';
         }
-        
+
         rootAttr.setAttribute('data-theme', currentTheme);
         updateThemeIcon(currentTheme);
 
-        if(themeToggleBtn) {
+        if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', () => {
                 currentTheme = rootAttr.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
                 rootAttr.setAttribute('data-theme', currentTheme);
@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateThemeIcon = (theme) => {
         const iconElement = document.getElementById('theme-icon');
-        if(!iconElement) return;
-        
-        if(theme === 'dark') {
+        if (!iconElement) return;
+
+        if (theme === 'dark') {
             // Sun icon for dark mode (click to light)
             iconElement.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
         } else {
@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const initMobileMenu = () => {
         const mobileToggle = document.getElementById('mobile-toggle');
         const nav = document.getElementById('main-nav');
-        
-        if(mobileToggle && nav) {
+
+        if (mobileToggle && nav) {
             mobileToggle.addEventListener('click', () => {
                 const isOpen = nav.classList.contains('is-open');
                 if (isOpen) {
@@ -66,7 +66,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // 3. Nav Direction Toggle Logic
+    const initDir = () => {
+        const dirToggleBtn = document.getElementById('dir-toggle');
+        const dirText = document.getElementById('dir-text');
+        // We target the header container to isolate the RTL effect to the navbar
+        const headerContainer = document.querySelector('.header-container');
+
+        if (dirToggleBtn && headerContainer && dirText) {
+            dirToggleBtn.addEventListener('click', () => {
+                const isRtl = headerContainer.getAttribute('dir') === 'rtl';
+                if (isRtl) {
+                    headerContainer.removeAttribute('dir');
+                    dirText.textContent = 'RTL';
+                } else {
+                    headerContainer.setAttribute('dir', 'rtl');
+                    dirText.textContent = 'LTR';
+                }
+            });
+        }
+    };
+
     // Initialize core functions
     initTheme();
     initMobileMenu();
+    initDir();
 });
