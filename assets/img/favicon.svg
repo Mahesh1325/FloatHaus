@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Soft dark green/teal background circle -->
+  <circle cx="50" cy="50" r="50" fill="#0d9488" />
+  <!-- Elegant minimal droplet / wave in white -->
+  <path d="M50 20 C65 40, 75 55, 75 70 C75 83.8, 63.8 90, 50 90 C36.2 90, 25 83.8, 25 70 C25 55, 35 40, 50 20 Z" fill="#ffffff" />
+  <circle cx="50" cy="65" r="10" fill="#0d9488" opacity="0.3" />
+</svg>
