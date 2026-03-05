@@ -21,21 +21,6 @@
     flex-direction: row-reverse;
 }
 
-/* Tablet Menu Override for RTL - Slides from Left */
-@media (min-width: 640px) and (max-width: 1023px) {
-    [dir="rtl"] .nav {
-        right: auto;
-        left: 0;
-        transform: translateX(-100%);
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
-        /* Flip shadow direction */
-    }
-
-    [dir="rtl"] .nav.is-open {
-        transform: translateX(0);
-    }
-}
-
 [dir="rtl"] .nav-link::after {
     left: auto;
     right: 0;

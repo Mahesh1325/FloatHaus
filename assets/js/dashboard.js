@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (adminView) {
             badge.textContent = 'ADMIN';
-            if (toggleRoleBtn) toggleRoleBtn.textContent = 'Switch to User View';
             userGroup.style.display = 'none';
             adminGroup.style.display = 'block';
             // Click first admin link
@@ -100,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (firstLink) firstLink.click();
         } else {
             badge.textContent = 'USER';
-            if (toggleRoleBtn) toggleRoleBtn.textContent = 'Switch to Admin View';
             adminGroup.style.display = 'none';
             userGroup.style.display = 'block';
             // Click first user link
@@ -109,17 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    if (toggleRoleBtn) {
-        toggleRoleBtn.addEventListener('click', () => {
-            isAdmin = !isAdmin;
-            setRoleView(isAdmin);
 
-            // Update URL without reloading
-            const newUrl = new URL(window.location);
-            newUrl.searchParams.set('role', isAdmin ? 'admin' : 'user');
-            window.history.replaceState({}, '', newUrl);
-        });
-    }
 
     // Set initial view
     setTimeout(() => {
