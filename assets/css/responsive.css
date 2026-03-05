@@ -199,8 +199,22 @@
         grid-template-columns: repeat(2, 1fr) !important;
     }
 
+    /* Elegant 3-item wrap fix: If 3 items in a 2-col grid, the last one spans full-width instead of leaving a blank gap */
+    .services-grid>*:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
     .features-grid {
         grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .features-grid>*:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
+    /* Generic auto-fit fix for elements like "The Power of Floating" and "Client Experiences" */
+    [style*="grid-template-columns: repeat(auto-fit"]>*:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
     }
 }
 
@@ -328,9 +342,17 @@
         grid-template-columns: repeat(2, 1fr) !important;
     }
 
+    .team-grid>*:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
     /* Values → 2 columns on tablet */
     .values-grid {
         grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .values-grid>*:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
     }
 }
 

@@ -905,6 +905,54 @@ img {
     transform: translateX(0);
   }
 
+  /* Hamburger Menu Layout styling for Tablet exactly matching Mobile */
+  .nav-link {
+    padding: 0.85rem 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--theme-border);
+    width: 100%;
+  }
+
+  .nav-item-dropdown {
+    padding: 0.85rem 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--theme-border);
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .nav-item-dropdown::after {
+    display: none;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    transform: none;
+    padding: 0;
+    margin-left: 1rem;
+    transition: none;
+    width: 100%;
+  }
+
+  .nav-item-dropdown.is-open .dropdown-menu {
+    height: auto;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  [dir="rtl"] .dropdown-menu {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+
   .mobile-toggle {
     display: flex;
   }
