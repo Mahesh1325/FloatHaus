@@ -31,10 +31,19 @@
     }
 
     /* Hero sections — reduce top padding so content is visible */
-    .hero {
+    .hero,
+    .h2-hero {
         min-height: auto !important;
-        padding-top: 5rem;
+        height: auto !important;
+        padding-top: calc(var(--header-height) + 2rem);
         padding-bottom: 3rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Home 2 specific hero grid fix */
+    .h2-hero {
+        grid-template-columns: 1fr !important;
     }
 
     /* Hero action buttons stack vertically */
@@ -88,18 +97,21 @@
     /* Ensure header items don't overflow on tablet/mobile */
     .header-container {
         gap: 0.5rem;
+        position: relative;
+        z-index: 1005;
     }
 
     /* Logo text truncation safety */
     .logo {
         font-size: 1.25rem;
+        z-index: 1006;
     }
 
-    /* Hide RTL button on very small screens to save space */
-    @media (max-width: 400px) {
-        #dir-toggle {
-            display: none;
-        }
+    /* Mobile Nav Background & Blur */
+    .nav {
+        background-color: var(--theme-bg) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 }
 
@@ -241,6 +253,12 @@
     /* Sidebar stat columns hidden on tablet, merged into visible area */
     [style*="grid-row: span 2"] {
         grid-row: span 1 !important;
+    }
+
+    /* Home 2 Hero Tablet Height Fix */
+    .h2-hero {
+        min-height: 600px !important;
+        height: auto !important;
     }
 }
 

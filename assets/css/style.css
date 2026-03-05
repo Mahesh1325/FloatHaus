@@ -703,11 +703,21 @@ img {
     bottom: 0;
     background-color: var(--theme-bg);
     flex-direction: column;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-xl) var(--spacing-lg);
     transform: translateX(100%);
     transition: transform var(--transition-normal);
     gap: 0;
     overflow-y: auto;
+    z-index: 1001;
+    /* High z-index to avoid overlap */
+  }
+
+  .nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--theme-bg);
+    z-index: -1;
   }
 
   .nav.is-open {
@@ -763,6 +773,8 @@ img {
 
   .mobile-toggle {
     display: flex;
+    z-index: 1005;
+    /* Above the nav menu background */
   }
 
   /* Sticky Book Now button at bottom on mobile */
@@ -788,6 +800,7 @@ img {
   .mobile-toggle {
     min-width: 44px;
     min-height: 44px;
+    z-index: 1005;
   }
 
   /* Typography scale-down */
