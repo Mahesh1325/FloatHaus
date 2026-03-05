@@ -9,7 +9,7 @@ const rootNav = `            <nav id="main-nav" class="nav" aria-label="Main Nav
                     </span>
                     <div class="dropdown-menu">
                         <a href="index.html" class="dropdown-item active">Home 1</a>
-                        <a href="pages/home-2.html" class="dropdown-item">Home 2 (Premium)</a>
+                        <a href="pages/home-2.html" class="dropdown-item">Home 2</a>
                     </div>
                 </div>
                 <a href="pages/services.html" class="nav-link">Services</a>
@@ -22,8 +22,8 @@ const rootNav = `            <nav id="main-nav" class="nav" aria-label="Main Nav
                         <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </span>
                     <div class="dropdown-menu">
-                        <a href="pages/dashboard.html?role=user" class="dropdown-item">User Dashboard</a>
-                        <a href="pages/dashboard.html?role=admin" class="dropdown-item">Admin Dashboard</a>
+                        <a href="pages/dashboard.html?role=user" class="dropdown-item">User</a>
+                        <a href="pages/dashboard.html?role=admin" class="dropdown-item">Admin</a>
                     </div>
                 </div>
             </nav>`;
@@ -36,7 +36,7 @@ const subNavTemplate = `            <nav id="main-nav" class="nav" aria-label="M
                     </span>
                     <div class="dropdown-menu">
                         <a href="../index.html" class="dropdown-item">Home 1</a>
-                        <a href="home-2.html" class="dropdown-item">Home 2 (Premium)</a>
+                        <a href="home-2.html" class="dropdown-item">Home 2</a>
                     </div>
                 </div>
                 <a href="services.html" class="nav-link ACTIVE_SERVICES">Services</a>
@@ -49,8 +49,8 @@ const subNavTemplate = `            <nav id="main-nav" class="nav" aria-label="M
                         <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </span>
                     <div class="dropdown-menu">
-                        <a href="dashboard.html?role=user" class="dropdown-item">User Dashboard</a>
-                        <a href="dashboard.html?role=admin" class="dropdown-item">Admin Dashboard</a>
+                        <a href="dashboard.html?role=user" class="dropdown-item">User</a>
+                        <a href="dashboard.html?role=admin" class="dropdown-item">Admin</a>
                     </div>
                 </div>
             </nav>`;
