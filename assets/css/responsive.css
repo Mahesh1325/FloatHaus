@@ -269,10 +269,39 @@
         grid-row: span 1 !important;
     }
 
-    /* Home 2 Hero Tablet Height Fix */
+    /* Home 2 Hero Tablet Height Fix — Reduce blank space */
     .h2-hero {
-        min-height: 600px !important;
+        min-height: auto !important;
         height: auto !important;
+        grid-template-columns: 1fr !important;
+        padding-top: 0 !important;
+    }
+
+    .h2-hero-text {
+        padding: 2rem clamp(1.5rem, 4vw, 3rem) 2rem !important;
+        justify-content: flex-start;
+    }
+
+    .h2-hero-image {
+        display: none;
+    }
+
+    .h2-hero-headline {
+        font-size: 2.2rem !important;
+        margin-bottom: 1rem;
+    }
+
+    .h2-hero-body {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .h2-hero-actions {
+        gap: 0.75rem;
+    }
+
+    .h2-hero-badge {
+        display: none;
     }
 }
 
@@ -301,9 +330,33 @@
 
 @media (min-width: 640px) and (max-width: 1023px) {
 
+    /* Services page: Service row → 2 columns on tablet */
+    .service-row {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2rem !important;
+        margin-bottom: 3rem !important;
+    }
+
+    .service-row > * {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .service-row img {
+        height: 300px !important;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
     /* Service cards → 2 columns on tablet */
     .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem;
+    }
+
+    .services-grid > *:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
     }
 }
 
@@ -337,6 +390,25 @@
 
 @media (min-width: 640px) and (max-width: 1023px) {
 
+    /* About page "Our Story" section → 2 columns on tablet */
+    .section > .container > div[style*="grid-template-columns: repeat(auto-fit, minmax(300px"] {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2rem !important;
+        align-items: center !important;
+    }
+
+    /* About page "The Space" cards → 2 columns on tablet */
+    .section > .container > div[style*="grid-template-columns: repeat(auto-fit, minmax(280px"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Ensure cards have proper image height */
+    .card img {
+        height: 200px !important;
+        object-fit: cover;
+    }
+
     /* Team → 2 columns on tablet */
     .team-grid {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -353,6 +425,12 @@
 
     .values-grid>*:last-child:nth-child(odd) {
         grid-column: 1 / -1;
+    }
+
+    /* About page stats grid → 2x2 on tablet */
+    .section > .container > div[style*="grid-template-columns: repeat(auto-fit, minmax(180px"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
     }
 }
 
