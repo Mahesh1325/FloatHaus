@@ -16,16 +16,7 @@ const rootNav = `            <nav id="main-nav" class="nav" aria-label="Main Nav
                 <a href="pages/gallery.html" class="nav-link">Gallery</a>
                 <a href="pages/about.html" class="nav-link">About</a>
                 <a href="pages/contact.html" class="nav-link">Contact</a>
-                <div class="nav-item-dropdown">
-                    <span style="display: flex; align-items: center; gap: 0.25rem;">
-                        Dashboard
-                        <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </span>
-                    <div class="dropdown-menu">
-                        <a href="pages/dashboard.html?role=user" class="dropdown-item">User</a>
-                        <a href="pages/dashboard.html?role=admin" class="dropdown-item">Admin</a>
-                    </div>
-                </div>
+                <a href="pages/dashboard.html" class="nav-link">Dashboard</a>
             </nav>`;
 
 const subNavTemplate = `            <nav id="main-nav" class="nav" aria-label="Main Navigation">
@@ -43,16 +34,7 @@ const subNavTemplate = `            <nav id="main-nav" class="nav" aria-label="M
                 <a href="gallery.html" class="nav-link ACTIVE_GALLERY">Gallery</a>
                 <a href="about.html" class="nav-link ACTIVE_ABOUT">About</a>
                 <a href="contact.html" class="nav-link ACTIVE_CONTACT">Contact</a>
-                <div class="nav-item-dropdown">
-                    <span style="display: flex; align-items: center; gap: 0.25rem;">
-                        Dashboard
-                        <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </span>
-                    <div class="dropdown-menu">
-                        <a href="dashboard.html?role=user" class="dropdown-item">User</a>
-                        <a href="dashboard.html?role=admin" class="dropdown-item">Admin</a>
-                    </div>
-                </div>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
             </nav>`;
 
 function replaceNav(filePath, isRoot) {
