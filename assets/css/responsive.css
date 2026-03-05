@@ -398,7 +398,7 @@
     }
 
     /* About page "The Space" cards → 2 columns on tablet */
-    .section > .container > div[style*="grid-template-columns: repeat(auto-fit, minmax(280px"] {
+    .section > .container > div[style*="grid-template-columns: repeat(3, 1fr)"] {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 1.5rem !important;
     }
@@ -431,6 +431,20 @@
     .section > .container > div[style*="grid-template-columns: repeat(auto-fit, minmax(180px"] {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 1.5rem !important;
+    }
+}
+
+@media (max-width: 639px) {
+
+    /* About page "The Space" cards → 1 column on mobile */
+    .section > .container > div[style*="grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    /* Mobile image height adjustment */
+    .section > .container > div[style*="grid-template-columns: repeat(3, 1fr)"] img {
+        height: 150px !important;
     }
 }
 
@@ -528,50 +542,189 @@
 }
 
 /* ================================================================
-   CONTACT.HTML — Split layout contact form
+   CONTACT.HTML — Modern split layout contact form
    ================================================================ */
 
 @media (max-width: 639px) {
 
-    /* Contact split → stacked */
-    .contact-split {
+    /* Hero section - better padding on mobile */
+    .hero-section {
+        min-height: 40vh !important;
+        padding: 1.5rem 0 !important;
+    }
+
+    /* Contact form and benefits grid → stacked */
+    .section > div[style*="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
         grid-template-columns: 1fr !important;
-        gap: 2rem;
     }
 
-    /* Map → full width */
-    .contact-map {
-        height: 250px;
-    }
-
-    /* Contact info items */
-    .contact-info-item {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 0.75rem;
-    }
-
-    /* Form full width */
-    .contact-form {
-        width: 100%;
-    }
-
-    /* Two-column form row → single column */
-    .form-row {
+    /* Benefits grid → 1 column on mobile */
+    .section > div[style*="grid-template-columns: repeat(3, 1fr)"] {
         grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+
+    /* Contact location cards → 1 column */
+    .section > div[style*="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    /* Map → responsive height */
+    .section > div[style*="width: 100%; height: 450px"] {
+        height: 250px !important;
+    }
+
+    /* Decorative gradient blobs hide on mobile for cleaner look */
+    div[style*="position: absolute; top: -30%; left: -20%; width: 200px"] {
+        display: none;
+    }
+
+    div[style*="position: absolute; bottom: -30%; right: -20%; width: 200px"] {
+        display: none;
+    }
+
+    div[style*="position: absolute; top: -30%; right: -10%; width: 200px"] {
+        display: none;
+    }
+
+    /* Form inputs - better padding on mobile */
+    .form-control {
+        padding: 0.75rem !important;
+        font-size: 16px !important; /* Prevent zoom on iOS */
+        margin-bottom: 0.75rem;
+    }
+
+    /* Button - full width on mobile */
+    button[type="submit"].btn {
+        width: 100% !important;
+        padding: 0.85rem !important;
+    }
+
+    /* Card padding - reduced on mobile */
+    .card {
+        padding: 1rem !important;
+    }
+
+    .section > .container > div > .card {
+        padding: 1rem !important;
     }
 }
 
 @media (min-width: 640px) and (max-width: 1023px) {
 
-    /* Contact info cards */
-    .section .card {
-        padding: 1.5rem;
+    /* Hero section - tablet height */
+    .hero-section {
+        min-height: 45vh !important;
     }
 
-    /* Map responsive height */
+    /* Benefits grid → 2 columns on tablet for better spacing */
+    .section > div[style*="grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+
+    /* Location cards responsive */
+    .section > div[style*="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"] {
+        gap: 1.2rem !important;
+    }
+
+    /* Contact info cards */
+    .section .card {
+        padding: 1.25rem !important;
+    }
+
+    /* Map responsive height on tablet */
     .section > div[style*="width: 100%; height: 450px"] {
         height: 350px !important;
+    }
+
+    /* Reduce decorative blob intensity on tablet */
+    div[style*="background: radial-gradient(circle, rgba"] {
+        opacity: 0.7;
+    }
+
+    /* Form inputs */
+    .form-control {
+        padding: 0.85rem !important;
+        margin-bottom: 1rem;
+    }
+
+    /* Button */
+    button[type="submit"].btn {
+        padding: 0.9rem !important;
+    }
+}
+
+/* ================================================================
+   CONTACT PAGE ENHANCEMENTS — Modern immersive styling
+   ================================================================ */
+
+@media (min-width: 1024px) {
+    
+    /* Hero section - full size on desktop */
+    .hero-section {
+        min-height: 60vh !important;
+    }
+
+    /* Enhanced hover effects on contact cards */
+    .section .card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(13, 148, 136, 0.3);
+    }
+
+    .section .card:hover {
+        transform: translateY(-8px);
+        border-color: var(--theme-accent) !important;
+        box-shadow: 0 20px 40px rgba(13, 148, 136, 0.15);
+    }
+
+    /* Icon scale on hover */
+    .section .card:hover div[style*="width: 50px"] {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+
+    .section .card:hover div[style*="width: clamp(45px"] {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+
+    /* Form inputs focus enhancement */
+    .form-control {
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--theme-accent) !important;
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1) !important;
+        outline: none;
+    }
+
+    /* Button hover effect */
+    .btn-primary {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(13, 148, 136, 0.2);
+    }
+
+    /* Location cards hover effect */
+    .section > div[style*="grid-template-columns: repeat(auto-fit, minmax(250px"] .card:hover {
+        transform: translateY(-6px);
+        border-color: var(--theme-accent) !important;
+    }
+
+    /* Form inputs - optimal sizing on desktop */
+    .form-control {
+        padding: 0.9rem !important;
+    }
+
+    /* Proper spacing for benefits cards */
+    .section > div[style*="grid-template-columns: repeat(3"] {
+        gap: 1.5rem !important;
     }
 }
 
@@ -943,14 +1096,47 @@
     }
 }
 
-/* Prevent inline styles from overflowing on very small screens */
-@media (max-width: 400px) {
-    [style*="font-size: clamp"] {
-        word-break: break-word;
+/* ================================================================
+   EXTRA SMALL SCREENS — Mobile optimization below 640px
+   ================================================================ */
+
+@media (max-width: 480px) {
+
+    /* Extra tight padding for very small screens */
+    .container {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
     }
 
-    .container {
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
+    /* Hero section headings - even smaller on tiny phones */
+    .hero-section h1 {
+        font-size: clamp(1.5rem, 4vw, 2rem) !important;
+    }
+
+    /* Form labels - reduce font size */
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    /* Benefits cards - single column with vertical icon layout */
+    .section > div[style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Location cards - adjust for very small screens */
+    .section > div[style*="grid-template-columns: repeat(auto-fit, minmax(250px"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Input fields - easier to tap on phones */
+    .form-control {
+        min-height: 44px !important;
+        font-size: 16px !important;
+    }
+
+    /* Button - larger tap target */
+    button[type="submit"].btn {
+        min-height: 48px !important;
+        font-size: 1rem !important;
     }
 }
