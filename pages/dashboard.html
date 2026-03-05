@@ -505,9 +505,9 @@
         <div class="dashboard-content-wrapper">
             <!-- Topbar -->
             <div class="dashboard-topbar">
-                <div style="display: flex; gap: 1rem; align-items: center;">
-                    <button class="mobile-toggle" id="sidebar-toggle" style="display: block; width: 40px; height: 40px;"
-                        aria-label="Toggle Sidebar">
+                <div style="display: flex; gap: 0.75rem; align-items: center; min-width: 0;">
+                    <button class="mobile-toggle" id="sidebar-toggle"
+                        style="display: block; width: 40px; height: 40px; flex-shrink: 0;" aria-label="Toggle Sidebar">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -515,15 +515,15 @@
                             <line x1="3" y1="18" x2="21" y2="18"></line>
                         </svg>
                     </button>
-                    <h2 style="margin: 0; font-size: 1.25rem; font-family: var(--font-sans);" id="page-title">Overview
-                    </h2>
+                    <h2 style="margin: 0; font-size: 1.15rem; font-family: var(--font-sans); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                        id="page-title">Overview</h2>
                 </div>
 
-                <div style="display: flex; gap: 1rem; align-items: center;">
+                <div style="display: flex; gap: 0.75rem; align-items: center; flex-shrink: 0;">
                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
                         <span id="theme-icon"></span>
                     </button>
-                    <a href="booking.html" class="btn btn-primary btn-sm"
+                    <a href="booking.html" class="btn btn-primary btn-sm d-none-mobile"
                         style="padding: 0.5rem 1rem; min-height: 0;">Book Now</a>
                     <!-- Profile Dropdown -->
                     <div class="profile-menu-wrapper" id="profile-menu-wrapper">
@@ -866,7 +866,8 @@
                     <div style="display: flex; gap: 1rem; margin-bottom: var(--spacing-md);">
                         <input type="search" class="form-control" placeholder="Search users…" style="max-width: 320px;">
                         <button class="btn btn-primary"
-                            style="min-height: 0; padding: 0.5rem 1rem; white-space: nowrap;">+ Invite User</button>
+                            style="min-height: 0; padding: 0.5rem 1rem; white-space: nowrap;">+
+                            Invite User</button>
                     </div>
                     <div class="card" style="overflow-x: auto;">
                         <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
@@ -968,7 +969,8 @@
                             style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
                             <h4>Blog Posts</h4>
                             <button class="btn btn-primary"
-                                style="min-height: 0; padding: 0.4rem 1rem; font-size: 0.85rem;">+ New Post</button>
+                                style="min-height: 0; padding: 0.4rem 1rem; font-size: 0.85rem;">+
+                                New Post</button>
                         </div>
                         <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
                             <thead>
@@ -1136,7 +1138,8 @@
                                     <td style="padding: 0.75rem;">Jane Doe</td>
                                     <td style="padding: 0.75rem;">Devotee</td>
                                     <td style="padding: 0.75rem;"><span
-                                            style="color: var(--success); font-weight: 600;">● Active</span></td>
+                                            style="color: var(--success); font-weight: 600;">●
+                                            Active</span></td>
                                     <td style="padding: 0.75rem;">Oct 30, 2026</td>
                                     <td style="padding: 0.75rem;"><button class="btn btn-outline"
                                             style="padding: 0.3rem 0.75rem; min-height: 0; font-size: 0.8rem;">Manage</button>
@@ -1146,7 +1149,8 @@
                                     <td style="padding: 0.75rem;">David Kim</td>
                                     <td style="padding: 0.75rem;">Starter Pack</td>
                                     <td style="padding: 0.75rem;"><span
-                                            style="color: var(--warning); font-weight: 600;">● Expiring</span></td>
+                                            style="color: var(--warning); font-weight: 600;">●
+                                            Expiring</span></td>
                                     <td style="padding: 0.75rem;">Mar 15, 2026</td>
                                     <td style="padding: 0.75rem;"><button class="btn btn-outline"
                                             style="padding: 0.3rem 0.75rem; min-height: 0; font-size: 0.8rem;">Manage</button>
@@ -1156,7 +1160,8 @@
                                     <td style="padding: 0.75rem;">Emily R.</td>
                                     <td style="padding: 0.75rem;">Unlimited Monthly</td>
                                     <td style="padding: 0.75rem;"><span
-                                            style="color: var(--success); font-weight: 600;">● Active</span></td>
+                                            style="color: var(--success); font-weight: 600;">●
+                                            Active</span></td>
                                     <td style="padding: 0.75rem;">Apr 1, 2026</td>
                                     <td style="padding: 0.75rem;"><button class="btn btn-outline"
                                             style="padding: 0.3rem 0.75rem; min-height: 0; font-size: 0.8rem;">Manage</button>

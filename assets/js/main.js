@@ -100,14 +100,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (dirToggleBtn && headerContainer && dirText) {
             dirToggleBtn.addEventListener('click', () => {
-                const isRtl = headerContainer.getAttribute('dir') === 'rtl';
-                if (isRtl) {
-                    headerContainer.removeAttribute('dir');
-                    dirText.textContent = 'RTL';
-                } else {
-                    headerContainer.setAttribute('dir', 'rtl');
-                    dirText.textContent = 'LTR';
-                }
+                // Apply a smooth fade out transition before snapping the layout
+                headerContainer.classList.add('nav-switching');
+
+                setTimeout(() => {
+                    const isRtl = headerContainer.getAttribute('dir') === 'rtl';
+                    if (isRtl) {
+                        headerContainer.removeAttribute('dir');
+                        dirText.textContent = 'RTL';
+                    } else {
+                        headerContainer.setAttribute('dir', 'rtl');
+                        dirText.textContent = 'LTR';
+                    }
+                }, 200); // match transition duration
+
+                // Fade back in
+                setTimeout(() => {
+                    headerContainer.classList.remove('nav-switching');
+                }, 400);
             });
         }
     };
