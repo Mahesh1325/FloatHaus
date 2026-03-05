@@ -76,35 +76,55 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebarOverlay.addEventListener('click', () => toggleSidebar(false));
     }
 
-    // Role Toggling (Template Showcase Logic)
+    // Role Toggling
     const toggleRoleBtn = document.getElementById('toggle-role-btn');
     const badge = document.getElementById('current-role-badge');
-    let isAdmin = false;
+
+    // Parse role from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    let isAdmin = urlParams.get('role') === 'admin';
+
+    const setRoleView = (adminView) => {
+        const userGroup = document.querySelector('.nav-group-user');
+        const adminGroup = document.querySelector('.nav-group-admin');
+
+        if (!userGroup || !adminGroup) return;
+
+        if (adminView) {
+            badge.textContent = 'ADMIN';
+            if (toggleRoleBtn) toggleRoleBtn.textContent = 'Switch to User View';
+            userGroup.style.display = 'none';
+            adminGroup.style.display = 'block';
+            // Click first admin link
+            const firstLink = adminGroup.querySelector('.dashboard-nav-item');
+            if (firstLink) firstLink.click();
+        } else {
+            badge.textContent = 'USER';
+            if (toggleRoleBtn) toggleRoleBtn.textContent = 'Switch to Admin View';
+            adminGroup.style.display = 'none';
+            userGroup.style.display = 'block';
+            // Click first user link
+            const firstLink = userGroup.querySelector('.dashboard-nav-item');
+            if (firstLink) firstLink.click();
+        }
+    };
 
     if (toggleRoleBtn) {
         toggleRoleBtn.addEventListener('click', () => {
             isAdmin = !isAdmin;
+            setRoleView(isAdmin);
 
-            const userGroup = document.querySelector('.nav-group-user');
-            const adminGroup = document.querySelector('.nav-group-admin');
-
-            if (isAdmin) {
-                badge.textContent = 'ADMIN';
-                toggleRoleBtn.textContent = 'Switch to User View';
-                userGroup.style.display = 'none';
-                adminGroup.style.display = 'block';
-                // Click first admin link
-                adminGroup.querySelector('.dashboard-nav-item').click();
-            } else {
-                badge.textContent = 'USER';
-                toggleRoleBtn.textContent = 'Switch to Admin View';
-                adminGroup.style.display = 'none';
-                userGroup.style.display = 'block';
-                // Click first user link
-                userGroup.querySelector('.dashboard-nav-item').click();
-            }
+            // Update URL without reloading
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('role', isAdmin ? 'admin' : 'user');
+            window.history.replaceState({}, '', newUrl);
         });
     }
+
+    // Set initial view
+    setTimeout(() => {
+        setRoleView(isAdmin);
+    }, 10);
 
     // Data Loading Simulation
     const simulateDataLoad = (sectionId) => {

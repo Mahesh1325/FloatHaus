@@ -64,6 +64,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
+        // Dropdown toggles for mobile & touch devices
+        const dropdowns = document.querySelectorAll('.nav-item-dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', (e) => {
+                // If the target is the link inside the dropdown menu, don't toggle
+                if (e.target.closest('.dropdown-menu')) return;
+
+                // Close other open dropdowns
+                dropdowns.forEach(d => {
+                    if (d !== dropdown) d.classList.remove('is-open');
+                });
+
+                dropdown.classList.toggle('is-open');
+            });
+        });
+
+        // Close dropdowns on click outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-item-dropdown')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('is-open');
+                });
+            }
+        });
     };
 
     // 3. Nav Direction Toggle Logic

@@ -24,13 +24,31 @@
         <div class="container header-container">
             <a href="../index.html" class="logo" aria-label="Sensory Deprivation Float Center Home">FLOAT it</a>
 
-            <nav id="main-nav" class="nav" aria-label="Main Navigation">
-                <a href="../index.html" class="nav-link">Home</a>
+                        <nav id="main-nav" class="nav" aria-label="Main Navigation">
+                <div class="nav-item-dropdown">
+                    <span style="display: flex; align-items: center; gap: 0.25rem;">
+                        Home
+                        <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </span>
+                    <div class="dropdown-menu">
+                        <a href="../index.html" class="dropdown-item">Home 1</a>
+                        <a href="home-2.html" class="dropdown-item">Home 2 (Premium)</a>
+                    </div>
+                </div>
                 <a href="services.html" class="nav-link">Services</a>
                 <a href="gallery.html" class="nav-link">Gallery</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="contact.html" class="nav-link">Contact</a>
-                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <div class="nav-item-dropdown">
+                    <span style="display: flex; align-items: center; gap: 0.25rem;">
+                        Dashboard
+                        <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </span>
+                    <div class="dropdown-menu">
+                        <a href="dashboard.html?role=user" class="dropdown-item">User Dashboard</a>
+                        <a href="dashboard.html?role=admin" class="dropdown-item">Admin Dashboard</a>
+                    </div>
+                </div>
             </nav>
 
             <div style="display:flex; gap: 1rem; align-items: center;">

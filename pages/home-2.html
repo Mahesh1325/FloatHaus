@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Home | Sensory Deprivation Float Center</title>
+    <meta name="description"
+        content="Experience absolute nothingness and profound wellness at our luxury float center.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Premium Home | Sensory Deprivation Float Center">
+    <meta property="og:description" content="Experience absolute nothingness and profound wellness.">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="../index.html" class="logo" aria-label="Sensory Deprivation Float Center Home">FLOAT it</a>
+
+            <nav id="main-nav" class="nav" aria-label="Main Navigation">
+                <div class="nav-item-dropdown">
+                    <span style="display: flex; align-items: center; gap: 0.25rem;" class="active">
+                        Home
+                        <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </span>
+                    <div class="dropdown-menu">
+                        <a href="../index.html" class="dropdown-item">Home 1</a>
+                        <a href="home-2.html" class="dropdown-item active">Home 2 (Premium)</a>
+                    </div>
+                </div>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="nav-item-dropdown">
+                    <span style="display: flex; align-items: center; gap: 0.25rem;">
+                        Dashboard
+                        <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </span>
+                    <div class="dropdown-menu">
+                        <a href="dashboard.html?role=user" class="dropdown-item">User Dashboard</a>
+                        <a href="dashboard.html?role=admin" class="dropdown-item">Admin Dashboard</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div style="display:flex; gap: 1rem; align-items: center;">
+                <button type="button" id="dir-toggle" class="theme-toggle"
+                    style="width: auto; padding: 0 0.75rem; font-weight: bold; font-family: var(--font-sans);"
+                    aria-label="Toggle Navigation Direction">
+                    <span id="dir-text">RTL</span>
+                </button>
+                <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <span id="theme-icon"></span>
+                </button>
+                <button type="button" id="mobile-toggle" class="mobile-toggle" aria-expanded="false"
+                    aria-controls="main-nav" aria-label="Open menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <a href="booking.html" class="btn btn-primary btn-sticky-mobile d-none-mobile">Book Now</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Split Hero Section -->
+        <section class="section hero-section animate-fade-up" style="padding: var(--spacing-xl) 0; overflow: hidden;">
+            <div class="container">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--spacing-xl); align-items: center;">
+                    <div style="padding-right: var(--spacing-lg);">
+                        <span
+                            style="color: var(--theme-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: var(--spacing-md); display: block;">Reclaim
+                            Your Mind</span>
+                        <h1
+                            style="font-family: var(--font-serif); font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: var(--spacing-md);">
+                            The Ultimate Stillness.
+                        </h1>
+                        <p
+                            style="color: var(--theme-text-muted); font-size: 1.25rem; line-height: 1.6; margin-bottom: var(--spacing-lg);">
+                            Step outside the noise of the world. Our zero-gravity float suites offer profound mental
+                            clarity, physical recovery, and lasting peace.
+                        </p>
+                        <div style="display: flex; gap: var(--spacing-md); flex-wrap: wrap;">
+                            <a href="booking.html" class="btn btn-primary"
+                                style="font-size: 1.1rem; padding: 1rem 2rem;">Book Your Float</a>
+                            <a href="membership.html" class="btn btn-outline"
+                                style="font-size: 1.1rem; padding: 1rem 2rem;">Join Us</a>
+                        </div>
+                        <div style="margin-top: var(--spacing-xl); display: flex; align-items: center; gap: 1rem;">
+                            <div style="display: flex;">
+                                <div
+                                    style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--theme-bg); background: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80') center/cover; margin-left: -10px;">
+                                </div>
+                                <div
+                                    style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--theme-bg); background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80') center/cover; margin-left: -10px;">
+                                </div>
+                                <div
+                                    style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--theme-bg); background: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80') center/cover; margin-left: -10px;">
+                                </div>
+                            </div>
+                            <span style="color: var(--theme-text-muted); font-size: 0.9rem;">Join 1,000+ happy
+                                floaters.</span>
+                        </div>
+                    </div>
+                    <div
+                        style="position: relative; height: 600px; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+                        <img src="../assets/img/hero-about.jpg" alt="Float Therapy Pod"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                        <div
+                            style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Science of Silence -->
+        <section class="section" style="background-color: var(--theme-surface);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                    <h2>The Science of Silence</h2>
+                    <p style="color: var(--theme-text-muted); max-width: 600px; margin: 0 auto;">Discover the
+                        physiological benefits of sensory deprivation.</p>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg);">
+                    <div class="card" style="border-top: 4px solid var(--theme-accent);">
+                        <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">🧠</div>
+                        <h4 style="margin-bottom: var(--spacing-sm);">Theta Brainwaves</h4>
+                        <p style="color: var(--theme-text-muted); font-size: 0.95rem;">By removing external stimuli,
+                            your brain seamlessly shifts into a theta state, normally only achieved in deep meditation.
+                        </p>
+                    </div>
+                    <div class="card" style="border-top: 4px solid var(--theme-accent);">
+                        <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">⚡</div>
+                        <h4 style="margin-bottom: var(--spacing-sm);">Nervous System Reset</h4>
+                        <p style="color: var(--theme-text-muted); font-size: 0.95rem;">Floating lowers cortisol levels
+                            and triggers a profound parasympathetic response, offering relief from chronic stress.</p>
+                    </div>
+                    <div class="card" style="border-top: 4px solid var(--theme-accent);">
+                        <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">🦴</div>
+                        <h4 style="margin-bottom: var(--spacing-sm);">Zero-Gravity Healing</h4>
+                        <p style="color: var(--theme-text-muted); font-size: 0.95rem;">Over 1,000 lbs of Epsom salts
+                            create perfect buoyancy, decompressing the spine and rapidly accelerating muscle recovery.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sensory Reset Path (Timeline) -->
+        <section class="section">
+            <div class="container">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-xl); align-items: center;">
+                    <div style="order: 2;">
+                        <img src="../assets/img/hero-home.jpg" alt="Sensory Reset"
+                            style="border-radius: var(--border-radius-lg); box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+                    </div>
+                    <div style="order: 1;">
+                        <h2 style="margin-bottom: var(--spacing-lg);">The Sensory Reset Path</h2>
+
+                        <div style="display: flex; gap: 1.5rem; margin-bottom: var(--spacing-md);">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div
+                                    style="width: 32px; height: 32px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 2;">
+                                    1</div>
+                                <div
+                                    style="width: 2px; height: 100%; background-color: var(--theme-border); margin-top: 0.5rem;">
+                                </div>
+                            </div>
+                            <div style="padding-bottom: var(--spacing-md);">
+                                <h4 style="margin-bottom: 0.25rem;">Arrive & Unwind</h4>
+                                <p style="color: var(--theme-text-muted); font-size: 0.95rem; margin: 0;">Step into our
+                                    calming environment. We provide everything you need in your private suite.</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1.5rem; margin-bottom: var(--spacing-md);">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div
+                                    style="width: 32px; height: 32px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 2;">
+                                    2</div>
+                                <div
+                                    style="width: 2px; height: 100%; background-color: var(--theme-border); margin-top: 0.5rem;">
+                                </div>
+                            </div>
+                            <div style="padding-bottom: var(--spacing-md);">
+                                <h4 style="margin-bottom: 0.25rem;">Float & Recover</h4>
+                                <p style="color: var(--theme-text-muted); font-size: 0.95rem; margin: 0;">Experience 60
+                                    or 90 minutes of absolute weightlessness in skin-temperature water.</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1.5rem;">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div
+                                    style="width: 32px; height: 32px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 2;">
+                                    3</div>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.25rem;">Integrate</h4>
+                                <p style="color: var(--theme-text-muted); font-size: 0.95rem; margin: 0;">Relax in our
+                                    post-float lounge with organic herbal tea before returning to the world.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integrated Wellness CTA -->
+        <section class="section" style="background-color: var(--theme-surface);">
+            <div class="container">
+                <div class="cta-card">
+                    <div>
+                        <h2 style="margin-bottom: var(--spacing-sm);">Integrated Wellness Awaits</h2>
+                        <p style="margin: 0; opacity: 0.9; font-size: 1.1rem; max-width: 500px;">
+                            Join our community of mindful floaters. Book your introductory session and transform your
+                            recovery routine.
+                        </p>
+                    </div>
+                    <a href="booking.html" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+                        Start Your Journey
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: var(--spacing-md);">FLOAT.</div>
+                    <p style="color: var(--theme-text-muted); margin-bottom: var(--spacing-lg);">Elevating human
+                        potential through nothingness.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" aria-label="Instagram"
+                            style="color: var(--theme-text-muted); transition: color 0.2s;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <!-- other icons omitted for brevity but they are standard part of footer -->
+                    </div>
+                </div>
+                <!-- Standard Footer Links -->
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Subscribe</h4>
+                    <p style="color: var(--theme-text-muted); margin-bottom: var(--spacing-sm);">Join our newsletter for
+                        exclusive wellness insights.</p>
+                    <form action="#" method="POST" style="display: flex; gap: 0.5rem;">
+                        <label for="newsletter-email" class="sr-only">Email</label>
+                        <input type="email" id="newsletter-email" class="form-control" placeholder="Email address"
+                            required style="flex: 1;">
+                        <button type="submit" class="btn btn-primary">Go</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span id="current-year">2026</span> Sensory Deprivation Float Center. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script> document.getElementById('current-year').textContent = new Date().getFullYear(); </script>
+</body>
+
+</html>
