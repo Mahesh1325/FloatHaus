@@ -14,11 +14,30 @@
     text-align: right;
 }
 
-/* ============================================
-   NAVIGATION
-   ============================================ */
+[dir="rtl"] .header-container {
+    /* Allow browser dir="rtl" to handle the swap of Logo and Nav/Actions */
+    flex-direction: row !important;
+}
+
+[dir="rtl"] .logo {
+    /* Mirror icon and text */
+    flex-direction: row-reverse !important;
+    padding-left: 0;
+    padding-right: 0.5rem;
+}
+
+/* Mirror Logout Icon Arrow */
+[dir="rtl"] #logout-btn svg {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .header-container > div:last-child {
+    /* Allow buttons to follow RTL flow */
+    flex-direction: row !important;
+}
+
 [dir="rtl"] .nav {
-    flex-direction: row-reverse;
+    flex-direction: row-reverse !important;
 }
 
 [dir="rtl"] .nav-link::after {
@@ -26,30 +45,15 @@
     right: 0;
 }
 
-[dir="rtl"] .header-container {
-    flex-direction: row-reverse;
-}
-
 /* Desktop RTL - Keep nav horizontal */
 @media (min-width: 1024px) {
-    [dir="rtl"] .header-container {
-        flex-direction: row-reverse;
-    }
-
     [dir="rtl"] .nav {
-        flex-direction: row-reverse;
         display: flex;
+        flex-direction: row-reverse !important;
         position: static;
         transform: none;
         gap: var(--spacing-lg);
     }
-}
-
-/* ============================================
-   LOGO ICON
-   ============================================ */
-[dir="rtl"] .logo {
-    flex-direction: row-reverse;
 }
 
 /* ============================================
@@ -156,7 +160,6 @@
 /* Desktop RTL Navigation – Horizontal & Visible */
 @media (min-width: 1024px) {
     [dir="rtl"] .nav {
-        flex-direction: row-reverse;
         transform: none;
         position: static;
         left: auto;

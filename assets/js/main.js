@@ -110,28 +110,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const initDir = () => {
     const dirToggleBtn = document.getElementById("dir-toggle");
     const dirText = document.getElementById("dir-text");
-    // We target the header container to isolate the RTL effect to the navbar
     const headerContainer = document.querySelector(".header-container");
 
-    if (dirToggleBtn && headerContainer && dirText) {
+    // Load saved direction
+    const savedDir = localStorage.getItem("direction");
+    if (savedDir === "rtl") {
+      document.documentElement.setAttribute("dir", "rtl");
+      if (dirText) dirText.textContent = "LTR";
+    }
+
+    if (dirToggleBtn && dirText) {
       dirToggleBtn.addEventListener("click", () => {
-        // Apply a smooth fade out transition before snapping the layout
-        headerContainer.classList.add("nav-switching");
+        // Apply feedback class if container exists
+        if (headerContainer) headerContainer.classList.add("nav-switching");
 
         setTimeout(() => {
-          const isRtl = headerContainer.getAttribute("dir") === "rtl";
+          const isRtl = document.documentElement.getAttribute("dir") === "rtl";
           if (isRtl) {
-            headerContainer.removeAttribute("dir");
+            document.documentElement.removeAttribute("dir");
+            localStorage.setItem("direction", "ltr");
             dirText.textContent = "RTL";
           } else {
-            headerContainer.setAttribute("dir", "rtl");
+            document.documentElement.setAttribute("dir", "rtl");
+            localStorage.setItem("direction", "rtl");
             dirText.textContent = "LTR";
           }
-        }, 200); // match transition duration
+        }, 200);
 
-        // Fade back in
         setTimeout(() => {
-          headerContainer.classList.remove("nav-switching");
+          if (headerContainer) headerContainer.classList.remove("nav-switching");
         }, 400);
       });
     }
@@ -238,39 +245,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 7. Simulated Authentication Logic
   const initAuth = () => {
-    // Check if the user is authenticated (token exists)
     const isAuthenticated = localStorage.getItem("userToken") !== null;
+    const inPagesDir = window.location.pathname.includes('/pages/');
     
-    // Find all 'Book Now' / 'Get Started' header buttons
-    const ctaButtons = document.querySelectorAll(".btn-sticky-mobile, .d-none-mobile");
-
+    // Select all main CTA buttons (Header and Section CTAs)
+    const ctaButtons = document.querySelectorAll(".btn-primary, .btn-sticky-mobile");
+    
     ctaButtons.forEach(btn => {
-      // We only want to target the primary header CTA
-      if (btn.classList.contains('btn-primary')) {
-        if (isAuthenticated) {
-          btn.textContent = "Book Now";
-          // If we are currently IN a pages subdir, pointing to another page is just its basename
-          // If we are IN index.html, pointing to a page needs "pages/"
-          const inPagesDir = window.location.pathname.includes('/pages/');
-          btn.href = inPagesDir ? "booking.html" : "pages/booking.html";
-        } else {
-          btn.textContent = "Get Started";
-          const inPagesDir = window.location.pathname.includes('/pages/');
-          btn.href = inPagesDir ? "login.html" : "pages/login.html";
-        }
+      // Avoid changing small utility buttons or unrelated forms
+      if (btn.closest('form') || btn.classList.contains('filter-pill') || btn.offsetWidth < 40) return;
+
+      if (isAuthenticated) {
+        // Logged In -> Action is to Book
+        btn.textContent = "Book Now";
+        btn.href = inPagesDir ? "booking.html" : "pages/booking.html";
+      } else {
+        // Logged Out -> Action is to Start (Login)
+        btn.textContent = "Get Started";
+        btn.href = inPagesDir ? "login.html" : "pages/login.html";
       }
     });
+
+    // Special handling for Header (Logout icon)
+    const navCta = document.querySelector(".btn-sticky-mobile, .d-none-mobile");
+    if (navCta) {
+      const existingLogout = document.getElementById("logout-btn");
+      if (isAuthenticated) {
+        if (!existingLogout) {
+          const logoutBtn = document.createElement("a");
+          logoutBtn.id = "logout-btn";
+          logoutBtn.href = "#";
+          logoutBtn.className = "nav-link";
+          logoutBtn.style.display = "inline-flex";
+          logoutBtn.style.alignItems = "center";
+          logoutBtn.style.padding = "0.5rem";
+          logoutBtn.style.color = "#ff4444"; // Modern Red
+          logoutBtn.title = "Logout";
+          logoutBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>`;
+          logoutBtn.onclick = (e) => {
+            e.preventDefault();
+            window.simulateLogout();
+          };
+          // Insert after the CTA button
+          navCta.parentNode.insertBefore(logoutBtn, navCta.nextSibling);
+        }
+      } else if (existingLogout) {
+        existingLogout.remove();
+      }
+    }
   };
 
   // Expose login/logout wrappers for the auth pages
   window.simulateLogin = () => {
     localStorage.setItem("userToken", "simulated-jwt-token-abc");
-    window.location.replace("booking.html");
+    const inPagesDir = window.location.pathname.includes('/pages/');
+    window.location.replace(inPagesDir ? "booking.html" : "pages/booking.html");
   };
 
   window.simulateLogout = () => {
     localStorage.removeItem("userToken");
-    window.location.reload();
+    const inPagesDir = window.location.pathname.includes('/pages/');
+    window.location.replace(inPagesDir ? "login.html" : "pages/login.html");
   };
 
   // Initialize core functions
