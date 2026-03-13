@@ -360,16 +360,66 @@
             </div>
         </section>
 
-        <!-- CTA -->
-        <section class="section" style="text-align: center; background-color: var(--theme-surface);">
-            <div class="container">
-                <h2>Ready to experience it in person?</h2>
-                <p style="color: var(--theme-text-muted); max-width: 500px; margin: 0 auto var(--spacing-lg);">
-                    A tour is just a taste. Book a session and discover what absolute stillness feels like.
-                </p>
-                <a href="booking.html" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;">Book a
-                    Float</a>
+        <!-- CTA Section: Immersive Cinematic Experience -->
+        <section class="section" style="
+            position: relative;
+            padding: 100px 0;
+            background-image: var(--cta-bg-overlay), url('../assets/img/generated/cta_background_luxury_spa.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+          ">
+          <!-- Ambient Glow Decor -->
+          <div style="position: absolute; top: -10%; left: -10%; width: 40%; height: 40%; background: radial-gradient(circle, rgba(94, 234, 212, 0.1) 0%, transparent 70%); filter: blur(60px); pointer-events: none;"></div>
+          
+          <div class="container" style="position: relative; z-index: 2;">
+            <div class="animate-fade-up animate-float cta-hover-effect" style="
+                max-width: 850px;
+                margin: 0 auto;
+                text-align: center;
+                background: var(--cta-glass-bg);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                padding: 5rem 2rem;
+                border-radius: var(--border-radius-lg);
+                border: 1px solid var(--cta-glass-border);
+                box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+                position: relative;
+              ">
+              <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+                <div style="height: 1px; width: 40px; background: var(--theme-accent); opacity: 0.5;"></div>
+                <span style="color: var(--theme-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 5px; font-size: 0.85rem;">Ready to See for Yourself?</span>
+                <div style="height: 1px; width: 40px; background: var(--theme-accent); opacity: 0.5;"></div>
+              </div>
+              
+              <h2 style="color: var(--cta-text); font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1; margin-bottom: 1.5rem; font-family: var(--font-serif);">
+                The Sanctuary is <span style="color: var(--theme-accent); font-style: italic;">Waiting</span>
+              </h2>
+              
+              <p style="color: var(--cta-text-muted); font-size: 1.25rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                A tour is just a taste. Book a session and discover what absolute stillness feels like. Your private suite is prepared.
+              </p>
+              
+              <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="booking.html" class="btn btn-primary animate-pulse-subtle" style="padding: 1.25rem 3.5rem; font-size: 1.1rem; border-radius: 99px;"> Book a Float </a>
+                <a href="about.html" class="btn btn-outline" style="
+                    padding: 1.25rem 3.5rem;
+                    font-size: 1.1rem;
+                    background: var(--cta-secondary-btn-bg);
+                    color: var(--cta-text);
+                    border: 1px solid var(--cta-secondary-btn-border);
+                    border-radius: 99px;
+                    backdrop-filter: blur(5px);
+                    transition: all 0.3s ease;
+                  " onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'; this.style.borderColor='var(--primary)'" onmouseout="this.style.background='var(--cta-secondary-btn-bg)'; this.style.color='var(--cta-text)'; this.style.borderColor='var(--cta-secondary-btn-border)'"> 
+                  Our Story 
+                </a>
+              </div>
             </div>
+          </div>
         </section>
     </main>
 

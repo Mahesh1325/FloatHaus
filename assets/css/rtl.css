@@ -21,9 +21,8 @@
 
 [dir="rtl"] .logo {
     /* Mirror icon and text */
-    flex-direction: row-reverse !important;
     padding-left: 0;
-    padding-right: 0.5rem;
+    padding-right: 0;
 }
 
 /* Mirror Logout Icon Arrow */
@@ -37,7 +36,8 @@
 }
 
 [dir="rtl"] .nav {
-    flex-direction: row-reverse !important;
+    /* Browser handles order via dir="rtl" on html, row-reverse was causing reverse logic */
+    flex-direction: row !important;
 }
 
 [dir="rtl"] .nav-link::after {
@@ -49,7 +49,7 @@
 @media (min-width: 1024px) {
     [dir="rtl"] .nav {
         display: flex;
-        flex-direction: row-reverse !important;
+        flex-direction: row !important;
         position: static;
         transform: none;
         gap: var(--spacing-lg);
@@ -136,10 +136,11 @@
    ============================================ */
 @media (max-width: 1023px) {
     [dir="rtl"] .nav {
-        left: 0;
-        right: auto;
-        transform: translateX(-100%);
+        left: auto;
+        right: 0;
+        transform: translateX(100%);
         flex-direction: column;
+        transition: transform var(--transition-normal);
     }
 
     [dir="rtl"] .nav.is-open {
@@ -184,12 +185,13 @@
 /* RTL Tablet Breakpoint Overrides */
 @media (min-width: 640px) and (max-width: 1023px) {
     [dir="rtl"] .nav {
-        left: 0;
-        right: auto;
-        transform: translateX(-100%);
+        left: auto;
+        right: 0;
+        transform: translateX(100%);
         flex-direction: column;
         gap: 0;
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+        transition: transform var(--transition-normal);
     }
     
     [dir="rtl"] .nav.is-open {

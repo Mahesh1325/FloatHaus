@@ -1365,75 +1365,163 @@
           achieves zero-gravity spinal decompression, while cortisol drops and
           magnesium absorption aids muscular recovery.
         </p>
+        <!-- Optimized 2x2 Technical Grid with Rendering Fixes -->
         <div style="
               display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: var(--spacing-md);
-            ">
-          <div style="
-                padding: 1rem;
-                background: var(--theme-bg);
-                border-radius: 12px;
-                text-align: center;
-              ">
-            <div style="font-size: 1.6rem; margin-bottom: 0.25rem">🧠</div>
-            <h5 style="margin: 0 0 0.25rem">Theta Waves</h5>
-            <p style="
-                  font-size: 0.82rem;
-                  color: var(--theme-text-muted);
-                  margin: 0;
-                ">
-              Deep meditative calm
-            </p>
-          </div>
-          <div style="
-                padding: 1rem;
-                background: var(--theme-bg);
-                border-radius: 12px;
-                text-align: center;
-              ">
-            <div style="font-size: 1.6rem; margin-bottom: 0.25rem">⚖️</div>
-            <h5 style="margin: 0 0 0.25rem">Zero Gravity</h5>
-            <p style="
-                  font-size: 0.82rem;
-                  color: var(--theme-text-muted);
-                  margin: 0;
-                ">
-              Spinal decompression
-            </p>
-          </div>
-          <div style="
-                padding: 1rem;
-                background: var(--theme-bg);
-                border-radius: 12px;
-                text-align: center;
-              ">
-            <div style="font-size: 1.6rem; margin-bottom: 0.25rem">💧</div>
-            <h5 style="margin: 0 0 0.25rem">Magnesium Boost</h5>
-            <p style="
-                  font-size: 0.82rem;
-                  color: var(--theme-text-muted);
-                  margin: 0;
-                ">
-              Natural muscle repair
-            </p>
-          </div>
-          <div style="
-                padding: 1rem;
-                background: var(--theme-bg);
-                border-radius: 12px;
-                text-align: center;
-              ">
-            <div style="font-size: 1.6rem; margin-bottom: 0.25rem">😌</div>
-            <h5 style="margin: 0 0 0.25rem">Cortisol Drop</h5>
-            <p style="
-                  font-size: 0.82rem;
-                  color: var(--theme-text-muted);
-                  margin: 0;
-                ">
-              Stress hormone relief
-            </p>
-          </div>
+              grid-template-columns: repeat(2, 1fr);
+              gap: 1.5rem;
+            " class="technical-grid-mobile">
+          <!-- Theta Waves -->
+          <article class="card" style="
+                background-image: var(--benefit-overlay), url('../assets/img/generated/icon_mental_clarity.png');
+                background-size: cover;
+                background-position: center;
+                min-height: 320px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                padding: 1.5rem 2rem;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: var(--border-radius-lg);
+                transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                box-shadow: inset 0 0 40px rgba(0,0,0,0.3); /* Mask edge artifacts */
+                transform: translateZ(0); /* Trigger GPU anti-aliasing */
+                backface-visibility: hidden;
+              " onmouseover="this.style.transform='translateY(-10px) scale(1.02) translateZ(0)'"
+            onmouseout="this.style.transform='translateY(0) scale(1) translateZ(0)'">
+            <div style="position: absolute; top: 1.25rem; right: 1.25rem; z-index: 2;">
+              <span class="pulse-soft"
+                style="font-size: 0.6rem; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 20px; letter-spacing: 2px; border: 1px solid rgba(16, 185, 129, 0.2); backdrop-filter: blur(5px);">SYSTEM:
+                ACTIVE</span>
+            </div>
+            <div style="z-index: 2; position: relative;">
+              <div class="tactical-spec" style="margin-bottom: 0.4rem;">SPEC: THETA WAVES</div>
+              <h3
+                style="color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); margin-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.5rem;">
+                Theta Waves</h3>
+              <p
+                style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 5px rgba(0,0,0,0.5); font-weight: 500; margin-bottom: 0; line-height: 1.5; font-size: 0.85rem;">
+                Deep meditative calm. Achieve the Theta Waves state.
+              </p>
+            </div>
+          </article>
+
+          <!-- Zero Gravity -->
+          <article class="card" style="
+                background-image: var(--benefit-overlay), url('../assets/img/generated/icon_physical_recovery.png');
+                background-size: cover;
+                background-position: center 30%;
+                min-height: 320px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                padding: 1.5rem 2rem;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: var(--border-radius-lg);
+                transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                box-shadow: inset 0 0 40px rgba(0,0,0,0.3); /* Mask edge artifacts */
+                transform: translateZ(0); /* Trigger GPU anti-aliasing */
+                backface-visibility: hidden;
+              " onmouseover="this.style.transform='translateY(-10px) scale(1.02) translateZ(0)'"
+            onmouseout="this.style.transform='translateY(0) scale(1) translateZ(0)'">
+            <div style="position: absolute; top: 1.25rem; right: 1.25rem; z-index: 2;">
+              <span class="pulse-soft"
+                style="font-size: 0.6rem; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 20px; letter-spacing: 2px; border: 1px solid rgba(16, 185, 129, 0.2); backdrop-filter: blur(5px);">SYSTEM:
+                ACTIVE</span>
+            </div>
+            <div style="z-index: 2; position: relative;">
+              <div class="tactical-spec" style="margin-bottom: 0.4rem;">SPEC: ZERO GRAVITY</div>
+              <h3
+                style="color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); margin-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.5rem;">
+                Zero Gravity</h3>
+              <p
+                style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 5px rgba(0,0,0,0.5); font-weight: 500; margin-bottom: 0; line-height: 1.5; font-size: 0.85rem;">
+                Total spinal decompression. Experience Zero Gravity.
+              </p>
+            </div>
+          </article>
+
+          <!-- Magnesium Boost -->
+          <article class="card" style="
+                background-image: var(--benefit-overlay), url('../assets/img/generated/icon_ph_balance.png');
+                background-size: cover;
+                background-position: center;
+                min-height: 320px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                padding: 1.5rem 2rem;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: var(--border-radius-lg);
+                transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                box-shadow: inset 0 0 40px rgba(0,0,0,0.3); /* Mask edge artifacts */
+                transform: translateZ(0); /* Trigger GPU anti-aliasing */
+                backface-visibility: hidden;
+              " onmouseover="this.style.transform='translateY(-10px) scale(1.02) translateZ(0)'"
+            onmouseout="this.style.transform='translateY(0) scale(1) translateZ(0)'">
+            <div style="position: absolute; top: 1.25rem; right: 1.25rem; z-index: 2;">
+              <span class="pulse-soft"
+                style="font-size: 0.6rem; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 20px; letter-spacing: 2px; border: 1px solid rgba(16, 185, 129, 0.2); backdrop-filter: blur(5px);">SYSTEM:
+                ACTIVE</span>
+            </div>
+            <div style="z-index: 2; position: relative;">
+              <div class="tactical-spec" style="margin-bottom: 0.4rem;">SPEC: MAGNESIUM BOOST</div>
+              <h3
+                style="color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); margin-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.5rem;">
+                Magnesium Boost</h3>
+              <p
+                style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 5px rgba(0,0,0,0.5); font-weight: 500; margin-bottom: 0; line-height: 1.5; font-size: 0.85rem;">
+                Natural repair. The Magnesium Boost.
+              </p>
+            </div>
+          </article>
+
+          <!-- Cortisol Drop -->
+          <article class="card" style="
+                background-image: var(--benefit-overlay), url('../assets/img/generated/icon_stress_relief.png');
+                background-size: cover;
+                background-position: center;
+                min-height: 320px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                padding: 1.5rem 2rem;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: var(--border-radius-lg);
+                transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                box-shadow: inset 0 0 40px rgba(0,0,0,0.3); /* Mask edge artifacts */
+                transform: translateZ(0); /* Trigger GPU anti-aliasing */
+                backface-visibility: hidden;
+              " onmouseover="this.style.transform='translateY(-10px) scale(1.02) translateZ(0)'"
+            onmouseout="this.style.transform='translateY(0) scale(1) translateZ(0)'">
+            <div style="position: absolute; top: 1.25rem; right: 1.25rem; z-index: 2;">
+              <span class="pulse-soft"
+                style="font-size: 0.6rem; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 20px; letter-spacing: 2px; border: 1px solid rgba(16, 185, 129, 0.2); backdrop-filter: blur(5px);">SYSTEM:
+                ACTIVE</span>
+            </div>
+            <div style="z-index: 2; position: relative;">
+              <div class="tactical-spec" style="margin-bottom: 0.4rem;">SPEC: CORTISOL DROP</div>
+              <h3
+                style="color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); margin-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.5rem;">
+                Cortisol Drop</h3>
+              <p
+                style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 5px rgba(0,0,0,0.5); font-weight: 500; margin-bottom: 0; line-height: 1.5; font-size: 0.85rem;">
+                Drastic stress reduction. The Cortisol Drop.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1443,7 +1531,7 @@
       <div class="container">
         <div style="text-align: center; margin-bottom: var(--spacing-xl)">
           <p class="h2-section-tag" style="justify-content: center">
-            What Our Members Say
+            WHAT OUR MEMBERS SAY / Wellness Testimonials
           </p>
           <h2 style="
                 font-family: &quot;Playfair Display&quot;, serif;
@@ -1518,8 +1606,8 @@
     <!-- ====== 7. MEMBERSHIP CARDS ====== -->
     <section class="section" style="background-color: var(--theme-bg)" aria-label="Membership plans">
       <div class="container">
-        <div style="margin-bottom: var(--spacing-xl)">
-          <p class="h2-section-tag">Memberships</p>
+        <div style="margin-bottom: var(--spacing-xl); text-align: center;">
+          <p class="h2-section-tag" style="justify-content: center">Memberships</p>
           <h2 style="
                 font-family: &quot;Playfair Display&quot;, serif;
                 font-weight: 700;
@@ -1545,7 +1633,7 @@
         </div>
         <div class="h2-membership-grid">
           <!-- Standard -->
-          <div class="h2-membership-card standard">
+          <div class="h2-membership-card standard" style="text-align: center">
             <div>
               <h3 style="margin: 0 0 0.25rem">Intro</h3>
               <p style="
@@ -1557,7 +1645,7 @@
               </p>
             </div>
             <div class="h2-membership-price">$89</div>
-            <ul class="h2-membership-features">
+            <ul class="h2-membership-features" style="align-items: center">
               <li>
                 <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
@@ -1581,8 +1669,8 @@
           </div>
 
           <!-- Featured -->
-          <div class="h2-membership-card featured">
-            <span class="h2-badge-tag">Most Popular</span>
+          <div class="h2-membership-card featured" style="text-align: center">
+            <span class="h2-badge-tag" style="align-self: center; margin-bottom: 0.5rem;">Most Popular</span>
             <div>
               <h3 style="margin: 0 0 0.25rem; color: white">Reset</h3>
               <p style="
@@ -1594,7 +1682,7 @@
               </p>
             </div>
             <div class="h2-membership-price">$69 <small>/mo</small></div>
-            <ul class="h2-membership-features">
+            <ul class="h2-membership-features" style="align-items: center">
               <li>
                 <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
@@ -1630,7 +1718,7 @@
           </div>
 
           <!-- Studio -->
-          <div class="h2-membership-card studio">
+          <div class="h2-membership-card studio" style="text-align: center">
             <div>
               <h3 style="margin: 0 0 0.25rem">Immerse</h3>
               <p style="
@@ -1644,7 +1732,7 @@
             <div class="h2-membership-price">
               $149 <small style="font-size: 1rem">/mo</small>
             </div>
-            <ul class="h2-membership-features">
+            <ul class="h2-membership-features" style="align-items: center">
               <li>
                 <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
@@ -1676,51 +1764,79 @@
       </div>
     </section>
 
-    <!-- ====== 8. ASYMMETRIC FINAL CTA ====== -->
-    <section class="section h2-cta-strip" aria-label="Call to action">
-      <div class="container">
-        <div class="h2-cta-inner">
-          <div>
-            <p class="h2-section-tag">Ready to Float?</p>
-            <h2 style="
-                  font-family: &quot;Playfair Display&quot;, serif;
-                  font-weight: 700;
-                  font-size: clamp(1.8rem, 3vw, 2.8rem);
-                  margin-bottom: var(--spacing-sm);
-                ">
-              Your First Float is Waiting.
-            </h2>
-            <p class="animate-text-reading" style="
-                  color: rgba(255, 255, 255, 0.9);
-                  font-size: 1.15rem;
-                  max-width: 500px;
-                  line-height: 1.6;
-                  margin-bottom: 2rem;
-                ">
-              Find the space between the notes. Step into one of our private,
-              zero gravity, dissolve the world outside, and rediscover your
-              natural state of calm.
-            </p>
+    <!-- ====== 8. IMMERSIVE CINEMATIC CTA ====== -->
+    <section class="section" style="
+        position: relative;
+        padding: 100px 0;
+        background-image: var(--cta-bg-overlay), url('../assets/img/generated/cta_background_luxury_spa.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      ">
+      <!-- Ambient Glow Decor -->
+      <div
+        style="position: absolute; top: -10%; left: -10%; width: 40%; height: 40%; background: radial-gradient(circle, rgba(94, 234, 212, 0.1) 0%, transparent 70%); filter: blur(60px); pointer-events: none;">
+      </div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="animate-fade-up animate-float cta-hover-effect" style="
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--cta-glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 5rem 2rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--cta-glass-border);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+            position: relative;
+          ">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+            <div style="height: 1px; width: 40px; background: var(--theme-accent); opacity: 0.5;"></div>
+            <span
+              style="color: var(--theme-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 5px; font-size: 0.85rem;">Ready
+              to Float?</span>
+            <div style="height: 1px; width: 40px; background: var(--theme-accent); opacity: 0.5;"></div>
           </div>
-          <div style="
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-                min-width: 200px;
-              ">
-            <a href="booking.html" class="btn btn-primary" style="
-                  padding: 1rem 2rem;
-                  font-size: 1.05rem;
-                  white-space: nowrap;
-                  width: 100%;
-                  text-align: center;
-                ">Book a Float</a>
-            <a href="contact.html" style="
-                  font-size: 0.9rem;
-                  color: var(--theme-text-muted);
-                  text-decoration: none;
-                ">Have questions? Contact us →</a>
+
+          <h2 style="
+              color: var(--cta-text); 
+              font-size: clamp(2.2rem, 6vw, 4rem); 
+              line-height: 1.1; 
+              margin-bottom: 1.5rem; 
+              font-family: 'Playfair Display', serif;
+              font-weight: 700;
+            ">
+            Your First Float is <span style="color: var(--theme-accent); font-style: italic;">Waiting</span>
+          </h2>
+
+          <p
+            style="color: var(--cta-text-muted); font-size: 1.15rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+            Find the space between the notes. Step into one of our private, zero gravity pods, dissolve the world
+            outside, and rediscover your natural state of calm.
+          </p>
+
+          <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="booking.html" class="btn btn-primary animate-pulse-subtle"
+              style="padding: 1.25rem 3.5rem; font-size: 1.1rem; border-radius: 99px;"> Book a Float </a>
+            <a href="contact.html" class="btn btn-outline" style="
+                padding: 1.25rem 3.5rem;
+                font-size: 1.1rem;
+                background: var(--cta-secondary-btn-bg);
+                color: var(--cta-text);
+                border: 1px solid var(--cta-secondary-btn-border);
+                border-radius: 99px;
+                backdrop-filter: blur(5px);
+                transition: all 0.3s ease;
+              "
+              onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'; this.style.borderColor='var(--primary)'"
+              onmouseout="this.style.background='var(--cta-secondary-btn-bg)'; this.style.color='var(--cta-text)'; this.style.borderColor='var(--cta-secondary-btn-border)'">
+              Have Questions?
+            </a>
           </div>
         </div>
       </div>

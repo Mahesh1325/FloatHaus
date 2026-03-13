@@ -501,119 +501,180 @@
       </div>
     </section>
 
-    <!-- FAQ Quick -->
+    <!-- Discovery Journey Section (What to Expect) -->
     <section class="section">
       <div class="container">
         <div style="text-align: center; margin-bottom: var(--spacing-xl)">
-          <h2>What to Expect</h2>
+          <span style="color: var(--theme-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; display: block; margin-bottom: 0.5rem;">Discovery Journey</span>
+          <h2 style="font-family: var(--font-serif); font-size: 3rem;">What to Expect</h2>
+          <p style="color: var(--theme-text-muted); max-width: 600px; margin: 0.5rem auto 0;">Your first step into absolute stillness, guided with care.</p>
         </div>
+
         <div style="
               display: grid;
               grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-              gap: var(--spacing-md);
+              gap: 2rem;
             ">
+          <!-- Step 1: Prep -->
           <div class="card" style="
+                height: 400px;
+                position: relative;
+                overflow: hidden;
+                background-image: var(--benefit-overlay), url('../assets/img/generated/expect_shower_prep.png');
+                background-size: cover;
+                background-position: center;
+                padding: 2rem;
                 display: flex;
-                gap: 1rem;
-                align-items: flex-start;
-                padding: var(--spacing-md);
-              ">
-            <div style="font-size: 2rem; flex-shrink: 0">🚿</div>
-            <div>
-              <strong>Arrive 15 min early</strong>
-              <p style="
-                    color: var(--theme-text-muted);
-                    margin: 0;
-                    font-size: 0.9rem;
-                  ">
-                Shower, change, and relax before your session starts.
-              </p>
-            </div>
+                flex-direction: column;
+                justify-content: flex-end;
+                border: var(--benefit-card-border);
+                transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+              " onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+            <span style="position: absolute; top: 1.5rem; right: 1.5rem; font-family: var(--font-serif); font-size: 2.5rem; color: var(--theme-accent); opacity: 0.2; font-weight: 700;">01</span>
+            <h4 style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-size: 1.35rem; margin-bottom: 0.5rem;">Arrive & Prep</h4>
+            <p style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-size: 0.9rem; line-height: 1.5; opacity: 0.9;">
+              Arrive 15 min early. Shower, change, and relax before your session begins.
+            </p>
           </div>
+
+          <!-- Step 2: Salt -->
           <div class="card" style="
+                height: 400px;
+                position: relative;
+                overflow: hidden;
+                background-image: var(--benefit-overlay), url('../assets/img/generated/expect_salt_buoyancy.png');
+                background-size: cover;
+                background-position: center;
+                padding: 2rem;
                 display: flex;
-                gap: 1rem;
-                align-items: flex-start;
-                padding: var(--spacing-md);
-              ">
-            <div style="font-size: 2rem; flex-shrink: 0">🫧</div>
-            <div>
-              <strong>1,000 lbs of Epsom salt</strong>
-              <p style="
-                    color: var(--theme-text-muted);
-                    margin: 0;
-                    font-size: 0.9rem;
-                  ">
-                Effortless floating — no swimming skills required.
-              </p>
-            </div>
+                flex-direction: column;
+                justify-content: flex-end;
+                border: var(--benefit-card-border);
+                transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+              " onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+            <span style="position: absolute; top: 1.5rem; right: 1.5rem; font-family: var(--font-serif); font-size: 2.5rem; color: var(--theme-accent); opacity: 0.2; font-weight: 700;">02</span>
+            <h4 style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-size: 1.35rem; margin-bottom: 0.5rem;">Pure Buoyancy</h4>
+            <p style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-size: 0.9rem; line-height: 1.5; opacity: 0.9;">
+              1,000 lbs of Epsom salts ensure effortless floating — no swimming skills required.
+            </p>
           </div>
+
+          <!-- Step 3: Music -->
           <div class="card" style="
+                height: 400px;
+                position: relative;
+                overflow: hidden;
+                background-image: var(--benefit-overlay), url('../assets/img/generated/expect_ambient_music.png');
+                background-size: cover;
+                background-position: center;
+                padding: 2rem;
                 display: flex;
-                gap: 1rem;
-                align-items: flex-start;
-                padding: var(--spacing-md);
-              ">
-            <div style="font-size: 2rem; flex-shrink: 0">🎵</div>
-            <div>
-              <strong>Gentle wake-up music</strong>
-              <p style="
-                    color: var(--theme-text-muted);
-                    margin: 0;
-                    font-size: 0.9rem;
-                  ">
-                Soft chimes signal the end of your session — no harsh alarms.
-              </p>
-            </div>
+                flex-direction: column;
+                justify-content: flex-end;
+                border: var(--benefit-card-border);
+                transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+              " onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+            <span style="position: absolute; top: 1.5rem; right: 1.5rem; font-family: var(--font-serif); font-size: 2.5rem; color: var(--theme-accent); opacity: 0.2; font-weight: 700;">03</span>
+            <h4 style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-size: 1.35rem; margin-bottom: 0.5rem;">Gentle Awakening</h4>
+            <p style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-size: 0.9rem; line-height: 1.5; opacity: 0.9;">
+              Soft chimes signal the end of your session — no harsh alarms, only peace.
+            </p>
           </div>
+
+          <!-- Step 4: Lounge -->
           <div class="card" style="
+                height: 400px;
+                position: relative;
+                overflow: hidden;
+                background-image: var(--benefit-overlay), url('../assets/img/generated/expect_integration_lounge.png');
+                background-size: cover;
+                background-position: center;
+                padding: 2rem;
                 display: flex;
-                gap: 1rem;
-                align-items: flex-start;
-                padding: var(--spacing-md);
-              ">
-            <div style="font-size: 2rem; flex-shrink: 0">🍵</div>
-            <div>
-              <strong>Integration lounge</strong>
-              <p style="
-                    color: var(--theme-text-muted);
-                    margin: 0;
-                    font-size: 0.9rem;
-                  ">
-                Journal, tea, and quiet time to re-enter the world gently.
-              </p>
-            </div>
+                flex-direction: column;
+                justify-content: flex-end;
+                border: var(--benefit-card-border);
+                transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+              " onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+            <span style="position: absolute; top: 1.5rem; right: 1.5rem; font-family: var(--font-serif); font-size: 2.5rem; color: var(--theme-accent); opacity: 0.2; font-weight: 700;">04</span>
+            <h4 style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-size: 1.35rem; margin-bottom: 0.5rem;">Pure Integration</h4>
+            <p style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-size: 0.9rem; line-height: 1.5; opacity: 0.9;">
+              Journal, enjoy artisanal tea, and take quiet time to re-enter the world gently.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section" style="background-color: var(--theme-surface); text-align: center">
-      <div class="container">
-        <h2 style="margin-bottom: var(--spacing-md)">
-          Ready to Start Your Journey?
-        </h2>
-        <p class="animate-text-reading" style="
-              color: var(--theme-text-muted);
-              max-width: 500px;
-              margin: 0 auto var(--spacing-lg);
-            ">
-          Whether you're a first-time floater or a devoted practitioner, we
-          have the perfect session waiting for you. Take the first step toward
-          deep relaxation and mental clarity.
-        </p>
-        <div style="
-              display: flex;
-              gap: 1rem;
-              justify-content: center;
-              flex-wrap: wrap;
-            ">
-          <a href="booking.html" class="btn btn-primary" style="padding: 1rem 2.5rem">Book a Float</a>
-          <a href="memberships.html" class="btn" style="
-                padding: 1rem 2.5rem;
-                border: 1px solid var(--theme-border);
-              ">View Memberships</a>
+    <!-- CTA Section: Immersive Cinematic Experience -->
+    <section class="section" style="
+        position: relative;
+        padding: 100px 0;
+        background-image: var(--cta-bg-overlay), url('../assets/img/generated/cta_background_luxury_spa.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      ">
+      <!-- Ambient Glow Decor -->
+      <div style="position: absolute; top: -10%; left: -10%; width: 40%; height: 40%; background: radial-gradient(circle, rgba(94, 234, 212, 0.1) 0%, transparent 70%); filter: blur(60px); pointer-events: none;"></div>
+      
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="animate-fade-up animate-float cta-hover-effect" style="
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--cta-glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 5rem 2rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--cta-glass-border);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+            position: relative;
+          ">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+            <div style="height: 1px; width: 40px; background: var(--theme-accent); opacity: 0.5;"></div>
+            <span style="color: var(--theme-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 5px; font-size: 0.85rem;">Ready to Start Your Journey?</span>
+            <div style="height: 1px; width: 40px; background: var(--theme-accent); opacity: 0.5;"></div>
+          </div>
+          
+          <h2 style="color: var(--cta-text); font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1; margin-bottom: 1.5rem; font-family: var(--font-serif);">
+            Discover the Power of <span style="color: var(--theme-accent); font-style: italic;">Nothingness</span>
+          </h2>
+          
+          <p style="color: var(--cta-text-muted); font-size: 1.25rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+            Whether you're a first-time floater or a devoted practitioner, we have the perfect session waiting for you. Take the first step toward deep relaxation.
+          </p>
+          
+          <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="booking.html" class="btn btn-primary animate-pulse-subtle" style="padding: 1.25rem 3.5rem; font-size: 1.1rem; border-radius: 99px;"> Book a Float </a>
+            <a href="memberships.html" class="btn btn-outline" style="
+                padding: 1.25rem 3.5rem;
+                font-size: 1.1rem;
+                background: var(--cta-secondary-btn-bg);
+                color: var(--cta-text);
+                border: 1px solid var(--cta-secondary-btn-border);
+                border-radius: 99px;
+                backdrop-filter: blur(5px);
+                transition: all 0.3s ease;
+              " onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'; this.style.borderColor='var(--primary)'" onmouseout="this.style.background='var(--cta-secondary-btn-bg)'; this.style.color='var(--cta-text)'; this.style.borderColor='var(--cta-secondary-btn-border)'"> 
+              View Memberships 
+            </a>
+          </div>
+          
+          <div style="margin-top: 3rem; display: flex; align-items: center; justify-content: center; gap: 2rem; opacity: 0.6;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--cta-text);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--theme-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              Certified Purity
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--cta-text);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--theme-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+              Daily Slots
+            </div>
+          </div>
         </div>
       </div>
     </section>

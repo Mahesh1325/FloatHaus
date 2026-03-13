@@ -134,7 +134,7 @@
           </div>
         </nav>
 
-        <div style="display: flex; gap: 1rem; align-items: center">
+        <div class="nav-controls" style="display: flex; gap: 1rem; align-items: center">
           <button
             type="button"
             id="dir-toggle"
@@ -285,36 +285,42 @@
             "
           >
             <!-- Benefit 1 -->
-            <article class="card">
-              <div
-                style="
-                  font-size: 2.5rem;
-                  color: var(--theme-accent);
-                  margin-bottom: var(--spacing-md);
-                "
-              >
-                🧠
-              </div>
-              <h3>Mental Clarity</h3>
-              <p style="color: var(--theme-text-muted)">
+            <article class="card" style="
+              background-image: var(--benefit-overlay), url('assets/img/generated/icon_mental_clarity.png');
+              background-size: cover;
+              background-position: center;
+              min-height: 380px;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              padding: var(--spacing-lg);
+              border: var(--benefit-card-border);
+              transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+              cursor: pointer;
+            " onmouseover="this.style.transform='translateY(-10px) scale(1.02)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+              <h3 style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); margin-bottom: 0.5rem;">Mental Clarity</h3>
+              <p style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-weight: 500; margin-bottom: 0; opacity: 0.9;">
                 Removing sensory input allows your brain to shift into the
                 elusive Theta state, sparking profound creativity and deep rest.
               </p>
             </article>
 
             <!-- Benefit 2 -->
-            <article class="card">
-              <div
-                style="
-                  font-size: 2.5rem;
-                  color: var(--theme-accent);
-                  margin-bottom: var(--spacing-md);
-                "
-              >
-                💪
-              </div>
-              <h3>Physical Recovery</h3>
-              <p style="color: var(--theme-text-muted)">
+            <article class="card" style="
+              background-image: var(--benefit-overlay), url('assets/img/generated/icon_physical_recovery.png');
+              background-size: cover;
+              background-position: center;
+              min-height: 380px;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              padding: var(--spacing-lg);
+              border: var(--benefit-card-border);
+              transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+              cursor: pointer;
+            " onmouseover="this.style.transform='translateY(-10px) scale(1.02)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+              <h3 style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); margin-bottom: 0.5rem;">Physical Recovery</h3>
+              <p style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-weight: 500; margin-bottom: 0; opacity: 0.9;">
                 1,000 lbs of Epsom salts create perfect buoyancy, taking all
                 pressure off your joints and spine while magnesium soothes
                 muscles.
@@ -322,18 +328,21 @@
             </article>
 
             <!-- Benefit 3 -->
-            <article class="card">
-              <div
-                style="
-                  font-size: 2.5rem;
-                  color: var(--theme-accent);
-                  margin-bottom: var(--spacing-md);
-                "
-              >
-                😌
-              </div>
-              <h3>Stress Relief</h3>
-              <p style="color: var(--theme-text-muted)">
+            <article class="card" style="
+              background-image: var(--benefit-overlay), url('assets/img/generated/icon_stress_relief.png');
+              background-size: cover;
+              background-position: center;
+              min-height: 380px;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              padding: var(--spacing-lg);
+              border: var(--benefit-card-border);
+              transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+              cursor: pointer;
+            " onmouseover="this.style.transform='translateY(-10px) scale(1.02)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+              <h3 style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); margin-bottom: 0.5rem;">Stress Relief</h3>
+              <p style="color: var(--benefit-text); text-shadow: var(--benefit-text-shadow); font-weight: 500; margin-bottom: 0; opacity: 0.9;">
                 Float therapy naturally drops cortisol levels and triggers
                 dopamine and endorphin release, leaving you in a state of
                 lasting bliss.
@@ -451,92 +460,8 @@
         </div>
       </section>
 
-      <!-- How it Works -->
-      <section class="section" style="background-color: var(--theme-surface)">
-        <div class="container">
-          <div style="text-align: center; margin-bottom: var(--spacing-xl)">
-            <h2>How It Works</h2>
-          </div>
 
-          <div
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: var(--spacing-lg);
-              max-width: 800px;
-              margin: 0 auto;
-            "
-          >
-            <div
-              class="card"
-              style="display: flex; gap: var(--spacing-lg); align-items: center"
-            >
-              <div
-                style="
-                  font-size: 2rem;
-                  font-weight: bold;
-                  color: var(--theme-accent);
-                  opacity: 0.5;
-                "
-              >
-                01
-              </div>
-              <div>
-                <h4>Prepare &amp; Shower</h4>
-                <p style="color: var(--theme-text-muted); margin-bottom: 0">
-                  Arrive 15 minutes early. We provide everything you
-                  need—earplugs, towels, and body wash inside your private
-                  suite.
-                </p>
-              </div>
-            </div>
-            <div
-              class="card"
-              style="display: flex; gap: var(--spacing-lg); align-items: center"
-            >
-              <div
-                style="
-                  font-size: 2rem;
-                  font-weight: bold;
-                  color: var(--theme-accent);
-                  opacity: 0.5;
-                "
-              >
-                02
-              </div>
-              <div>
-                <h4>Step In &amp; Let Go</h4>
-                <p style="color: var(--theme-text-muted); margin-bottom: 0">
-                  Step into the skin-temperature water. Close the lid (or leave
-                  it open) and turn off the light when you're ready.
-                </p>
-              </div>
-            </div>
-            <div
-              class="card"
-              style="display: flex; gap: var(--spacing-lg); align-items: center"
-            >
-              <div
-                style="
-                  font-size: 2rem;
-                  font-weight: bold;
-                  color: var(--theme-accent);
-                  opacity: 0.5;
-                "
-              >
-                03
-              </div>
-              <div>
-                <h4>Awaken &amp; Integrate</h4>
-                <p style="color: var(--theme-text-muted); margin-bottom: 0">
-                  Gentle music will signal the end of your session. Shower,
-                  dress, and enjoy organic tea in our integration lounge.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       <!-- The Sanctuary Section -->
       <section class="section" id="sanctuary">
@@ -725,17 +650,12 @@
                 >
                   <div
                     style="
-                      background: var(--theme-accent);
-                      color: #fff;
-                      padding: 10px;
-                      border-radius: 50%;
-                      font-size: 1.2rem;
                       min-width: 44px;
                       display: flex;
                       justify-content: center;
                     "
                   >
-                    🍵
+                    <img src="assets/img/generated/icon_artisanal_tea.png" alt="Artisanal Tea" style="width: 44px; height: 44px; object-fit: cover; border-radius: 50%;">
                   </div>
                   <div>
                     <h4 style="margin-bottom: 5px">Artisanal Tea Menu</h4>
@@ -760,17 +680,12 @@
                 >
                   <div
                     style="
-                      background: var(--theme-accent);
-                      color: #fff;
-                      padding: 10px;
-                      border-radius: 50%;
-                      font-size: 1.2rem;
                       min-width: 44px;
                       display: flex;
                       justify-content: center;
                     "
                   >
-                    📓
+                    <img src="assets/img/generated/icon_reflection_space.png" alt="Reflection Space" style="width: 44px; height: 44px; object-fit: cover; border-radius: 50%;">
                   </div>
                   <div>
                     <h4 style="margin-bottom: 5px">Reflection Space</h4>
@@ -792,58 +707,112 @@
         </div>
       </section>
 
-      <!-- Safety & Hygiene -->
-      <section class="section">
-        <div class="container" style="text-align: center">
-          <div
-            class="card"
-            style="
-              background: linear-gradient(
-                135deg,
-                rgba(var(--rgb-primary), 0.1),
-                rgba(var(--rgb-theme-accent), 0.1)
-              );
-              border: 1px solid rgba(var(--rgb-primary), 0.2);
-            "
-          >
-            <h2 style="margin-bottom: var(--spacing-md)">
-              Uncompromising Purity
-            </h2>
-            <p
-              style="
-                color: var(--theme-text-muted);
-                max-width: 700px;
-                margin: 0 auto var(--spacing-lg);
-                line-height: 1.7;
-              "
-            >
-              Your safety is our priority. Our water is filtered to 1 micron
-              (10x finer than a human hair) and treated with a sophisticated UV
-              and ozone purifications system between every single session. With
-              1,000 lbs of Epsom salt, the water is naturally sterile, exceeding
-              all health department standards.
-            </p>
-            <div
-              style="
-                display: flex;
-                justify-content: center;
-                gap: var(--spacing-xl);
-                flex-wrap: wrap;
-              "
-            >
-              <div style="display: flex; align-items: center; gap: 0.5rem">
-                <span style="font-size: 1.5rem">🛡️</span>
-                <strong>NASA-Grade UV</strong>
-              </div>
-              <div style="display: flex; align-items: center; gap: 0.5rem">
-                <span style="font-size: 1.5rem">💧</span>
-                <strong>Triple Filtration</strong>
-              </div>
-              <div style="display: flex; align-items: center; gap: 0.5rem">
-                <span style="font-size: 1.5rem">🧪</span>
-                <strong>pH Balanced</strong>
+      <!-- Safety & Hygiene (Sanctuary Specs) -->
+      <section class="section" style="background-color: var(--theme-bg); position: relative; overflow: hidden;">
+        <div class="container">
+            <!-- Top Header -->
+            <div class="animate-fade-up" style="text-align: center; max-width: 800px; margin: 0 auto var(--spacing-xl);">
+              <span style="color: var(--theme-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; display: block; margin-bottom: 1rem;">Protocol / Hygiene</span>
+              <h2 style="margin-bottom: var(--spacing-md); line-height: 1.1; font-size: clamp(2.5rem, 5vw, 3.5rem);">Uncompromising Purity</h2>
+              <p style="color: var(--theme-text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: var(--spacing-lg);">
+                Your safety is our priority. Every drop of water is filtered to <strong>1 micron</strong> and treated with a sophisticated UV and ozone purification system between every session.
+              </p>
+              <div style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.6rem 1.25rem; background: rgba(var(--rgb-success), 0.1); border-radius: 50px; border: 1px solid rgba(var(--rgb-success), 0.2);">
+                <span style="color: var(--success); font-weight: 700;">● Active</span>
+                <span style="font-size: 0.85rem; font-weight: 600; opacity: 0.8;">Sanitization Monitoring 24/7</span>
               </div>
             </div>
+            <!-- Bottom: Technical Cinematic Cards (3 Columns) -->
+            <div class="animate-fade-up technical-grid-mobile" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+              
+              <!-- Card 1: UV -->
+              <article class="card" style="
+                    background-image: var(--benefit-overlay), url('assets/img/generated/icon_uv_light.png');
+                    background-size: cover;
+                    background-position: center;
+                    min-height: 280px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    padding: 1.5rem;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: var(--border-radius-lg);
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
+                    transform: translateZ(0);
+                  ">
+                <div style="position: absolute; top: 1rem; right: 1rem; z-index: 2;">
+                  <span class="pulse-soft" style="font-size: 0.55rem; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.15); padding: 3px 8px; border-radius: 20px; letter-spacing: 1px; border: 1px solid rgba(16, 185, 129, 0.2); backdrop-filter: blur(5px);">ACTIVE</span>
+                </div>
+                <div style="z-index: 2; position: relative;">
+                  <div class="tactical-spec" style="margin-bottom: 0.3rem; font-size: 0.6rem; padding: 2px 6px;">Spec: NASA 2.0</div>
+                  <h4 style="color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); font-size: 1.1rem; margin-bottom: 0.4rem;">NASA-Grade UV</h4>
+                  <div style="display: flex; align-items: center; gap: 0.4rem;">
+                    <span style="font-size: 0.6rem; background: rgba(16, 185, 129, 0.8); color: #fff; padding: 2px 6px; border-radius: 4px; font-weight: 800; letter-spacing: 1px;">CERTIFIED</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 2: Filtration -->
+              <article class="card" style="
+                    background-image: var(--benefit-overlay), url('assets/img/generated/icon_water_filtration.png');
+                    background-size: cover;
+                    background-position: center;
+                    min-height: 280px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    padding: 1.5rem;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: var(--border-radius-lg);
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
+                    transform: translateZ(0);
+                  ">
+                <div style="position: absolute; top: 1rem; right: 1rem; z-index: 2;">
+                  <span class="pulse-soft" style="font-size: 0.55rem; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.15); padding: 3px 8px; border-radius: 20px; letter-spacing: 1px; border: 1px solid rgba(16, 185, 129, 0.2); backdrop-filter: blur(5px);">ACTIVE</span>
+                </div>
+                <div style="z-index: 2; position: relative;">
+                  <div class="tactical-spec" style="margin-bottom: 0.3rem; font-size: 0.6rem; padding: 2px 6px;">Spec: 1 MICRON</div>
+                  <h4 style="color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); font-size: 1.1rem; margin-bottom: 0.4rem;">Triple Filtration</h4>
+                  <div style="display: flex; align-items: center; gap: 0.4rem;">
+                    <span style="font-size: 0.6rem; background: rgba(16, 185, 129, 0.8); color: #fff; padding: 2px 6px; border-radius: 4px; font-weight: 800; letter-spacing: 1px;">CERTIFIED</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 3: pH -->
+              <article class="card" style="
+                    background-image: var(--benefit-overlay), url('assets/img/generated/icon_ph_balance.png');
+                    background-size: cover;
+                    background-position: center;
+                    min-height: 280px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    padding: 1.5rem;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: var(--border-radius-lg);
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
+                    transform: translateZ(0);
+                  ">
+                <div style="position: absolute; top: 1rem; right: 1rem; z-index: 2;">
+                  <span class="pulse-soft" style="font-size: 0.55rem; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.15); padding: 3px 8px; border-radius: 20px; letter-spacing: 1px; border: 1px solid rgba(16, 185, 129, 0.2); backdrop-filter: blur(5px);">ACTIVE</span>
+                </div>
+                <div style="z-index: 2; position: relative;">
+                  <div class="tactical-spec" style="margin-bottom: 0.3rem; font-size: 0.6rem; padding: 2px 6px;">Spec: NEUTRAL</div>
+                  <h4 style="color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); font-size: 1.1rem; margin-bottom: 0.4rem;">pH Balanced</h4>
+                  <div style="display: flex; align-items: center; gap: 0.4rem;">
+                    <span style="font-size: 0.6rem; background: rgba(16, 185, 129, 0.8); color: #fff; padding: 2px 6px; border-radius: 4px; font-weight: 800; letter-spacing: 1px;">CERTIFIED</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
           </div>
         </div>
       </section>
@@ -1172,29 +1141,80 @@
         </div>
       </section>
 
-      <!-- CTA Section -->
-      <section class="section">
-        <div class="container">
-          <div class="cta-card">
-            <div>
-              <h2 style="margin-bottom: var(--spacing-sm)">
-                Ready to disconnect?
-              </h2>
-              <p
-                style="
-                  margin: 0;
-                  opacity: 0.9;
-                  font-size: 1.1rem;
-                  max-width: 500px;
-                "
-              >
-                Secure your pod today and discover why thousands trust us for
-                their mental and physical recovery.
-              </p>
+      <!-- Immersive CTA Section -->
+      <!-- CTA Section: Immersive Cinematic Experience -->
+      <section class="section" style="
+          position: relative;
+          min-height: 70vh;
+          display: flex;
+          align-items: center;
+          background-image: var(--cta-bg-overlay), url('assets/img/generated/cta_background_luxury_spa.png');
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+          overflow: hidden;
+        ">
+        <!-- Ambient Glow Decor -->
+        <div style="position: absolute; top: -10%; left: -10%; width: 40%; height: 40%; background: radial-gradient(circle, rgba(94, 234, 212, 0.1) 0%, transparent 70%); filter: blur(60px); pointer-events: none;"></div>
+        
+        <div class="container" style="position: relative; z-index: 2;">
+          <div class="animate-fade-up animate-float cta-hover-effect" style="
+              max-width: 850px;
+              margin: 0 auto;
+              text-align: center;
+              background: var(--cta-glass-bg);
+              backdrop-filter: blur(20px);
+              -webkit-backdrop-filter: blur(20px);
+              padding: 5rem 2rem;
+              border-radius: var(--border-radius-lg);
+              border: 1px solid var(--cta-glass-border);
+              box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+              position: relative;
+            ">
+            <span style="
+                display: inline-block;
+                padding: 0.5rem 1.5rem;
+                background: var(--cta-secondary-btn-bg);
+                backdrop-filter: blur(10px);
+                border-radius: 50px;
+                color: var(--theme-accent);
+                font-weight: 700;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: 2rem;
+                border: 1px solid var(--cta-glass-border);
+              ">JOIN 5,000+ HAPPY FLOATERS</span>
+            
+            <h2 style="
+                font-size: clamp(2.5rem, 8vw, 4.5rem);
+                line-height: 1.1;
+                margin-bottom: var(--spacing-md);
+                color: var(--cta-text);
+                font-family: var(--font-serif);
+              ">
+              Ready to <span style="color: var(--theme-accent); font-style: italic;">disconnect?</span>
+            </h2>
+            
+            <p style="
+                font-size: 1.25rem;
+                color: var(--cta-text-muted);
+                max-width: 600px;
+                margin: 0 auto var(--spacing-xl);
+                line-height: 1.6;
+              ">
+              Secure your private pod today and discover why thousands trust us for absolute mental and physical recovery.
+            </p>
+  
+            <div style="display: flex; justify-content: center;">
+              <a href="pages/booking.html" class="btn btn-primary animate-pulse-subtle" style="
+                font-size: 1.2rem;
+                padding: 1.25rem 3.5rem;
+                border-radius: 99px;
+              ">
+                Book Your Float Now
+              </a>
             </div>
-            <a href="pages/booking.html" class="btn btn-primary">
-              Book Your Float
-            </a>
           </div>
         </div>
       </section>

@@ -89,6 +89,21 @@
   /* Card hover glow */
   --card-hover-border: rgba(94, 234, 212, 0.45);
 
+  /* Benefits Section (Dark) */
+  --benefit-overlay: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
+  --benefit-text: #ffffff;
+  --benefit-text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  --benefit-card-border: none;
+
+  /* Cinematic CTA (Dark) */
+  --cta-bg-overlay: linear-gradient(rgba(10, 15, 14, 0.75), rgba(10, 15, 14, 0.9));
+  --cta-glass-bg: rgba(255, 255, 255, 0.03);
+  --cta-glass-border: rgba(255, 255, 255, 0.08);
+  --cta-text: #ffffff;
+  --cta-text-muted: rgba(255, 255, 255, 0.75);
+  --cta-secondary-btn-bg: rgba(255, 255, 255, 0.05);
+  --cta-secondary-btn-border: rgba(255, 255, 255, 0.2);
+
   /* Typography */
   --font-sans:
     "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -144,6 +159,21 @@
   --hero-image-brightness: 1;
 
   --card-hover-border: rgba(13, 148, 136, 0.4);
+
+  /* Benefits Section (Light Overrides) */
+  --benefit-overlay: linear-gradient(180deg, rgba(240,250,249,0.1) 0%, rgba(240,250,249,0.95) 100%);
+  --benefit-text: var(--text-dark);
+  --benefit-text-shadow: none;
+  --benefit-card-border: 1px solid rgba(13, 148, 136, 0.15);
+
+  /* Cinematic CTA (Light Overrides) */
+  --cta-bg-overlay: linear-gradient(rgba(240, 250, 249, 0.85), rgba(240, 250, 249, 0.95));
+  --cta-glass-bg: rgba(255, 255, 255, 0.6);
+  --cta-glass-border: rgba(13, 148, 136, 0.2);
+  --cta-text: var(--text-dark);
+  --cta-text-muted: var(--theme-text-muted);
+  --cta-secondary-btn-bg: rgba(13, 148, 136, 0.05);
+  --cta-secondary-btn-border: rgba(13, 148, 136, 0.3);
 }
 
 /* === Global Reset & Base === */
@@ -330,6 +360,11 @@ img {
   transition: width var(--transition-fast);
 }
 
+[dir="rtl"] .nav-link::after {
+  left: auto;
+  right: 0;
+}
+
 .nav-link:hover::after,
 .nav-link.active::after {
   width: 100%;
@@ -355,6 +390,11 @@ img {
   left: 0;
   background-color: var(--theme-accent);
   transition: width var(--transition-fast);
+}
+
+[dir="rtl"] .nav-item-dropdown::after {
+  left: auto;
+  right: 0;
 }
 
 .nav-item-dropdown:hover::after {
@@ -450,6 +490,11 @@ img {
   transform: rotate(180deg);
 }
 
+[dir="rtl"] .dropdown-icon {
+  margin-left: 0;
+  margin-right: 0.25rem;
+}
+
 /* Mobile Menu Toggle */
 .mobile-toggle {
   display: none;
@@ -458,9 +503,8 @@ img {
   color: var(--theme-text);
   font-size: 1.5rem;
   cursor: pointer;
-  position:relative;
-  top: 10px;
-  
+  padding: 0.5rem;
+  margin-top: -5px;
 }
 
 /* Buttons */
@@ -1287,6 +1331,38 @@ img {
 
 /* ---- DROPDOWN MOBILE ADJUSTMENTS ---- */
 @media (max-width: 1023px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--theme-surface);
+    flex-direction: column;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    box-shadow: 20px 0 40px rgba(0, 0, 0, 0.2);
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+    z-index: var(--z-toast);
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  [dir="rtl"] .nav {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+    box-shadow: -20px 0 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav.is-open {
+    transform: translateX(0);
+  }
+
   .nav-item-dropdown {
     padding: 0.85rem 0;
     font-size: 1.1rem;
@@ -1294,6 +1370,10 @@ img {
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+
+  [dir="rtl"] .nav-item-dropdown {
+    flex-direction: row-reverse;
   }
 
   .nav-item-dropdown::after {
@@ -1329,3 +1409,63 @@ img {
     margin-right: 1rem;
   }
 }
+
+/* HUD & Technical Animations */
+@keyframes pulse-soft {
+  0% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.6)); }
+  100% { opacity: 0.7; transform: scale(1); }
+}
+
+.pulse-soft {
+  animation: pulse-soft 2s infinite ease-in-out;
+}
+
+.tactical-spec {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #5eead4; /* High-vibrancy cyan for HUD visibility on dark cards */
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(94, 234, 212, 0.3);
+  padding: 3px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  backdrop-filter: blur(4px);
+}
+
+@keyframes tactical-glow {
+  0% { box-shadow: 0 0 5px rgba(94, 234, 212, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(94, 234, 212, 0.3); }
+  100% { box-shadow: 0 0 5px rgba(94, 234, 212, 0.1); }
+}
+
+@media (max-width: 768px) {
+  .technical-grid-mobile {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Floating Animations for CTAs */
+@keyframes float-slow {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-float {
+  animation: fadeUp 0.8s forwards, float-slow 6s 0.8s ease-in-out infinite;
+}
+
+.cta-hover-effect {
+  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cta-hover-effect:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 50px 120px rgba(0, 0, 0, 0.3);
+}
+
+
