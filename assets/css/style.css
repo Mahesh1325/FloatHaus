@@ -25,8 +25,8 @@
   /* TODO: Lighten your primary color for dark-mode accents */
   --accent-dark: #5eead4;
   /* Teal 300 â€” bright accent for dark mode */
-  --accent-light: #0d9488;
-  /* Teal 600 â€” accent for light mode */
+  --accent-light: #0b7a70;
+  /* Darker Teal for better contrast in light mode */
 
   /* Dark Theme Surfaces */
   --bg-dark: #0a0f0e;
@@ -37,19 +37,20 @@
   /* Cards, modals */
 
   /* Light Theme Surfaces */
-  --bg-light: #d9f2f0;
-  /* More visible teal tint â€” refreshing and premium */
+  --bg-light: #f0faf9;
+  /* Very light teal tint â€” refreshing */
   --surface-light: #ffffff;
-  --surface-light-2: #c5e9e6;
+  --surface-light-2: #e6f7f5;
   /* Tinted cards */
 
   /* Text */
   --text-light: #f0fdf9;
   /* For use on dark bg */
-  --text-dark: #134e4a;
-  /* Deep teal-ink for light bg */
+  --text-dark: #0d3a37;
+  /* Deep teal-ink for light bg - darkened for better contrast */
   --text-muted-dark: #94a3b8;
-  --text-muted-light: #4a7c79;
+  --text-muted-light: #3a615e;
+  /* Darker muted teal for better readability */
 
   /* Borders */
   --border-dark: rgba(94, 234, 212, 0.1);
@@ -136,7 +137,10 @@
     rgba(240, 250, 249, 0) 0%,
     rgba(240, 250, 249, 0.85) 100%
   );
-  --hero-text: var(--text-dark);
+  --hero-text: #134e4a;
+  /* Original text-dark color preserved for hero sections */
+  --hero-accent: #0d9488;
+  /* Original accent color preserved for hero sections */
   --hero-image-brightness: 1;
 
   --card-hover-border: rgba(13, 148, 136, 0.4);
@@ -247,7 +251,7 @@ img {
 }
 
 [data-theme="light"] {
-  --rgb-theme-bg: 217, 242, 240;
+  --rgb-theme-bg: 240, 250, 249;
 }
 
 .header-container {
@@ -879,6 +883,22 @@ img {
 .hero-section {
   padding-top: 0 !important;
   margin-top: 0 !important;
+}
+
+.hero-section h1,
+.hero-section h2,
+.hero-section h3,
+.hero-section h4 {
+  color: var(--hero-text) !important;
+}
+
+.hero-section span {
+  color: var(--hero-accent) !important;
+}
+
+.hero-section .btn-outline {
+  color: var(--hero-text) !important;
+  border-color: var(--hero-text) !important;
 }
 
 /* ============================================
