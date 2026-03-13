@@ -236,6 +236,43 @@ document.addEventListener("DOMContentLoaded", () => {
     textElements.forEach((el) => observer.observe(el));
   };
 
+  // 7. Simulated Authentication Logic
+  const initAuth = () => {
+    // Check if the user is authenticated (token exists)
+    const isAuthenticated = localStorage.getItem("userToken") !== null;
+    
+    // Find all 'Book Now' / 'Get Started' header buttons
+    const ctaButtons = document.querySelectorAll(".btn-sticky-mobile, .d-none-mobile");
+
+    ctaButtons.forEach(btn => {
+      // We only want to target the primary header CTA
+      if (btn.classList.contains('btn-primary')) {
+        if (isAuthenticated) {
+          btn.textContent = "Book Now";
+          // If we are currently IN a pages subdir, pointing to another page is just its basename
+          // If we are IN index.html, pointing to a page needs "pages/"
+          const inPagesDir = window.location.pathname.includes('/pages/');
+          btn.href = inPagesDir ? "booking.html" : "pages/booking.html";
+        } else {
+          btn.textContent = "Get Started";
+          const inPagesDir = window.location.pathname.includes('/pages/');
+          btn.href = inPagesDir ? "login.html" : "pages/login.html";
+        }
+      }
+    });
+  };
+
+  // Expose login/logout wrappers for the auth pages
+  window.simulateLogin = () => {
+    localStorage.setItem("userToken", "simulated-jwt-token-abc");
+    window.location.replace("booking.html");
+  };
+
+  window.simulateLogout = () => {
+    localStorage.removeItem("userToken");
+    window.location.reload();
+  };
+
   // Initialize core functions
   initTheme();
   initMobileMenu();
@@ -243,4 +280,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initNumberCounters();
   initTextReading();
+  initAuth();
 });
