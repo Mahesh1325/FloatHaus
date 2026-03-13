@@ -37,10 +37,10 @@
   /* Cards, modals */
 
   /* Light Theme Surfaces */
-  --bg-light: #f0faf9;
-  /* Very light teal tint â€” refreshing */
+  --bg-light: #d9f2f0;
+  /* More visible teal tint â€” refreshing and premium */
   --surface-light: #ffffff;
-  --surface-light-2: #e6f7f5;
+  --surface-light-2: #c5e9e6;
   /* Tinted cards */
 
   /* Text */
@@ -247,7 +247,7 @@ img {
 }
 
 [data-theme="light"] {
-  --rgb-theme-bg: 240, 250, 249;
+  --rgb-theme-bg: 217, 242, 240;
 }
 
 .header-container {
