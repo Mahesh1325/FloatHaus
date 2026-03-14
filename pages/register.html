@@ -165,8 +165,18 @@
         }
 
         @keyframes cardIn {
-            from { opacity: 0; transform: translateY(24px) scale(0.97); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         /* Image panel */
@@ -304,13 +314,27 @@
         .auth-form-panel {
             flex: 1;
             min-width: 0;
-            padding: 2.5rem 2.75rem;
+            padding: 3.5rem 2.75rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
             background: var(--theme-surface);
             overflow-y: auto;
         }
+
+        /* Entry Animations */
+        .form-header, .social-row, .auth-divider, .form-grid-2, .field-group, .btn-submit, .auth-footer-link {
+            animation: slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .form-header { animation-delay: 0.1s; }
+        .social-row { animation-delay: 0.15s; }
+        .auth-divider { animation-delay: 0.2s; }
+        .form-grid-2 { animation-delay: 0.25s; }
+        .field-group:nth-of-type(1) { animation-delay: 0.3s; }
+        .field-group:nth-of-type(2) { animation-delay: 0.35s; }
+        .btn-submit { animation-delay: 0.4s; }
+        .auth-footer-link { animation-delay: 0.45s; }
 
         .form-header { margin-bottom: 2rem; }
 
@@ -548,31 +572,33 @@
             :root { --auth-max-width: 1040px; }
         }
 
-        /* Tablet: 640px – 1024px */
+        /* Tablet: 640px â€“ 1024px */
         @media (max-width: 1023px) {
             .topbar-controls #dir-toggle,
-            .topbar-controls #theme-toggle { display: none; }
+            .topbar-controls #theme-toggle { display: inline-flex !important; }
             .auth-visual { flex: 1; }
-            .auth-card { margin-top: 4.5rem; border-radius: 18px; }
-            .auth-form-panel { padding: 2.25rem 1.75rem; }
+            .auth-card { margin-top: 5rem; border-radius: 20px; }
+            .auth-topbar { padding: 0.75rem 1.5rem; }
+            .auth-form-panel { padding: 2.5rem 1.75rem; }
             .form-grid-2 { grid-template-columns: 1fr; gap: 0; }
         }
 
         /* Mobile: < 640px */
         @media (max-width: 639px) {
-            body { padding: 1rem 0.75rem; }
-            .auth-card { margin-top: 4rem; flex-direction: column; box-shadow: none; border: none; }
+            body { padding: 1rem 0.75rem; justify-content: flex-start; }
+            .auth-card { margin-top: 4.5rem; flex-direction: column; box-shadow: none; border: none; background: transparent; }
             .auth-visual { display: none; }
-            .auth-form-panel { padding: 2rem 1.25rem; }
+            .auth-form-panel { padding: 2.5rem 1.25rem; background: var(--theme-surface); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
             .social-row { grid-template-columns: 1fr; }
             .form-grid-2 { grid-template-columns: 1fr; gap: 0; }
             .auth-topbar { padding: 0.75rem 1rem; }
             .form-title { font-size: 1.75rem; }
             .social-btn, .btn-submit, .field-input { min-height: 48px; }
             
-            /* Reduced animations for mobile */
-            .auth-blob, .visual-badge { animation: none; }
-            .auth-card { animation-duration: 0.4s; }
+            /* Enable animations on mobile too for smoothness */
+            .auth-blob { display: none; }
+            .visual-badge { animation: none; }
+            .auth-card { animation: fadeInScale 0.6s ease-out both; }
         }
     </style>
 </head>
@@ -588,7 +614,7 @@
             <span class="auth-logo-icon" aria-hidden="true">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c0 0-7 8-7 13a7 7 0 0014 0C19 10 12 2 12 2z"/></svg>
             </span>
-            FloatHaus
+            <strong>FloatHaus</strong>
         </a>
 
 
@@ -603,20 +629,7 @@
         </div>
     </header>
 
-    <!-- Mobile Navigation Overlay -->
-    <div class="mobile-nav-overlay" id="auth-nav-overlay" aria-hidden="true">
-        <button type="button" class="topbar-btn" style="position: absolute; top: 1.125rem; right: 2rem;" id="close-auth-nav">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-        <a href="../index.html" class="mobile-nav-link">Home</a>
-        <a href="services.html" class="mobile-nav-link">Services</a>
-        <a href="about.html" class="mobile-nav-link">About</a>
-        <a href="contact.html" class="mobile-nav-link">Contact</a>
-        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-            <button type="button" class="topbar-btn" onclick="document.getElementById('dir-toggle').click()">RTL Toggle</button>
-            <button type="button" class="topbar-btn" onclick="document.getElementById('theme-toggle').click()">Theme Toggle</button>
-        </div>
-    </div>
+    </header>
 
     <!-- Auth card -->
     <main class="auth-card" role="main">
@@ -653,7 +666,7 @@
 
             <div class="form-header">
                 <span class="form-eyebrow">Join the stillness</span>
-                <h1 class="form-title">Create an Account</h1>
+                <h1 class="form-title">Create a <strong>FloatHaus</strong> Account</h1>
                 <p class="form-subtitle">Experience the profound power of nothingness.</p>
             </div>
 
