@@ -79,16 +79,22 @@ document.addEventListener("DOMContentLoaded", () => {
         mobileClose.addEventListener("click", () => toggleMenu(false));
       }
 
-      // Close menu on scroll (only if not already locking scroll)
       window.addEventListener(
         "scroll",
         () => {
-          if (nav.classList.contains("is-open") && document.body.style.overflow !== "hidden") {
+          if (nav.classList.contains("is-open")) {
             toggleMenu(false);
           }
         },
         { passive: true },
       );
+
+      // Close menu on click outside
+      document.addEventListener("click", (e) => {
+        if (nav.classList.contains("is-open") && !nav.contains(e.target) && !mobileToggle.contains(e.target)) {
+          toggleMenu(false);
+        }
+      });
     }
 
     // Dropdown toggles for mobile & touch devices
@@ -304,38 +310,86 @@ document.addEventListener("DOMContentLoaded", () => {
     const existingNavCtaItem = document.getElementById("nav-mobile-cta-item");
 
     if (nav) {
-      // 1. Handle CTA button inside Mobile Nav
+      // 1. Handle Theme Toggle inside Mobile Nav (Replacing CTA)
       if (!existingNavCtaItem) {
         const ctaItem = document.createElement("div");
         ctaItem.className = "nav-mobile-extra";
         ctaItem.id = "nav-mobile-cta-item";
-        ctaItem.style.cssText = "width: 100%; padding-top: 1rem; margin-top: 0.5rem; border-top: 1px solid var(--theme-border/20);";
+        ctaItem.style.cssText = "width: 100%; padding-top: 1.5rem; margin-top: auto; border-top: 1px solid var(--theme-border/20); display: flex; justify-content: center;";
         
-        const ctaBtn = document.createElement("a");
-        ctaBtn.className = "btn btn-primary btn-block-mobile";
-        ctaBtn.style.width = "100%";
-        ctaBtn.id = "nav-cta-btn-injected";
+        // Container Pill matches the second image
+        const settingsPill = document.createElement("div");
+        settingsPill.style.cssText = "display: flex; align-items: center; justify-content: space-between; background: rgba(128, 128, 128, 0.1); border-radius: 99px; padding: 0.25rem 0.5rem; width: 100%; max-width: 250px;";
         
-        ctaItem.appendChild(ctaBtn);
-        // Inject before directory toggle if it exists, otherwise append
-        const navDirToggle = document.getElementById("nav-dir-toggle");
-        if (navDirToggle) {
-          nav.insertBefore(ctaItem, navDirToggle);
-        } else {
-          nav.appendChild(ctaItem);
+        // Relocate and re-style the Dir Toggle
+        const dirBtn = document.getElementById("nav-dir-toggle");
+        if (dirBtn) {
+          // Reset native styles inside the pill
+          dirBtn.style.cssText = "flex: 1; display: flex; align-items: center; justify-content: center; padding: 0.65rem; border: none; background: transparent; color: var(--theme-text-muted); font-size: 0.95rem; font-weight: 700; cursor: pointer; text-transform: uppercase; margin: 0;";
+          
+          // Remove default bottom border and padding rules applied to it globally via css
+          dirBtn.classList.remove("nav-dir-toggle");
+          
+          // Only show text "RTL" or "LTR", remove the arrows SVG if present
+          const svg = dirBtn.querySelector("svg");
+          if (svg) svg.style.display = "none";
+          
+          settingsPill.appendChild(dirBtn);
         }
+
+        // Create the Theme Toggle
+        const themeBtnContainer = document.createElement("button");
+        themeBtnContainer.type = "button";
+        themeBtnContainer.style.cssText = "flex: 1; display: flex; align-items: center; justify-content: center; padding: 0.65rem; border-radius: 99px; border: none; background: var(--theme-surface); color: var(--theme-text); gap: 0.5rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer;";
+        themeBtnContainer.id = "nav-theme-btn-injected";
+
+        // Create the icon span
+        const iconSpan = document.createElement("span");
+        iconSpan.id = "nav-theme-icon";
+        
+        themeBtnContainer.appendChild(iconSpan);
+        settingsPill.appendChild(themeBtnContainer);
+        ctaItem.appendChild(settingsPill);
+
+        nav.appendChild(ctaItem);
+
+        // Add event listener to toggle theme
+        themeBtnContainer.addEventListener("click", () => {
+          const topLevelToggle = document.getElementById("theme-toggle");
+          if (topLevelToggle) {
+            topLevelToggle.click(); // Reuse existing logic
+          }
+        });
       }
+
+      // Update the theme icon/text in the mobile nav when theme changes
+      const updateMobileNavTheme = () => {
+        const rootTheme = document.documentElement.getAttribute("data-theme") || "dark";
+        const iconElement = document.getElementById("nav-theme-icon");
+        if (iconElement) {
+          if (rootTheme === "dark") {
+            iconElement.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+          } else {
+            iconElement.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+          }
+        }
+      };
       
-      const navCtaBtn = document.getElementById("nav-cta-btn-injected");
-      if (navCtaBtn) {
-        if (isAuthenticated) {
-          navCtaBtn.textContent = "Book Now";
-          navCtaBtn.href = inPagesDir ? "booking.html" : "pages/booking.html";
-        } else {
-          navCtaBtn.textContent = "Get Started";
-          navCtaBtn.href = inPagesDir ? "login.html" : "pages/login.html";
+      // Update immediately
+      updateMobileNavTheme();
+      
+      // Observe html data-theme changes to sync mobile button
+      const targetNode = document.documentElement;
+      const config = { attributes: true, attributeFilter: ['data-theme'] };
+      const callback = function(mutationsList, observer) {
+        for(let mutation of mutationsList) {
+          if (mutation.type === 'attributes') {
+            updateMobileNavTheme();
+          }
         }
-      }
+      };
+      const observer = new MutationObserver(callback);
+      observer.observe(targetNode, config);
 
       // 2. Handle Logout icon inside Mobile Nav
       if (isAuthenticated && !existingNavLogout) {
