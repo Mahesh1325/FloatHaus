@@ -16,7 +16,7 @@
 
 [dir="rtl"] .header-container {
     /* Allow browser dir="rtl" to handle the swap of Logo and Nav/Actions */
-    flex-direction: row; /* Removed !important to allow mobile column stack if needed */
+    flex-direction: row;
 }
 
 [dir="rtl"] .logo {
@@ -29,20 +29,6 @@
 [dir="rtl"] #logout-btn svg {
     transform: scaleX(-1);
 }
-
-[dir="rtl"] .header-container > div:last-child {
-    /* Allow buttons to follow RTL flow */
-    flex-direction: row !important;
-}
-
-/* Nav rules removed, handled in style.css */
-
-[dir="rtl"] .nav-link::after {
-    left: auto;
-    right: 0;
-}
-
-/* Moved/Handled in style.css */
 
 /* ============================================
    BUTTONS & SPINNERS
@@ -88,19 +74,41 @@
 }
 
 /* ============================================
-   DASHBOARD SIDEBAR
+   DASHBOARD LAYOUT (RTL)
    ============================================ */
-[dir="rtl"] .dashboard-sidebar {
-    border-right: none;
-    border-left: 1px solid var(--theme-border);
-    left: auto;
-    right: 0;
+@media (min-width: 1024px) {
+    /* Swap Sidebar to Right, Content to Left */
+    [dir="rtl"] .dashboard-layout {
+        flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .dashboard-sidebar {
+        border-right: none;
+        border-left: 1px solid var(--theme-border);
+        position: sticky;
+        top: 0;
+    }
+
+    /* Important: Content wrapper MUST NOT have the 280px margin-left/right in RTL 
+       because row-reverse flex handles the positioning naturally. */
+    [dir="rtl"] .dashboard-content-wrapper {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        flex: 1;
+        min-width: 0;
+    }
 }
 
+/* Dashboard sidebar items align naturally in RTL flex-row */
 [dir="rtl"] .dashboard-nav-item {
     border-left: none;
     border-right: 3px solid transparent;
-    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+[dir="rtl"] .dashboard-nav-item svg {
+    margin-right: 0 !important;
+    margin-left: 0.75rem !important;
 }
 
 [dir="rtl"] .dashboard-nav-item:hover,
@@ -109,25 +117,59 @@
     border-right-color: var(--primary);
 }
 
-[dir="rtl"] .dashboard-sidebar.is-open {
-    transform: translateX(0);
+/* Notification badges push to left in RTL */
+[dir="rtl"] .nav-badge {
+    margin-left: 0 !important;
+    margin-right: auto !important;
 }
 
-[dir="rtl"] .dashboard-content-wrapper {
-    /* Content area shifts right in RTL */
-    margin-right: 280px;
-    margin-left: 0;
+/* Dashboard topbar becomes row-reverse in RTL so right-side controls move to left */
+[dir="rtl"] .dashboard-topbar {
+    flex-direction: row-reverse;
+}
+
+/* Lock the icon+title inner group to LTR order so hamburger stays in front of the title.
+   The browser auto-reverses flex children under dir=rtl which would put title first. */
+[dir="rtl"] .dashboard-topbar > div:first-child {
+    flex-direction: row;  /* explicit LTR row — icon always before title */
+    direction: ltr;
+}
+
+/* Force hamburger/sidebar-toggle to always render FIRST (before title) */
+[dir="rtl"] .dashboard-topbar #sidebar-toggle,
+[dir="rtl"] .dashboard-topbar .mobile-toggle {
+    order: -1 !important;
+}
+
+/* But keep the page title text itself right-aligned as expected in RTL */
+[dir="rtl"] .dashboard-topbar > div:first-child h2,
+[dir="rtl"] .dashboard-topbar > div:first-child #page-title {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Profile dropdown opens from left side in RTL */
+[dir="rtl"] .profile-dropdown {
+    right: auto;
+    left: 0;
 }
 
 /* ============================================
-   MOBILE MENU
+   MOBILE SIDEBAR (RTL – opens from left)
    ============================================ */
-/* Mobile Nav handled in style.css */
+@media (max-width: 1023px) {
+    [dir="rtl"] .dashboard-sidebar {
+        left: 0;
+        right: auto;
+        transform: translateX(-100%);
+        border-right: 1px solid var(--theme-border);
+        border-left: none;
+    }
 
-/* Nav handled in style.css */
-
-/* RTL Tablet Breakpoint Overrides */
-/* Nav handled in style.css */
+    [dir="rtl"] .dashboard-sidebar.is-open {
+        transform: translateX(0);
+    }
+}
 
 /* ============================================
    UTILITY OVERRIDES
@@ -142,16 +184,6 @@
     margin-right: auto !important;
 }
 
-[dir="rtl"] .pr-4 {
-    padding-right: 0 !important;
-    padding-left: 1rem !important;
-}
-
-[dir="rtl"] .pl-4 {
-    padding-left: 0 !important;
-    padding-right: 1rem !important;
-}
-
 [dir="rtl"] .text-left {
     text-align: right !important;
 }
@@ -160,9 +192,7 @@
     text-align: left !important;
 }
 
-/* ============================================
-   SERVICE & GALLERY CARDS
-   ============================================ */
+/* Service features bullets */
 [dir="rtl"] .service-features li {
     padding-left: 0;
     padding-right: 1.5rem;
@@ -171,11 +201,4 @@
 [dir="rtl"] .service-features li::before {
     left: auto;
     right: 0;
-}
-
-/* ============================================
-   BOOKING STEPS
-   ============================================ */
-[dir="rtl"] .booking-progress {
-    direction: rtl;
 }

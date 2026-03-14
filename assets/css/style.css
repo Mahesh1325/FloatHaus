@@ -504,7 +504,10 @@ img {
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
-  margin-top: -5px;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* Buttons */
@@ -1059,8 +1062,9 @@ img {
 
   .mobile-toggle {
     display: flex;
-    z-index: 1005;
-    /* Above the nav menu background */
+    align-items: center;
+    justify-content: center;
+    z-index: 1005; /* Above the nav menu background */
   }
 
   /* Sticky Book Now button at bottom on mobile */
@@ -1339,20 +1343,22 @@ img {
     padding: 0.75rem 1rem;
   }
 
-  /* In RTL mode, reverse the header layout for mobile */
   [dir="rtl"] .header-container {
     flex-direction: row-reverse;
   }
 
-  /* Center-ish the toggle if items allow, but usually 1:Logo, 2:Toggle, 3:Controls */
+  /* Hamburger toggle: always render FIRST (before title and controls) */
   .mobile-toggle {
     display: flex;
-    order: 2;
+    order: -1 !important;  /* Always first regardless of siblings */
     background: transparent;
     border: none;
     color: var(--theme-text);
     padding: 0.5rem;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
     transition: transform 0.2s ease;
   }
 
@@ -1360,9 +1366,24 @@ img {
     transform: scale(0.9);
   }
 
-  /* Hide header RTL/LTR toggle on mobile (moved to nav) */
+  /* Push controls to the right using margin instead of order */
+  .nav-controls,
+  .header-container > div:last-child {
+    margin-left: auto !important;
+    gap: 0.5rem !important;
+  }
+
+  [dir="rtl"] .nav-controls,
+  [dir="rtl"] .header-container > div:last-child {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  /* Hide header RTL/LTR and Theme toggles on mobile (moved to nav) */
   .nav-controls #dir-toggle,
-  .header-container > div:last-child #dir-toggle {
+  .nav-controls #theme-toggle,
+  .header-container > div:last-child #dir-toggle,
+  .header-container > div:last-child #theme-toggle {
     display: none !important;
   }
 
@@ -1372,13 +1393,16 @@ img {
   .header-container .btn-primary {
     display: inline-flex !important;
     position: static !important; /* Don't stick to bottom from .btn-sticky-mobile */
-    padding: 0.5rem 0.75rem !important;
+    padding: 0.45rem 1rem !important;
     font-size: 0.85rem !important;
-    min-height: 38px !important;
+    min-height: 36px !important;
     width: auto !important;
     white-space: nowrap !important;
     visibility: visible !important;
     opacity: 1 !important;
+    border-radius: 99px !important;   /* Ensure pill shape is never stripped */
+    overflow: visible !important;     /* Prevent clipping the rounded edges */
+    flex-shrink: 0 !important;        /* Don't let flex compress and warp the shape */
   }
 
   /* Navigation Sidebar */

@@ -227,6 +227,19 @@
             animation: dropdownIn 0.18s ease-out;
         }
 
+        /* On mobile/tablet: pin dropdown inside the viewport */
+        @media (max-width: 1023px) {
+            .profile-dropdown {
+                position: fixed;
+                right: 0.75rem;
+                top: auto;
+                margin-top: 0.5rem;
+                width: calc(100vw - 1.5rem);
+                max-width: 320px;
+                border-radius: 12px;
+            }
+        }
+
         @keyframes dropdownIn {
             from {
                 opacity: 0;
@@ -370,7 +383,7 @@
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg>
                         Messages
-                        <span
+                        <span class="nav-badge"
                             style="margin-left:auto;background:var(--primary);color:#fff;font-size:0.65rem;padding:1px 6px;border-radius:999px;">2</span>
                     </div>
                     <div class="dashboard-nav-item" data-target="user-prep">
@@ -456,7 +469,7 @@
                             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
                         Notifications
-                        <span
+                        <span class="nav-badge"
                             style="margin-left:auto;background:var(--error);color:#fff;font-size:0.65rem;padding:1px 6px;border-radius:999px;">5</span>
                     </div>
                     <div class="dashboard-nav-item" data-target="admin-members">
