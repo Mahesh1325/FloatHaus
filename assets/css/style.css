@@ -729,6 +729,17 @@ img {
   }
 }
 
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-stagger-1 {
   animation-delay: 0.1s;
 }

@@ -38,8 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetId = item.getAttribute('data-target');
             document.getElementById(targetId).classList.add('active');
 
-            // Update Title
-            pageTitle.textContent = item.textContent;
+            // Update Title — use data-title attribute to avoid picking up badge text
+            const title = item.getAttribute('data-title') || getDirectTextContent(item);
+            pageTitle.textContent = title;
 
             // Close mobile sidebar immediately on link click
             if (window.innerWidth < 1024) {
@@ -50,6 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
             simulateDataLoad(targetId);
         });
     });
+
+    // Helper: get only direct text content of an element, ignoring child elements (badges etc.)
+    function getDirectTextContent(el) {
+        let text = '';
+        el.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE) {
+                text += node.textContent;
+            }
+        });
+        return text.trim();
+    }
 
     // Mobile Sidebar Toggle
     const sidebar = document.getElementById('dashboard-sidebar');
