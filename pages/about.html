@@ -41,6 +41,19 @@
     .hover-scale-wrapper:hover img {
       transform: scale(1.06);
     }
+
+    /* The Space — 6-card grid: 3 cols desktop → 2 cols tablet → 1 col mobile */
+    .space-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-lg);
+    }
+    @media (max-width: 900px) {
+      .space-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .space-grid { grid-template-columns: 1fr; }
+    }
   </style>
 
   <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
@@ -315,11 +328,7 @@
             surface, and system exists to deepen your rest.
           </p>
         </div>
-        <div style="
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-              gap: var(--spacing-lg);
-            ">
+        <div class="space-grid">
           <article class="card">
             <img src="../assets/img/feature_pods.png" alt="Clinical-Grade Pods" style="
                   width: 100%;
