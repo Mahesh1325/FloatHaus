@@ -434,7 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.simulateLogin = () => {
     localStorage.setItem("userToken", "simulated-jwt-token-abc");
     const inPagesDir = window.location.pathname.includes('/pages/');
-    window.location.replace(inPagesDir ? "booking.html" : "pages/booking.html");
+    window.location.replace(inPagesDir ? "../index.html" : "index.html");
   };
 
   window.simulateLogout = () => {
