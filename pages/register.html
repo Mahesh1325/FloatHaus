@@ -401,7 +401,7 @@
         /* Social buttons */
         .social-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 0.75rem;
             margin-bottom: 1.75rem;
         }
@@ -451,11 +451,11 @@
             background: var(--theme-border);
         }
 
-        /* Form fields */
+        /* Form fields — stacked vertically for full-width inputs */
         .form-grid-2 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            grid-template-columns: 1fr;
+            gap: 0;
         }
         
         .field-group {
@@ -608,7 +608,7 @@
             :root { --auth-max-width: 1040px; }
         }
 
-        /* Tablet: 640px â€“ 1024px */
+        /* Tablet: 640px – 1024px */
         @media (max-width: 1023px) {
             .topbar-controls #dir-toggle,
             .topbar-controls #theme-toggle { display: inline-flex !important; }
@@ -616,7 +616,7 @@
             .auth-card { margin-top: 5rem; border-radius: 20px; }
             .auth-topbar { padding: 0.75rem 1.5rem; }
             .auth-form-panel { padding: 2.5rem 1.75rem; }
-            .form-grid-2 { grid-template-columns: 1fr; gap: 0; }
+            .social-row { grid-template-columns: 1fr 1fr 1fr; }
         }
 
         /* Mobile: < 640px */
@@ -626,7 +626,6 @@
             .auth-visual { display: none; }
             .auth-form-panel { padding: 2.5rem 1.25rem; background: var(--theme-surface); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
             .social-row { grid-template-columns: 1fr; }
-            .form-grid-2 { grid-template-columns: 1fr; gap: 0; }
             .auth-topbar { padding: 0.75rem 1rem; }
             .form-title { font-size: 1.75rem; }
             .social-btn, .btn-submit, .field-input { min-height: 48px; }
@@ -722,6 +721,12 @@
                         <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
                     </svg>
                     Facebook
+                </button>
+                <button type="button" class="social-btn" onclick="window.simulateLogin()" id="apple-signup-btn" aria-label="Sign up with Apple">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                    </svg>
+                    Apple
                 </button>
             </div>
 

@@ -144,38 +144,37 @@
   --nav-bg: #ffffff;
   --nav-text-color: #0f172a; /* Slate 900 for high contrast */
 
+  /* Hero Section Overlays — darker for better image contrast and text readability */
   --hero-gradient: linear-gradient(
     to bottom,
-    rgba(240, 250, 249, 0.45),
-    rgba(240, 250, 249, 0.95)
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.75)
   );
   --hero-gradient-subpage: linear-gradient(
     to bottom,
-    rgba(240, 250, 249, 0) 0%,
-    rgba(240, 250, 249, 0.85) 100%
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.65) 100%
   );
-  --hero-text: #134e4a;
-  /* Original text-dark color preserved for hero sections */
-  --hero-accent: #0d9488;
-  /* Original accent color preserved for hero sections */
-  --hero-image-brightness: 1;
+  --hero-text: #ffffff;
+  --hero-accent: #5eead4;
+  --hero-image-brightness: 0.85;
 
   --card-hover-border: rgba(13, 148, 136, 0.4);
 
-  /* Benefits Section (Light Overrides) */
-  --benefit-overlay: linear-gradient(180deg, rgba(240,250,249,0.1) 0%, rgba(240,250,249,0.95) 100%);
-  --benefit-text: var(--text-dark);
-  --benefit-text-shadow: none;
+  /* Benefits Section (Light Overrides) — dark overlay for readability */
+  --benefit-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+  --benefit-text: #ffffff;
+  --benefit-text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
   --benefit-card-border: 1px solid rgba(13, 148, 136, 0.15);
 
-  /* Cinematic CTA (Light Overrides) */
-  --cta-bg-overlay: linear-gradient(rgba(240, 250, 249, 0.85), rgba(240, 250, 249, 0.95));
-  --cta-glass-bg: rgba(255, 255, 255, 0.6);
-  --cta-glass-border: rgba(13, 148, 136, 0.2);
-  --cta-text: var(--text-dark);
-  --cta-text-muted: var(--theme-text-muted);
-  --cta-secondary-btn-bg: rgba(13, 148, 136, 0.05);
-  --cta-secondary-btn-border: rgba(13, 148, 136, 0.3);
+  /* Cinematic CTA (Light Overrides) — dark overlay for readability */
+  --cta-bg-overlay: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85));
+  --cta-glass-bg: rgba(255, 255, 255, 0.08);
+  --cta-glass-border: rgba(255, 255, 255, 0.15);
+  --cta-text: #ffffff;
+  --cta-text-muted: rgba(255, 255, 255, 0.7);
+  --cta-secondary-btn-bg: rgba(255, 255, 255, 0.05);
+  --cta-secondary-btn-border: rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="light"] .mobile-toggle {
@@ -782,25 +781,19 @@ img {
   transition-delay: 0.4s !important;
 }
 
-/* Fast Reading / Text Reveal Animation */
+/* Clean Text Reveal Animation — Opacity only, no background blocks */
 .animate-text-reading {
-  background: linear-gradient(
-    to right,
-    var(--theme-text) 50%,
-    rgba(128, 128, 128, 0.2) 50%
-  );
-  background-size: 200% 100%;
-  background-position: 100% 0;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  /* Fallback */
-  transition: background-position 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  color: var(--theme-accent);
+  opacity: 0.3;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: initial !important;
 }
 
 .animate-text-reading.is-reading {
-  background-position: 0 0;
+  opacity: 1;
 }
 
 /* Number Counter Animation Base */
@@ -841,6 +834,21 @@ img {
 
 .theme-toggle:hover {
   background-color: var(--theme-surface);
+}
+
+/* RTL/LTR Direction Toggle — enforce consistent square icon button */
+#dir-toggle {
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0;
+}
+
+#dir-toggle span {
+  display: none;
 }
 
 /* Accessibility */

@@ -155,6 +155,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const navDirText = document.getElementById("nav-dir-text"); // inside mobile nav
     const headerContainer = document.querySelector(".header-container");
 
+    // Ensure #dir-toggle always has the SVG arrows icon (for pages still using text)
+    if (dirToggleBtn && !dirToggleBtn.querySelector("svg")) {
+      dirToggleBtn.insertAdjacentHTML(
+        "afterbegin",
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8l4 4-4 4"/><path d="M3 12h18"/><path d="M7 16l-4-4 4-4"/></svg>'
+      );
+    }
+
     // Load saved direction
     const savedDir = localStorage.getItem("direction");
     const isAuthPage = window.location.pathname.includes('login.html') || window.location.pathname.includes('register.html');
