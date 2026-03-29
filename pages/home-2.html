@@ -759,11 +759,6 @@
         height: auto;
       }
 
-      .h2-membership-grid {
-        grid-template-columns: 1fr;
-        align-items: stretch;
-      }
-
       .h2-membership-card.featured {
         padding: var(--spacing-xl) var(--spacing-lg);
       }
@@ -815,6 +810,11 @@
 
       .h2-metric-num {
         font-size: 1.8rem;
+      }
+
+      .h2-membership-grid {
+        grid-template-columns: 1fr;
+        align-items: stretch;
       }
     }
   </style>
@@ -1658,7 +1658,7 @@
             access to our post-float integration lounge.
           </p>
         </div>
-        <div class="h2-membership-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); max-width: 1200px; margin: 0 auto; align-items: center;">
+        <div class="h2-membership-grid" style="align-items: center;">
           <!-- Standard -->
           <div class="premium-membership-card standard" style="text-align: center">
             <div>

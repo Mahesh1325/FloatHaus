@@ -138,6 +138,26 @@
    HEADER / NAVIGATION — all pages
    ================================================================ */
 
+@media (min-width: 1024px) and (max-width: 1150px) {
+    /* Prevent navbar crowding on smaller desktops and landscape tablets */
+    .nav {
+        gap: 1.25rem !important;
+    }
+    
+    .nav-link, .nav-item-dropdown > span {
+        font-size: 0.95rem;
+    }
+    
+    .header-actions {
+        gap: 0.5rem;
+    }
+    
+    .header-actions .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
 @media (max-width: 1023px) {
 
     /* Ensure header items don't overflow on tablet/mobile */
@@ -257,20 +277,15 @@
         grid-template-columns: repeat(2, 1fr) !important;
     }
 
-    /* Elegant 3-item wrap fix: If 3 items in a 2-col grid, the last one spans full-width instead of leaving a blank gap */
-    .services-grid>*:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-    }
-
     .features-grid {
         grid-template-columns: repeat(2, 1fr) !important;
     }
+}
 
-    .features-grid>*:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-    }
-
-    /* Generic auto-fit fix for elements like "The Power of Floating" and "Client Experiences" */
+@media (min-width: 640px) and (max-width: 1024px) {
+    /* Elegant 3-item wrap fix: If 3 items in a 2-col grid, the last one spans full-width instead of leaving a blank gap */
+    .services-grid>*:last-child:nth-child(odd),
+    .features-grid>*:last-child:nth-child(odd),
     [style*="grid-template-columns: repeat(auto-fit"]>*:last-child:nth-child(odd) {
         grid-column: 1 / -1;
     }
@@ -399,6 +414,8 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: flex-start;
+        position: relative;
     }
 
     .service-row img {
