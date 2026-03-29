@@ -65,6 +65,149 @@
   /* ================================================ */
   /* Current Theme Defaults â€” start on DARK          */
   /* ================================================ */
+  /* -------------------------------------------------------------------------- */
+  /* Buttons
+  /* -------------------------------------------------------------------------- */
+
+  /* Modern Premium Membership CTA */
+  .btn-membership-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--theme-text);
+    background: transparent;
+    border: 2px solid var(--theme-accent);
+    border-radius: 9999px; /* Pill shape */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-membership-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--theme-accent);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .btn-membership-cta:hover {
+    color: var(--bg-dark); /* High contrast inside the fill on dark mode */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(94, 234, 212, 0.4); /* Glow matching accent */
+  }
+
+  .btn-membership-cta:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  [data-theme="light"] .btn-membership-cta {
+    color: #ffffff;
+  }
+  [data-theme="light"] .btn-membership-cta:hover {
+    color: #ffffff;
+  }
+
+  /* Premium Membership Cards */
+  .premium-membership-card {
+    background: var(--theme-surface);
+    border: 1px solid var(--theme-border);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1;
+  }
+
+  [data-theme="dark"] .premium-membership-card {
+    background: rgba(20, 31, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Elegant top accent line */
+  .premium-membership-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--theme-text-muted);
+    opacity: 0.15;
+    transition: all 0.4s ease;
+  }
+
+  .premium-membership-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  [data-theme="dark"] .premium-membership-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(94, 234, 212, 0.2);
+  }
+
+  .premium-membership-card:hover::before {
+    background: var(--theme-accent);
+    opacity: 1;
+  }
+
+  /* Featured variation */
+  .premium-membership-card.featured {
+    background: var(--theme-surface-2);
+    border-color: var(--primary);
+    transform: scale(1.05);
+    z-index: 2;
+    box-shadow: 0 15px 40px rgba(13, 148, 136, 0.2);
+  }
+
+  [data-theme="dark"] .premium-membership-card.featured {
+    background: rgba(13, 148, 136, 0.05);
+    border: 1px solid rgba(13, 148, 136, 0.4);
+    box-shadow: 0 20px 50px rgba(13, 148, 136, 0.15);
+  }
+
+  .premium-membership-card.featured::before {
+    background: var(--primary);
+    opacity: 1;
+    height: 6px;
+  }
+
+  .premium-membership-card.featured:hover {
+    transform: scale(1.05) translateY(-8px);
+  }
+
+  @media (max-width: 1024px) {
+    .premium-membership-card.featured {
+      transform: none;
+    }
+    .premium-membership-card.featured:hover {
+      transform: translateY(-8px);
+    }
+  }
+
   --theme-bg: var(--bg-dark);
   --theme-surface: var(--surface-dark);
   --theme-surface-2: var(--surface-dark-2);

@@ -551,7 +551,7 @@
       align-items: stretch;
     }
 
-    .h2-membership-card {
+    .premium-membership-card {
       border-radius: 20px;
       padding: 2rem 1.75rem;
       display: flex;
@@ -561,28 +561,28 @@
       box-sizing: border-box;
     }
 
-    .h2-membership-card:hover {
+    .premium-membership-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
     }
 
-    .h2-membership-card.featured:hover {
+    .premium-membership-card.featured:hover {
       box-shadow: 0 20px 50px rgba(13, 148, 136, 0.3);
     }
 
-    .h2-membership-card.standard {
+    .premium-membership-card.standard {
       background: var(--theme-surface);
       border: 1px solid var(--theme-border);
     }
 
-    .h2-membership-card.featured {
+    .premium-membership-card.featured {
       background: var(--primary);
       color: white;
       padding: 2rem 1.75rem;
       border: none;
     }
 
-    .h2-membership-card.studio {
+    .premium-membership-card.studio {
       background: var(--theme-surface);
       border: 1px solid var(--theme-border);
     }
@@ -594,12 +594,12 @@
       line-height: 1;
     }
 
-    .h2-membership-card.featured .h2-membership-price {
-      color: white;
+    .premium-membership-card.featured .h2-membership-price {
+      color: var(--primary);
     }
 
-    .h2-membership-card.featured .h2-membership-price small {
-      color: rgba(255, 255, 255, 0.7);
+    .premium-membership-card.featured .h2-membership-price small {
+      color: var(--theme-text-muted);
     }
 
     .h2-membership-price small {
@@ -631,19 +631,20 @@
       font-size: 0.9rem;
     }
 
-    .h2-membership-card.featured .h2-membership-features li {
-      color: rgba(255, 255, 255, 0.9);
+    .premium-membership-card.featured .h2-membership-features li {
+      color: var(--theme-text);
+      font-weight: 500;
     }
 
     .h2-check {
-      width: 16px;
-      height: 16px;
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--primary);
       flex-shrink: 0;
-      color: var(--theme-accent);
     }
 
-    .h2-membership-card.featured .h2-check {
-      color: white;
+    .premium-membership-card.featured .h2-check {
+      color: var(--primary);
     }
 
     .h2-badge-tag {
@@ -1657,9 +1658,9 @@
             access to our post-float integration lounge.
           </p>
         </div>
-        <div class="h2-membership-grid">
+        <div class="h2-membership-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); max-width: 1200px; margin: 0 auto; align-items: center;">
           <!-- Standard -->
-          <div class="h2-membership-card standard" style="text-align: center">
+          <div class="premium-membership-card standard" style="text-align: center">
             <div>
               <h3 style="margin: 0 0 0.25rem">Intro</h3>
               <p style="
@@ -1671,36 +1672,36 @@
               </p>
             </div>
             <div class="h2-membership-price">$89</div>
-            <ul class="h2-membership-features" style="align-items: center">
-              <li>
+            <ul class="h2-membership-features" style="align-items: center; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.65rem; flex-grow: 1;">
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
                 <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 1 × 60-min float
               </li>
-              <li>
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
                 <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 Towels &amp; earplugs
               </li>
-              <li>
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
                 <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 Post-float lounge access
               </li>
             </ul>
-            <a href="booking.html" class="btn btn-outline" style="text-align: center">Book Single</a>
+            <a href="booking.html" class="btn-membership-cta">Book Single</a>
           </div>
 
           <!-- Featured -->
-          <div class="h2-membership-card featured" style="text-align: center">
+          <div class="premium-membership-card featured" style="text-align: center">
             <span class="h2-badge-tag" style="align-self: center; margin-bottom: 0.5rem;">Most Popular</span>
             <div>
-              <h3 style="margin: 0 0 0.25rem; color: white">Reset</h3>
+              <h3 style="margin: 0 0 0.25rem;">Reset</h3>
               <p style="
-                    color: rgba(255, 255, 255, 0.7);
+                    color: var(--theme-text-muted);
                     font-size: 0.9rem;
                     margin: 0;
                   ">
@@ -1708,43 +1709,37 @@
               </p>
             </div>
             <div class="h2-membership-price">$69 <small>/mo</small></div>
-            <ul class="h2-membership-features" style="align-items: center">
-              <li>
-                <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+            <ul class="h2-membership-features" style="align-items: center; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.65rem; flex-grow: 1;">
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
+                <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 1 × float per month
               </li>
-              <li>
-                <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
+                <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 10% off extra floats
               </li>
-              <li>
-                <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
+                <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 Guest pass each quarter
               </li>
-              <li>
-                <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
+                <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 Priority booking
               </li>
             </ul>
-            <a href="memberships.html" class="btn" style="
-                  background: white;
-                  color: var(--primary);
-                  text-align: center;
-                  padding: 0.85rem;
-                  border-radius: var(--border-radius);
-                ">Join Now</a>
+            <a href="memberships.html" class="btn-membership-cta">Join Now</a>
           </div>
 
           <!-- Studio -->
-          <div class="h2-membership-card studio" style="text-align: center">
+          <div class="premium-membership-card studio" style="text-align: center">
             <div>
               <h3 style="margin: 0 0 0.25rem">Immerse</h3>
               <p style="
@@ -1758,33 +1753,33 @@
             <div class="h2-membership-price">
               $149 <small style="font-size: 1rem">/mo</small>
             </div>
-            <ul class="h2-membership-features" style="align-items: center">
-              <li>
+            <ul class="h2-membership-features" style="align-items: center; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.65rem; flex-grow: 1;">
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
                 <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 4 × floats per month
               </li>
-              <li>
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
                 <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 Unlimited guest passes
               </li>
-              <li>
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
                 <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 Private suite reservations
               </li>
-              <li>
+              <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;">
                 <svg class="h2-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
                 Wellness consultation
               </li>
             </ul>
-            <a href="memberships.html" class="btn btn-outline" style="text-align: center">Get Immersed</a>
+            <a href="memberships.html" class="btn-membership-cta">Get Immersed</a>
           </div>
         </div>
       </div>

@@ -145,72 +145,76 @@
                 <div
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); max-width: 1000px; margin: 0 auto; text-align: center;">
                     <!-- Tier 1 -->
-                    <article class="card" style="display: flex; flex-direction: column;">
-                        <h3 style="margin-bottom: var(--spacing-sm);">Explorer</h3>
-                        <p style="color: var(--theme-text-muted);">Perfect for maintaining a monthly routine.</p>
-                        <div style="margin: var(--spacing-md) 0; font-size: 2.5rem; font-weight: 700;">
+                    <article class="premium-membership-card">
+                        <div>
+                            <h3 style="margin: 0 0 0.25rem;">Explorer</h3>
+                            <p style="color: var(--theme-text-muted); margin: 0; font-size: 0.9rem;">Perfect for maintaining a monthly routine.</p>
+                        </div>
+                        <div style="font-size: 2.5rem; font-weight: 700;">
                             $<span class="price-val" data-monthly="69" data-annual="55">69</span><span
                                 style="font-size: 1rem; color: var(--theme-text-muted); font-weight: 400;">/mo</span>
                         </div>
-                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); flex-grow: 1;">
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); padding: 0; display: flex; flex-direction: column; gap: 0.65rem; flex-grow: 1;">
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> 1 Float per month (60 min)</li>
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> Rollover unused floats</li>
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> Additional floats at $59</li>
                         </ul>
-                        <button class="btn btn-outline" style="width: 100%;">Select Explorer</button>
+                        <button class="btn-membership-cta">Select Explorer</button>
                     </article>
 
                     <!-- Tier 2 -->
-                    <article class="card"
-                        style="display: flex; flex-direction: column; border-color: var(--theme-accent); position: relative;">
+                    <article class="premium-membership-card featured">
                         <!-- Highlight badge -->
                         <span
-                            style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--theme-accent); color: #fff; padding: 2px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">MOST
+                            style="align-self: center; background: var(--theme-accent); color: #fff; padding: 4px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">MOST
                             POPULAR</span>
 
-                        <h3 style="margin-bottom: var(--spacing-sm);">Devotee</h3>
-                        <p style="color: var(--theme-text-muted);">For those seeking rapid physical and mental benefits.
-                        </p>
+                        <div>
+                            <h3 style="margin: 0 0 0.25rem;">Devotee</h3>
+                            <p style="color: var(--theme-text-muted); margin: 0; font-size: 0.9rem;">For those seeking rapid physical and mental benefits.</p>
+                        </div>
                         <div
-                            style="margin: var(--spacing-md) 0; font-size: 2.5rem; font-weight: 700; color: var(--theme-accent);">
+                            style="font-size: 2.5rem; font-weight: 700; color: var(--theme-accent);">
                             $<span class="price-val" data-monthly="129" data-annual="103">129</span><span
                                 style="font-size: 1rem; color: var(--theme-text-muted); font-weight: 400;">/mo</span>
                         </div>
-                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); flex-grow: 1;">
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); padding: 0; display: flex; flex-direction: column; gap: 0.65rem; flex-grow: 1;">
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> 2 Floats per month (90 min)</li>
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> Rollover unused floats</li>
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> Bring a guest for free (1x/yr)</li>
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> Additional floats at $49</li>
                         </ul>
-                        <button class="btn btn-primary" style="width: 100%;">Select Devotee</button>
+                        <button class="btn-membership-cta">Select Devotee</button>
                     </article>
 
                     <!-- Tier 3 -->
-                    <article class="card" style="display: flex; flex-direction: column;">
-                        <h3 style="margin-bottom: var(--spacing-sm);">Master</h3>
-                        <p style="color: var(--theme-text-muted);">The ultimate commitment to your nervous system.</p>
-                        <div style="margin: var(--spacing-md) 0; font-size: 2.5rem; font-weight: 700;">
+                    <article class="premium-membership-card">
+                        <div>
+                            <h3 style="margin: 0 0 0.25rem;">Master</h3>
+                            <p style="color: var(--theme-text-muted); margin: 0; font-size: 0.9rem;">The ultimate commitment to your nervous system.</p>
+                        </div>
+                        <div style="font-size: 2.5rem; font-weight: 700;">
                             $<span class="price-val" data-monthly="219" data-annual="175">219</span><span
                                 style="font-size: 1rem; color: var(--theme-text-muted); font-weight: 400;">/mo</span>
                         </div>
-                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); flex-grow: 1;">
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                        <ul style="list-style: none; margin-bottom: var(--spacing-lg); padding: 0; display: flex; flex-direction: column; gap: 0.65rem; flex-grow: 1;">
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> 4 Floats per month (90 min)</li>
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> Rollover unused floats</li>
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> Bring a guest for free (4x/yr)</li>
-                            <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem; justify-content: center;"><span
                                     style="color: var(--success);">✓</span> Additional floats at $39</li>
                         </ul>
-                        <button class="btn btn-outline" style="width: 100%;">Select Master</button>
+                        <button class="btn-membership-cta">Select Master</button>
                     </article>
                 </div>
             </div>
