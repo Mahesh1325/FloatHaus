@@ -904,9 +904,9 @@
                     <div
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--spacing-md);">
                         <!-- Booking 1 - Recent -->
-                        <div class="card" style="border-left: 3px solid var(--success);">
+                        <div class="card" style="border-left: 3px solid var(--success); display: flex; flex-direction: column;">
                             <div
-                                style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-md);">
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
                                 <div>
                                     <h4 style="margin: 0; font-size: 1.1rem;">90-Minute Float</h4>
                                     <p style="margin: 0.25rem 0 0; color: var(--theme-text-muted); font-size: 0.85rem;">
@@ -938,7 +938,7 @@
                                     <span style="color: var(--theme-text-muted); font-size: 0.85rem;">(5.0)</span>
                                 </div>
                             </div>
-                            <div style="display: flex; gap: var(--spacing-sm);">
+                            <div style="display: flex; gap: var(--spacing-sm); margin-top: auto;">
                                 <button class="btn btn-primary"
                                     style="flex: 1; padding: 0.4rem; font-size: 0.85rem;">Rebook</button>
                                 <button class="btn btn-outline"
@@ -947,9 +947,9 @@
                         </div>
 
                         <!-- Booking 2 -->
-                        <div class="card" style="border-left: 3px solid var(--success);">
+                        <div class="card" style="border-left: 3px solid var(--success); display: flex; flex-direction: column;">
                             <div
-                                style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-md);">
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
                                 <div>
                                     <h4 style="margin: 0; font-size: 1.1rem;">60-Minute Float</h4>
                                     <p style="margin: 0.25rem 0 0; color: var(--theme-text-muted); font-size: 0.85rem;">
@@ -981,7 +981,7 @@
                                     <span style="color: var(--theme-text-muted); font-size: 0.85rem;">(5.0)</span>
                                 </div>
                             </div>
-                            <div style="display: flex; gap: var(--spacing-sm);">
+                            <div style="display: flex; gap: var(--spacing-sm); margin-top: auto;">
                                 <button class="btn btn-primary"
                                     style="flex: 1; padding: 0.4rem; font-size: 0.85rem;">Rebook</button>
                                 <button class="btn btn-outline"
@@ -990,9 +990,9 @@
                         </div>
 
                         <!-- Booking 3 -->
-                        <div class="card" style="border-left: 3px solid var(--success);">
+                        <div class="card" style="border-left: 3px solid var(--success); display: flex; flex-direction: column;">
                             <div
-                                style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-md);">
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
                                 <div>
                                     <h4 style="margin: 0; font-size: 1.1rem;">120-Minute Float</h4>
                                     <p style="margin: 0.25rem 0 0; color: var(--theme-text-muted); font-size: 0.85rem;">
@@ -1024,7 +1024,7 @@
                                     <span style="color: var(--theme-text-muted); font-size: 0.85rem;">(5.0)</span>
                                 </div>
                             </div>
-                            <div style="display: flex; gap: var(--spacing-sm);">
+                            <div style="display: flex; gap: var(--spacing-sm); margin-top: auto;">
                                 <button class="btn btn-primary"
                                     style="flex: 1; padding: 0.4rem; font-size: 0.85rem;">Rebook</button>
                                 <button class="btn btn-outline"
@@ -1033,9 +1033,9 @@
                         </div>
 
                         <!-- Booking 4 - Cancelled -->
-                        <div class="card" style="border-left: 3px solid var(--error, #ef4444);">
+                        <div class="card" style="border-left: 3px solid var(--error, #ef4444); display: flex; flex-direction: column;">
                             <div
-                                style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-md);">
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
                                 <div>
                                     <h4 style="margin: 0; font-size: 1.1rem;">90-Minute Float</h4>
                                     <p style="margin: 0.25rem 0 0; color: var(--theme-text-muted); font-size: 0.85rem;">
@@ -1059,7 +1059,14 @@
                                     <strong style="color: var(--success);">Refunded</strong>
                                 </div>
                             </div>
-                            <div style="display: flex; gap: var(--spacing-sm);">
+                            <div style="margin-bottom: var(--spacing-sm);">
+                                <p style="color: var(--theme-text-muted); font-size: 0.85rem; margin: 0 0 0.5rem;">Your
+                                    Rating:</p>
+                                <div style="display: flex; gap: 0.25rem;">
+                                    <span style="color: var(--theme-text-muted); font-size: 0.85rem; font-style: italic;">Rating not available for cancelled sessions</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: var(--spacing-sm); margin-top: auto;">
                                 <button class="btn btn-primary"
                                     style="flex: 1; padding: 0.4rem; font-size: 0.85rem;">Book Another</button>
                                 <button class="btn btn-outline"
@@ -1068,9 +1075,9 @@
                         </div>
 
                         <!-- Booking 5 -->
-                        <div class="card" style="border-left: 3px solid var(--success);">
+                        <div class="card" style="border-left: 3px solid var(--success); display: flex; flex-direction: column;">
                             <div
-                                style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-md);">
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
                                 <div>
                                     <h4 style="margin: 0; font-size: 1.1rem;">90-Minute Float</h4>
                                     <p style="margin: 0.25rem 0 0; color: var(--theme-text-muted); font-size: 0.85rem;">
@@ -1102,7 +1109,7 @@
                                     <span style="color: var(--theme-text-muted); font-size: 0.85rem;">(4.0)</span>
                                 </div>
                             </div>
-                            <div style="display: flex; gap: var(--spacing-sm);">
+                            <div style="display: flex; gap: var(--spacing-sm); margin-top: auto;">
                                 <button class="btn btn-primary"
                                     style="flex: 1; padding: 0.4rem; font-size: 0.85rem;">Rebook</button>
                                 <button class="btn btn-outline"
@@ -1111,9 +1118,9 @@
                         </div>
 
                         <!-- Booking 6 -->
-                        <div class="card" style="border-left: 3px solid var(--success);">
+                        <div class="card" style="border-left: 3px solid var(--success); display: flex; flex-direction: column;">
                             <div
-                                style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-md);">
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
                                 <div>
                                     <h4 style="margin: 0; font-size: 1.1rem;">60-Minute Float</h4>
                                     <p style="margin: 0.25rem 0 0; color: var(--theme-text-muted); font-size: 0.85rem;">
@@ -1145,7 +1152,7 @@
                                     <span style="color: var(--theme-text-muted); font-size: 0.85rem;">(5.0)</span>
                                 </div>
                             </div>
-                            <div style="display: flex; gap: var(--spacing-sm);">
+                            <div style="display: flex; gap: var(--spacing-sm); margin-top: auto;">
                                 <button class="btn btn-primary"
                                     style="flex: 1; padding: 0.4rem; font-size: 0.85rem;">Rebook</button>
                                 <button class="btn btn-outline"
