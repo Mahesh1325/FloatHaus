@@ -282,7 +282,7 @@
     }
 }
 
-@media (min-width: 640px) and (max-width: 1024px) {
+@media (min-width: 640px) and (max-width: 1023px) {
     /* Elegant 3-item wrap fix: If 3 items in a 2-col grid, the last one spans full-width instead of leaving a blank gap */
     .services-grid>*:last-child:nth-child(odd),
     .features-grid>*:last-child:nth-child(odd),
